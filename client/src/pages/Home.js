@@ -5,6 +5,7 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Step1 from "../components/Tabs/Step1";
+import Step2 from "../components/Tabs/Step2";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -52,7 +53,7 @@ export default function VerticalTabs() {
         flexGrow: 1,
         bgcolor: "background.paper",
         display: "flex",
-        height: 224,
+        height: "100vh",
       }}
     >
       <Tabs
@@ -75,7 +76,7 @@ export default function VerticalTabs() {
         <Step1 />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Step Two
+        <Step2 />
       </TabPanel>
       <TabPanel value={value} index={2}>
         Step Three
