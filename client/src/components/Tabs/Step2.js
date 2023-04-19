@@ -1,10 +1,6 @@
 import React, { useState } from "react";
-import {
-  TextField,
-  Button,
-  Card,
-  Stack,
-} from "@mui/material";
+import { TextField, Button, Card, Stack } from "@mui/material";
+import HTMLFlipBook from "react-pageflip";
 
 import { Configuration, OpenAIApi } from "openai";
 
@@ -54,6 +50,7 @@ const styles = {
   },
 };
 
+
 function StoryMaker() {
   const [character, setCharacter] = useState("");
   const [description, setDescription] = useState("");
@@ -68,6 +65,10 @@ function StoryMaker() {
     console.log(response);
     setResponse(response);
   };
+
+  const sentencesPerPage = 1;
+  const sentences = response.split(". "); // split response into an array of sentences
+  const numPages = Math.ceil(sentences.length / sentencesPerPage); // calculate the number of pages needed
 
   return (
     <>
@@ -119,13 +120,15 @@ function StoryMaker() {
           </Stack>
         </Card>
       </form>
-      <Card>
-        <div sx={styles.root}>
-          <div sx={{ position: "relative" }}>
-            <pre sx={styles.responseStory}>{response}</pre>
+      <HTMLFlipBook width={300} height={500}>
+        {Array.from({ length: numPages }).map((_, i) => (
+          <div key={i} sx={styles.responseStory}>
+            {sentences
+              .slice(i * sentencesPerPage, (i + 1) * sentencesPerPage)
+              .join(". ")}
           </div>
-        </div>
-      </Card>
+        ))}
+      </HTMLFlipBook>
     </>
   );
 }
