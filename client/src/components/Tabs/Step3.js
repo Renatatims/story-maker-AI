@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import HTMLFlipBook from "react-pageflip";
+import exampleImage from "../../assets/images/imgExample.PNG"; // import the image
 
 function ResponseFlipBook() {
   const response = `Once upon a time, there was a little girl named Olivia who absolutely
@@ -31,7 +32,7 @@ function ResponseFlipBook() {
         <CardMedia
           component="img"
           height="300"
-          image="https://oaidalleapiprodscus.blob.core.windows.net/private/org-SMUvkEA9tWEiwD7xWuhCDooP/user-7y3wqadbyGnYtO8RwEigLlR1/img-GTN6nVvFmtZN7F7TdRAIA5f7.png?st=2023-04-20T19%3A20%3A05Z&se=2023-04-20T21%3A20%3A05Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-04-20T17%3A07%3A58Z&ske=2023-04-21T17%3A07%3A58Z&sks=b&skv=2021-08-06&sig=/NQhW1JE%2BVYffKPZ4v6hv1PDDtBLFGgGkgkTGy4jFkU%3D"
+          src={exampleImage}
           alt="imageAI"
           sx={{ objectFit: "contain" }}
         />
@@ -52,7 +53,7 @@ function ResponseFlipBook() {
                 .slice(i * sentencesPerPage, (i + 1) * sentencesPerPage)
                 .join(". ")}
               <img
-                src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-SMUvkEA9tWEiwD7xWuhCDooP/user-7y3wqadbyGnYtO8RwEigLlR1/img-GTN6nVvFmtZN7F7TdRAIA5f7.png?st=2023-04-20T19%3A20%3A05Z&se=2023-04-20T21%3A20%3A05Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-04-20T17%3A07%3A58Z&ske=2023-04-21T17%3A07%3A58Z&sks=b&skv=2021-08-06&sig=/NQhW1JE%2BVYffKPZ4v6hv1PDDtBLFGgGkgkTGy4jFkU%3D"
+                src={exampleImage}
                 alt="imageAI"
                 width={300}
                 height={300}
