@@ -31,7 +31,7 @@ async function generateImage(prompt) {
   }
 }
 
-const ImageGeneratorPage = () => {
+const ImageGenerator = () => {
   const [prompt, setPrompt] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [loading, setLoading] = useState(false);
@@ -77,4 +77,4 @@ const ImageGeneratorPage = () => {
   );
 };
 
-export default ImageGeneratorPage;
+export default ImageGenerator;
