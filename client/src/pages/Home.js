@@ -4,10 +4,10 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import Intro from "../components/Tabs/Intro";
 import Step1 from "../components/Tabs/Step1";
 import Step2 from "../components/Tabs/Step2";
 import Step3 from "../components/Tabs/Step3";
-import Step4 from "../components/Tabs/Step4";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -66,25 +66,25 @@ export default function VerticalTabs() {
         aria-label="Vertical tabs example"
         sx={{ borderRight: 1, borderColor: "divider" }}
       >
-        <Tab label="Step One" {...a11yProps(0)} />
-        <Tab label="Step Two" {...a11yProps(1)} />
-        <Tab label="Step Three" {...a11yProps(2)} />
-        <Tab label="Step Four" {...a11yProps(3)} />
+        <Tab label="Intro" {...a11yProps(0)} />
+        <Tab label="Step 1" {...a11yProps(1)} />
+        <Tab label="Step 2" {...a11yProps(2)} />
+        <Tab label="Step 3" {...a11yProps(3)} />
         <Tab label="Step Five" {...a11yProps(4)} />
         <Tab label="Step Six" {...a11yProps(5)} />
         <Tab label="Step Seven" {...a11yProps(6)} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <Step1 />
+        <Intro />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Step2 />
+        <Step1 />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Step3 />
+        <Step2 />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        <Step4 />
+        <Step3 />
       </TabPanel>
       <TabPanel value={value} index={4}>
         Step Five
