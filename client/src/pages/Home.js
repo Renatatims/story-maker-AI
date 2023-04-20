@@ -7,6 +7,7 @@ import Box from "@mui/material/Box";
 import Step1 from "../components/Tabs/Step1";
 import Step2 from "../components/Tabs/Step2";
 import Step3 from "../components/Tabs/Step3";
+import Step4 from "../components/Tabs/Step4";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -83,7 +84,7 @@ export default function VerticalTabs() {
         <Step3 />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Step Four
+        <Step4 />
       </TabPanel>
       <TabPanel value={value} index={4}>
         Step Five
