@@ -53,7 +53,36 @@ const resolvers = {
 
       return { token, user };
     },
+    // Save a story to user's profile
+    saveStory: async (parent, { storyData }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError("You need to be logged in!");
+      }
 
+      const user = await User.findById(context.user._id);
+
+      const defaultTitle = `Story ${
+        user.storiesAI ? user.storiesAI.length + 1 : 1
+      }`;
+
+      const storiesAI = new Story({
+        stories: storyData.stories,
+        title: storyData.title || defaultTitle,
+        user: context.user._id,
+      });
+
+      const savedStory = await storiesAI.save();
+
+      // Validate story title
+      if (!savedStory.title) {
+        throw new UserInputError("Story title cannot be null.");
+      }
+
+      user.storiesAI.push(savedStory);
+      await user.save();
+
+      return user;
+    },
   },
 };
 
