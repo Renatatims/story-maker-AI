@@ -20,19 +20,25 @@ const typeDefs = gql`
     title: String
     stories: String!
   }
+
+  type Auth {
+    token: ID
+    user: User
+  }
+
   type Query {
     user: User
     stories: [Story]
   }
 
   type Mutation {
-    login(email: String!, password: String!): User
+    login(email: String!, password: String!): Auth
     addUser(
       firstName: String!
       lastName: String!
       email: String!
       password: String!
-    ): User
+    ): Auth
     saveStory(storyData: StoryInput!): User
   }
 `;
