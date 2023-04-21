@@ -21,7 +21,7 @@ const userSchema = new Schema({
   },
   storiesAI: [{
     type: Schema.Types.ObjectId,
-    ref: "Stories",
+    ref: "Story",
   }],
 });
 
