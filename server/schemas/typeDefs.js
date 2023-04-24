@@ -6,7 +6,7 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     email: String
-    stories: [Story]
+    storiesAI: [Story]
   }
 
   type Story {
@@ -28,7 +28,7 @@ const typeDefs = gql`
 
   type Query {
     user: User
-    stories: [Story]
+    storiesAI: [Story]
   }
 
   type Mutation {

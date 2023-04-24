@@ -65,13 +65,13 @@ const resolvers = {
         user.storiesAI ? user.storiesAI.length + 1 : 1
       }`;
 
-      const storiesAI = new Story({
+      const story = new Story({
         stories: storyData.stories,
         title: storyData.title || defaultTitle,
         user: context.user._id,
       });
 
-      const savedStory = await storiesAI.save();
+      const savedStory = await story.save();
 
       // Validate story title
       if (!savedStory.title) {
