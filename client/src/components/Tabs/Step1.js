@@ -69,7 +69,7 @@ const styles = {
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
+  ...theme.typography,
   padding: theme.spacing(1),
   textAlign: "center",
   color: theme.palette.text.secondary,
@@ -83,6 +83,8 @@ function StoryMaker() {
 
   //Render Images - so user can select and include in their story
   const [selectedImage, setSelectedImage] = useState(null);
+
+  const [saveStoriesAI] = useMutation(SAVE_STORY_AI);
 
   const handleSelect = (image) => {
     setSelectedImage(image);
@@ -107,8 +109,6 @@ function StoryMaker() {
   const sentencesPerPage = 1;
   const sentences = response.split(". "); // split response into an array of sentences
   const numPages = Math.ceil(sentences.length / sentencesPerPage); // calculate the number of pages needed
-
-  const [saveStoriesAI] = useMutation(SAVE_STORY_AI);
 
   // Define the handleSaveStoryAI function
   const handleSaveStoryAI = async () => {
@@ -209,10 +209,13 @@ function StoryMaker() {
               .join(". ")}
           </div>
         ))}
-        <IconButton onClick={handleSaveStoryAI}>
-          <FavoriteBorderIcon></FavoriteBorderIcon>
-        </IconButton>
       </HTMLFlipBook>
+      <Card>
+        {response}
+        <IconButton onClick={handleSaveStoryAI}>
+          <FavoriteBorderIcon />
+        </IconButton>
+      </Card>
     </>
   );
 }

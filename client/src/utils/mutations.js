@@ -40,8 +40,8 @@ export const LOGIN_USER = gql`
 
 //Save Story to User's profile
 export const SAVE_STORY_AI = gql`
-  mutation saveStoryAI($storyData: StoryInput!) {
-    saveStoryAI(storyData: $storyData) {
+  mutation saveStory($storyData: StoryInput!) {
+    saveStory(storyData: $storyData) {
       _id
       storiesAI {
         _id
