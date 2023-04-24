@@ -1,10 +1,25 @@
 import React, { useState } from "react";
-import { TextField, Button, Card, Stack, Box, Paper, Grid} from "@mui/material";
+import {
+  TextField,
+  Button,
+  Card,
+  Stack,
+  Box,
+  Paper,
+  Grid,
+  IconButton,
+} from "@mui/material";
+
 import { styled } from "@mui/material/styles";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import HTMLFlipBook from "react-pageflip";
 import images from "../../utils/images";
 
 import { Configuration, OpenAIApi } from "openai";
+// Apollo useMutation() Hook
+import { useMutation } from "@apollo/client";
+//Import Save Story AI mutation
+import { SAVE_STORY_AI } from "../../utils/mutations";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -72,13 +87,19 @@ function StoryMaker() {
   const handleSelect = (image) => {
     setSelectedImage(image);
   };
-  
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const prompt = `Please generate a story that includes a main character with the name: ${character}, and description: ${description} and has the following theme: ${theme}. ${selectedImage ? "The story should also include a(n) " + selectedImage.title.toLowerCase() + "." : ""}`;
+    const prompt = `Please generate a story that includes a main character with the name: ${character}, and description: ${description} and has the following theme: ${theme}. ${
+      selectedImage
+        ? "The story should also include a(n) " +
+          selectedImage.title.toLowerCase() +
+          "."
+        : ""
+    }`;
     const response = await getResponse(prompt);
-    console.log(prompt)
+    console.log(prompt);
     console.log(response);
     setResponse(response);
   };
@@ -87,7 +108,25 @@ function StoryMaker() {
   const sentences = response.split(". "); // split response into an array of sentences
   const numPages = Math.ceil(sentences.length / sentencesPerPage); // calculate the number of pages needed
 
-  
+  const [saveStoriesAI] = useMutation(SAVE_STORY_AI);
+
+  // Define the handleSaveStoryAI function
+  const handleSaveStoryAI = async () => {
+    try {
+      // Call the saveNutriPlan mutation with the nutriPlan object
+      await saveStoriesAI({ variables: { storyData: { stories: response } } });
+
+      // Show a success message to the user
+      alert("Story saved successfully!");
+    } catch (error) {
+      console.error(error);
+
+      // Show an error message to the user
+      alert(
+        "An error occurred while saving the story. Please try again later."
+      );
+    }
+  };
 
   return (
     <>
@@ -170,6 +209,9 @@ function StoryMaker() {
               .join(". ")}
           </div>
         ))}
+        <IconButton onClick={handleSaveStoryAI}>
+          <FavoriteBorderIcon></FavoriteBorderIcon>
+        </IconButton>
       </HTMLFlipBook>
     </>
   );
