@@ -25,7 +25,7 @@ function ResponseFlipBook() {
 
   return (
     <>
-     <h1> Step 3: Generate your personalized story </h1>
+     <Typography variant="h4" style={{ fontFamily:"Rancho", fontSize: "48px" }}> Step 3: Generate your personalized story </Typography>
       <Card
         sx={{ maxWidth: 600, margin: "auto", boxShadow: 10 }}
       >

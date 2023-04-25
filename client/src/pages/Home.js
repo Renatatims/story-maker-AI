@@ -8,6 +8,7 @@ import Intro from "../components/Tabs/Intro";
 import Step1 from "../components/Tabs/Step1";
 import Step2 from "../components/Tabs/Step2";
 import Step3 from "../components/Tabs/Step3";
+import '../App.css';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -56,6 +57,7 @@ export default function VerticalTabs() {
         bgcolor: "background.paper",
         display: "flex",
         height: "100vh",
+        
       }}
     >
       <Tabs
@@ -64,15 +66,15 @@ export default function VerticalTabs() {
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs example"
-        sx={{ borderRight: 1, borderColor: "divider" }}
+        sx={{ borderRight: 1, borderColor: "divider"}}
       >
-        <Tab label="Intro" {...a11yProps(0)} />
-        <Tab label="Step 1" {...a11yProps(1)} />
-        <Tab label="Step 2" {...a11yProps(2)} />
-        <Tab label="Step 3" {...a11yProps(3)} />
-        <Tab label="Step Five" {...a11yProps(4)} />
-        <Tab label="Step Six" {...a11yProps(5)} />
-        <Tab label="Step Seven" {...a11yProps(6)} />
+        <Tab sx={{ fontFamily: 'Rancho, cursive', fontSize: 35, textTransform: 'none' }} label="Intro" {...a11yProps(0)} />
+        <Tab sx={{ fontFamily: 'Rancho, cursive', fontSize: 35, textTransform: 'none' }} label="Step 1" {...a11yProps(1)} />
+        <Tab sx={{ fontFamily: 'Rancho, cursive', fontSize: 35, textTransform: 'none' }} label="Step 2" {...a11yProps(2)} />
+        <Tab sx={{ fontFamily: 'Rancho, cursive', fontSize: 35, textTransform: 'none' }} label="Step 3" {...a11yProps(3)} />
+        <Tab label="" {...a11yProps(4)} />
+        <Tab label="" {...a11yProps(5)} />
+        <Tab label="" {...a11yProps(6)} />
       </Tabs>
       <TabPanel value={value} index={0}>
         <Intro />

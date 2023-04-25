@@ -8,12 +8,14 @@ import {
   Paper,
   Grid,
   IconButton,
+  Typography,
 } from "@mui/material";
 
 import { styled } from "@mui/material/styles";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import HTMLFlipBook from "react-pageflip";
 import images from "../../utils/images";
+import "../../App.css";
 
 import { Configuration, OpenAIApi } from "openai";
 // Apollo useMutation() Hook
@@ -130,11 +132,25 @@ function StoryMaker() {
 
   return (
     <>
-      <h1> Step 1: Describe your story </h1>
+      <Typography
+        variant="h4"
+        style={{ fontFamily: "Rancho", fontSize: "48px" }}
+      >
+        {" "}
+        Step 1: Describe your story{" "}
+      </Typography>
       <form onSubmit={handleSubmit}>
-        <h3 style={{ paddingTop: "15px", paddingLeft: "20px" }}>
+        <Typography
+          variant="h5"
+          style={{
+            paddingTop: "15px",
+            paddingLeft: "20px",
+            fontFamily: "Rancho",
+            fontSize: "35px",
+          }}
+        >
           Please input the following info:
-        </h3>
+        </Typography>
         <Card
           variant="outlined"
           sx={{

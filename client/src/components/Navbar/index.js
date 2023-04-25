@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
-import MenuIcon from "@mui/icons-material/Menu";
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
@@ -49,27 +48,33 @@ export default function ButtonAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar
+        position="static"
+        sx={{
+          backgroundColor: "#00334A",
+        }}
+      >
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
+        <Box
+            sx={{
+              flexGrow: 1,
+            }}
           >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Story Maker AI
-          </Typography>
+          <a href="/">
+            <img
+              src={require("../../assets/logo/storyMakerAI_logo.png")}
+              alt="icon"
+              height="60px"
+            ></img>
+          </a>
+          </Box>
           {Auth.loggedIn() ? (
             <div>
               <Link to="/MealPlan">
                 <IconButton
                   size="large"
                   aria-label="heart"
-                  sx={{ ml: 2, color:"white" }}
+                  sx={{ ml: 2, color: "white" }}
                 >
                   <Badge badgeContent={0} color="error">
                     <FavoriteIcon />
@@ -92,18 +97,16 @@ export default function ButtonAppBar() {
           ) : (
             <div>
               <Button color="inherit" onClick={handleOpenModal}>
-                Login
+                <AccountCircleIcon />
               </Button>
-              <Button color="inherit" onClick={handleOpenSignupModal}>
-                Signup
+              <Button color="inherit" onClick={handleOpenSignupModal}  sx={{ fontFamily: 'Rancho, cursive', fontSize: 25, textTransform: 'none' }}>
+                signup
               </Button>
             </div>
-          )}  
+          )}
         </Toolbar>
       </AppBar>
-      <LoginModal 
-        open={modalShow} 
-        handleClose={handleCloseModal} />
+      <LoginModal open={modalShow} handleClose={handleCloseModal} />
       <SignupModal
         open={modalSignupShow}
         handleClose={handleCloseSignupModal}

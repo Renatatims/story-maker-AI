@@ -68,7 +68,7 @@ const ImageGenerator = () => {
   return (
    <>
     <Container>
-      <Typography variant="h4">Step 2: Create a personalized image using AI</Typography>
+      <Typography variant="h4" style={{ fontFamily:"Rancho", fontSize: "48px" }}>Step 2: Create a personalized image using AI</Typography>
       <Box component="form" onSubmit={handleSubmit} mt={2}>
         <TextField
           label="Enter a description"
@@ -94,8 +94,8 @@ const ImageGenerator = () => {
       )}
     </Container>
     <Box sx={{ flexGrow: 1 }}>
-      <h2>Example AI images generated</h2>
-      <h3>Christmas Theme</h3>
+    <Typography variant="h5" style={{ fontFamily:"Rancho", fontSize: "40px", textAlign: "center" }}>AI images generated</Typography>
+    <Typography variant="h6" style={{ fontFamily:"Rancho", fontSize: "25px" }}>Christmas Theme </Typography>
     <Grid container spacing={2}>
       {images2.map((image) => (
         <Grid key={image.id} item xs={4}>
