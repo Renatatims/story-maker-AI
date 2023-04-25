@@ -60,7 +60,7 @@ const styles = {
     backgroundColor: "#F8F8F8",
   },
   responseStory: {
-    fontFamily: "Monospace",
+    fontFamily: "Rancho",
     fontSize: "14px",
     lineHeight: "20px",
     backgroundColor: "#F1F1F1",
@@ -226,7 +226,12 @@ function StoryMaker() {
           </div>
         ))}
       </HTMLFlipBook>
-      <Card>
+      <Card style={{
+            paddingTop: "15px",
+            paddingLeft: "20px",
+            fontFamily: "Rancho",
+            fontSize: "35px",
+          }}>
         {response}
         <IconButton onClick={handleSaveStoryAI}>
           <FavoriteBorderIcon />

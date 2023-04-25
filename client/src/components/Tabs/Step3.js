@@ -37,16 +37,16 @@ function ResponseFlipBook() {
           sx={{ objectFit: "contain" }}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h5" component="div" sx={{ fontFamily:"Rancho", fontSize: "35px" }}>
             Olivia's christmas surprise
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" color="text.secondary" sx={{ fontFamily:"Rancho", fontSize: "30px" }}>
             {response}
           </Typography>
         </CardContent>
       </Card>
       <Card sx={{ padding: 5, margin: 20 }}>
-        <HTMLFlipBook width={600} height={500} paddingLeft={10}>
+        <HTMLFlipBook width={600} height={500} paddingLeft={10} style={{ fontFamily:"Rancho", fontSize: "30px" }}>
           {Array.from({ length: numPages }).map((_, i) => (
             <div key={i}>
               {sentences
