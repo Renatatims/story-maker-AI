@@ -5,7 +5,13 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
+import Badge from "@mui/material/Badge";
 import MenuIcon from "@mui/icons-material/Menu";
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+
+import Auth from "../../utils/auth";
+import { Link } from "react-router-dom";
 
 //Import Login modal
 import LoginModal from "../LoginModal/index";
@@ -57,12 +63,42 @@ export default function ButtonAppBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Story Maker AI
           </Typography>
-          <Button color="inherit" onClick={handleOpenModal}>
-            Login
-          </Button>
-          <Button color="inherit" onClick={handleOpenSignupModal}>
-            Signup
-          </Button>
+          {Auth.loggedIn() ? (
+            <div>
+              <Link to="/MealPlan">
+                <IconButton
+                  size="large"
+                  aria-label="heart"
+                  sx={{ ml: 2, color:"white" }}
+                >
+                  <Badge badgeContent={0} color="error">
+                    <FavoriteIcon />
+                  </Badge>
+                </IconButton>
+              </Link>
+              <IconButton
+                size="large"
+                aria-label="logout"
+                color="inherit"
+                onClick={() => {
+                  Auth.logout();
+                }}
+              >
+                <Badge badgeContent={0} color="error">
+                  <ExitToAppIcon />
+                </Badge>
+              </IconButton>
+            </div>
+          ) : (
+            <div>
+              <Button color="inherit" onClick={handleOpenModal}>
+                Login
+              </Button>
+              <Button color="inherit" onClick={handleOpenSignupModal}>
+                Signup
+              </Button>
+            </div>
+          )}  
         </Toolbar>
       </AppBar>
       <LoginModal 
