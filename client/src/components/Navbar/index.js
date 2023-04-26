@@ -70,7 +70,7 @@ export default function ButtonAppBar() {
           </Box>
           {Auth.loggedIn() ? (
             <div>
-              <Link to="/MealPlan">
+              <Link to="/Profile">
                 <IconButton
                   size="large"
                   aria-label="heart"
