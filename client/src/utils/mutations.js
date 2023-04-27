@@ -38,7 +38,7 @@ export const LOGIN_USER = gql`
   }
 `;
 
-//Save Story to User's profile
+// Save Story to User's profile
 export const SAVE_STORY_AI = gql`
   mutation saveStory($storyData: StoryInput!) {
     saveStory(storyData: $storyData) {
@@ -47,12 +47,29 @@ export const SAVE_STORY_AI = gql`
         _id
         title
         stories
+        image {
+          _id
+          image
+        }
         user {
           _id
           firstName
           lastName
           email
         }
+      }
+    }
+  }
+`;
+
+// Save Image to User's profile
+export const SAVE_IMAGE = gql`
+  mutation saveImage($imageData: ImageInput!) {
+    saveImage(imageData: $imageData) {
+      _id
+      images {
+        _id
+        image
       }
     }
   }

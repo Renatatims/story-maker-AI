@@ -4,6 +4,7 @@ const {
 } = require("apollo-server-express");
 const { User } = require("../models");
 const Story = require("../models/Story");
+const Image = require("../models/Image");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -26,7 +27,17 @@ const resolvers = {
       );
       return stories;
     },
+    images: async (parent, args, context) => {
+      if (!context.user) {
+        throw new AuthenticationError("You need to be logged in!");
+      }
+      const images = await Image.find({ user: context.user._id }).populate(
+        "user"
+      );
+      return images;
+    },
   },
+
   //Mutations
   Mutation: {
     addUser: async (parent, args) => {
@@ -79,6 +90,28 @@ const resolvers = {
       }
 
       user.storiesAI.push(savedStory);
+      await user.save();
+
+      return user;
+    },
+
+    // Save image to user's profile
+    saveImage: async (parent, { imageData }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError("You need to be logged in!");
+      }
+
+      const user = await User.findById(context.user._id);
+
+      // Store the image in the Image model
+      const image = new Image({
+        image: imageData.image,
+        user: context.user._id,
+      });
+
+      const savedImage = await image.save();
+
+      user.images.push(savedImage);
       await user.save();
 
       return user;

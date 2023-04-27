@@ -15,6 +15,11 @@ const storySchema = new Schema({
     ref: "User",
     required: true
   },
+  image: {
+    type: Schema.Types.ObjectId, 
+    ref: 'Image', 
+    required: false,
+  },
 });
 
 const Story = model("Story", storySchema);

@@ -11,12 +11,20 @@ export const QUERY_USER = gql`
         _id
         title
         stories
+        image {
+          _id
+          image
+        }
         user {
           _id
           firstName
           lastName
           email
         }
+      }
+      images {
+        _id
+        image
       }
     }
   }
@@ -28,6 +36,25 @@ export const QUERY_STORIES_AI = gql`
       _id
       title
       stories
+      image {
+        _id
+        image
+      }
+      user {
+        _id
+        firstName
+        lastName
+        email
+      }
+    }
+  }
+`;
+
+export const QUERY_IMAGES = gql` 
+  query getImages {
+    images {
+      _id
+      image
       user {
         _id
         firstName

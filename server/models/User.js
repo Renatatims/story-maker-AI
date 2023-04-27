@@ -26,6 +26,12 @@ const userSchema = new Schema({
       ref: "Story",
     },
   ],
+  images: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Image',
+    },
+  ],
 });
 
 // middleware to create password
