@@ -11,6 +11,7 @@ export const QUERY_USER = gql`
         _id
         title
         stories
+        image
         user {
           _id
           firstName
@@ -28,6 +29,7 @@ export const QUERY_STORIES_AI = gql`
       _id
       title
       stories
+      image
       user {
         _id
         firstName

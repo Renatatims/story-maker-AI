@@ -15,6 +15,10 @@ const storySchema = new Schema({
     ref: "User",
     required: true
   },
+  image: { 
+    type: String,
+    required: false,
+  },
 });
 
 const Story = model("Story", storySchema);

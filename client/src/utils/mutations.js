@@ -47,6 +47,7 @@ export const SAVE_STORY_AI = gql`
         _id
         title
         stories
+        image
         user {
           _id
           firstName

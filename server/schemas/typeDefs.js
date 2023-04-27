@@ -14,11 +14,13 @@ const typeDefs = gql`
     title: String
     stories: String
     user: User
+    image: String
   }
 
   input StoryInput {
     title: String
     stories: String!
+    image: String
   }
 
   type Auth {

@@ -69,6 +69,7 @@ const resolvers = {
         stories: storyData.stories,
         title: storyData.title || defaultTitle,
         user: context.user._id,
+        image: storyData.image, 
       });
 
       const savedStory = await story.save();
