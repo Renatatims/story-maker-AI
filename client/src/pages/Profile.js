@@ -5,6 +5,8 @@ import {
   CardMedia,
   Typography,
   IconButton,
+  Grid,
+  useMediaQuery,
 } from "@mui/material";
 import { Print } from "@mui/icons-material";
 import exampleImage from "../assets/images/imgExample.PNG";
@@ -20,13 +22,21 @@ function UserStories() {
   console.log(data);
   const storiesAI = data?.storiesAI || [];
 
-   // Define a state variable to keep track of whether to show the full or preview text
-   const [showFullStory, setShowFullStory] = useState(false);
+  // Define a state variable to keep track of whether to show the full or preview text
+  const [showFullStory, setShowFullStory] = useState(
+    storiesAI.map((story) => false)
+  );
 
-   // Define a function to toggle the state variable
-   const handleToggleStory = () => {
-     setShowFullStory((previewStory) => !previewStory);
-   };
+  // Define a function to toggle the state variable for a specific card
+  const handleToggleStory = (index) => {
+    setShowFullStory((prevState) => {
+      const newState = [...prevState];
+      newState[index] = !newState[index];
+      return newState;
+    });
+  };
+  //Mobile view
+  const isMobile = useMediaQuery("(max-width:600px)");
 
   // Print a specifc Story Card - included a timeout so the print window opens after the browser renders all info before printing it
   const handlePrint = (cardId) => {
@@ -87,6 +97,7 @@ function UserStories() {
     printWindow.document.close();
     printWindow.focus();
   };
+
   return (
     <>
       <Typography
@@ -95,61 +106,62 @@ function UserStories() {
       >
         Saved Stories
       </Typography>
-      {storiesAI?.map((storiesAI, index) => (
-        <div key={index} id={`card-${index}`}>
-          <Card
-            key={index}
-            sx={{
-              maxWidth: 600,
-              margin: "auto",
-              boxShadow: 10,
-              marginBottom: "20px",
-            }}
-          >
-            <div className="center">
-            <CardMedia
-              component="img"
-              height="300"
-              src={exampleImage}
-              alt="imageAI"
-              sx={{ objectFit: "contain" }}
-              className="center"
-            />
-            </div>
-            <CardContent>
-              <Typography
-                gutterBottom
-                variant="h5"
-                component="div"
-                sx={{ fontFamily: "Rancho", fontSize: "35px" }}
-              >
-                Title
-              </Typography>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                sx={{
-                  fontFamily: "Rancho",
-                  fontSize: "30px",
-                  maxHeight: showFullStory ? "none" : "120px", 
-                  textOverflow: "ellipsis",
-                  whiteSpace: "pre-line",
-                  overflow: "hidden",
-                }}
-              >
-                {storiesAI.stories}
-              </Typography>
-            </CardContent>
-            <IconButton onClick={handleToggleStory}>
-              {showFullStory ? <ExpandLess /> : <ExpandMore />}
-            </IconButton>
-            <IconButton onClick={() => handlePrint(`card-${index}`)}>
-              <Print />
-            </IconButton>
-          </Card>
-        </div>
-      ))}
-      ;
+      <Grid container spacing={isMobile ? 2 : 4}>
+        {storiesAI?.map((story, index) => (
+          <Grid item xs={12} sm={6} md={4} key={index} id={`card-${index}`}>
+            <Card
+              key={index}
+              sx={{
+                maxWidth: 600,
+                margin: "auto",
+                boxShadow: 10,
+                marginBottom: "20px",
+              }}
+            >
+              <div className="center">
+                <CardMedia
+                  component="img"
+                  height="300"
+                  src={exampleImage}
+                  alt="imageAI"
+                  sx={{ objectFit: "contain" }}
+                  className="center"
+                />
+              </div>
+              <CardContent>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="div"
+                  sx={{ fontFamily: "Rancho", fontSize: "35px" }}
+                >
+                  Title
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{
+                    fontFamily: "Rancho",
+                    fontSize: "30px",
+                    maxHeight: showFullStory[index] ? "none" : "120px",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "pre-line",
+                    overflow: "hidden",
+                  }}
+                >
+                  {story.stories}
+                </Typography>
+              </CardContent>
+              <IconButton onClick={() => handleToggleStory(index)}>
+                {showFullStory[index] ? <ExpandLess /> : <ExpandMore />}
+              </IconButton>
+              <IconButton onClick={() => handlePrint(`card-${index}`)}>
+                <Print />
+              </IconButton>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
     </>
   );
 }
