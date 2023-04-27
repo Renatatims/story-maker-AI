@@ -4,8 +4,9 @@ import {
   CardContent,
   CardMedia,
   Typography,
-  Button,
+  IconButton,
 } from "@mui/material";
+import { Print } from "@mui/icons-material";
 import exampleImage from "../assets/images/imgExample.PNG";
 
 //use Query Hook
@@ -18,11 +19,11 @@ function ResponseFlipBook() {
   console.log(data);
   const storiesAI = data?.storiesAI || [];
 
-  // Print a specifc Story Card 
+  // Print a specifc Story Card - included a timeout so the print window opens after the image is loaded
   const handlePrint = (cardId) => {
-    const cardToPrint = document.getElementById(cardId);
-    console.log("Printing card:", cardToPrint.outerHTML);
-    const printWindow = window.open('', 'printWindow', 'height=400,width=600');
+    const cardToPrint = document.getElementById(cardId).innerHTML;
+    console.log("Printing card:", cardToPrint);
+    const printWindow = window.open("", "printWindow", "height=400,width=600");
     printWindow.document.write(`
       <!DOCTYPE html>
       <html>
@@ -46,22 +47,37 @@ function ResponseFlipBook() {
                 top: 0;
                 width: 100%;
               }
+              #card-to-print .MuiTypography-h5 {
+                font-family:  sans-serif;
+                font-size: 35px;
+              }
+              #card-to-print .MuiTypography-body2 {
+                font-family: sans-serif;
+                line-height: 2.5;
+                font-size: 25px;
+              }
+              #card-to-print .center {
+                text-align: center; /* center the image */
+              }
             }
           </style>
         </head>
         <body>
-        <div id="card-to-print">
-          ${cardToPrint.outerHTML}
-        </div>
-      </body>
-    </html>
+          <div id="card-to-print">
+            ${cardToPrint}
+          </div>
+          <script>
+            setTimeout(() => {
+              window.print();
+              window.close();
+            }, 500);
+          </script>
+        </body>
+      </html>
     `);
     printWindow.document.close();
     printWindow.focus();
-    printWindow.print();
-    printWindow.close();
   };
-
   return (
     <>
       <Typography
@@ -82,13 +98,16 @@ function ResponseFlipBook() {
               marginBottom: "20px",
             }}
           >
+            <div className="center">
             <CardMedia
               component="img"
               height="300"
               src={exampleImage}
               alt="imageAI"
               sx={{ objectFit: "contain" }}
+              className="center"
             />
+            </div>
             <CardContent>
               <Typography
                 gutterBottom
@@ -106,7 +125,9 @@ function ResponseFlipBook() {
                 {storiesAI.stories}
               </Typography>
             </CardContent>
-            <Button onClick={() => handlePrint(`card-${index}`)}>Print</Button>
+            <IconButton onClick={() => handlePrint(`card-${index}`)}>
+              <Print />
+            </IconButton>
           </Card>
         </div>
       ))}
