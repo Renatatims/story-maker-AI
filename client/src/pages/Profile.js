@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardContent,
@@ -8,18 +8,27 @@ import {
 } from "@mui/material";
 import { Print } from "@mui/icons-material";
 import exampleImage from "../assets/images/imgExample.PNG";
+import { ExpandMore, ExpandLess } from "@mui/icons-material";
 
 //use Query Hook
 import { useQuery } from "@apollo/client";
 import { QUERY_STORIES_AI } from "../utils/queries";
 
-function ResponseFlipBook() {
+function UserStories() {
   // QUERY_STORIES_AI query to get the list of stories from the database
   const { data } = useQuery(QUERY_STORIES_AI);
   console.log(data);
   const storiesAI = data?.storiesAI || [];
 
-  // Print a specifc Story Card - included a timeout so the print window opens after the image is loaded
+   // Define a state variable to keep track of whether to show the full or preview text
+   const [showFullStory, setShowFullStory] = useState(false);
+
+   // Define a function to toggle the state variable
+   const handleToggleStory = () => {
+     setShowFullStory((previewStory) => !previewStory);
+   };
+
+  // Print a specifc Story Card - included a timeout so the print window opens after the browser renders all info before printing it
   const handlePrint = (cardId) => {
     const cardToPrint = document.getElementById(cardId).innerHTML;
     console.log("Printing card:", cardToPrint);
@@ -84,8 +93,7 @@ function ResponseFlipBook() {
         variant="h4"
         style={{ fontFamily: "Rancho", fontSize: "48px" }}
       >
-        {" "}
-        Saved Stories{" "}
+        Saved Stories
       </Typography>
       {storiesAI?.map((storiesAI, index) => (
         <div key={index} id={`card-${index}`}>
@@ -120,11 +128,21 @@ function ResponseFlipBook() {
               <Typography
                 variant="body2"
                 color="text.secondary"
-                sx={{ fontFamily: "Rancho", fontSize: "30px" }}
+                sx={{
+                  fontFamily: "Rancho",
+                  fontSize: "30px",
+                  maxHeight: showFullStory ? "none" : "120px", 
+                  textOverflow: "ellipsis",
+                  whiteSpace: "pre-line",
+                  overflow: "hidden",
+                }}
               >
                 {storiesAI.stories}
               </Typography>
             </CardContent>
+            <IconButton onClick={handleToggleStory}>
+              {showFullStory ? <ExpandLess /> : <ExpandMore />}
+            </IconButton>
             <IconButton onClick={() => handlePrint(`card-${index}`)}>
               <Print />
             </IconButton>
@@ -136,4 +154,4 @@ function ResponseFlipBook() {
   );
 }
 
-export default ResponseFlipBook;
+export default UserStories;
