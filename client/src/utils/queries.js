@@ -50,7 +50,7 @@ export const QUERY_STORIES_AI = gql`
   }
 `;
 
-export const QUERY_IMAGES = gql` // Add a new query for images
+export const QUERY_IMAGES = gql` 
   query getImages {
     images {
       _id
