@@ -27,7 +27,7 @@ const resolvers = {
       );
       return stories;
     },
-    images: async (parent, args, context) => { // Add the images query
+    images: async (parent, args, context) => {
       if (!context.user) {
         throw new AuthenticationError("You need to be logged in!");
       }
