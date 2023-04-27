@@ -7,6 +7,7 @@ const typeDefs = gql`
     lastName: String
     email: String
     storiesAI: [Story]
+    images: [Image]
   }
 
   type Story {
@@ -14,13 +15,22 @@ const typeDefs = gql`
     title: String
     stories: String
     user: User
+    image: Image
+  }
+
+  type Image { 
+    _id: ID!
     image: String
+    user: User
   }
 
   input StoryInput {
     title: String
     stories: String!
-    image: String
+  }
+
+  input ImageInput { 
+    image: String!
   }
 
   type Auth {
@@ -31,6 +41,7 @@ const typeDefs = gql`
   type Query {
     user: User
     storiesAI: [Story]
+    images: [Image]
   }
 
   type Mutation {
@@ -42,6 +53,7 @@ const typeDefs = gql`
       password: String!
     ): Auth
     saveStory(storyData: StoryInput!): User
+    saveImage(imageData: ImageInput!): User
   }
 `;
 module.exports = typeDefs;
