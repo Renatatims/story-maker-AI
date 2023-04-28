@@ -48,11 +48,11 @@ const ImageGenerator = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
-  
+
     const imagePrompt = prompt;
     try {
       const generatedImageUrl = await generateImage(imagePrompt);
-  
+
       // Convert the image to Base64
       try {
         const response = await fetch(`/proxy-image?url=${generatedImageUrl}`);
@@ -61,7 +61,7 @@ const ImageGenerator = () => {
         reader.readAsDataURL(blob);
         reader.onloadend = async () => {
           const base64Image = reader.result;
-  
+
           // Save the image to the database
           try {
             await saveImage({
@@ -71,13 +71,15 @@ const ImageGenerator = () => {
                 },
               },
             });
-  
+
             // Update the UI with the generated image URL
             setImageUrl(generatedImageUrl);
+            // Save the image URL to local storage
+            localStorage.setItem("imageUrl", generatedImageUrl);
           } catch (saveError) {
             console.error("Error saving image:", saveError);
           }
-  
+
           setLoading(false);
         };
       } catch (fetchError) {

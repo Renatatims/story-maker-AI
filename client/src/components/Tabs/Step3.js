@@ -22,6 +22,7 @@ function ResponseFlipBook() {
   const sentencesPerPage = 1;
   const sentences = response.split(". "); // split response into an array of sentences
   const numPages = Math.ceil(sentences.length / sentencesPerPage); // calculate the number of pages needed
+  const imageUrl = localStorage.getItem("imageUrl");
 
   return (
     <>
@@ -32,7 +33,7 @@ function ResponseFlipBook() {
         <CardMedia
           component="img"
           height="300"
-          src={exampleImage}
+          src={imageUrl}
           alt="imageAI"
           sx={{ objectFit: "contain" }}
         />
