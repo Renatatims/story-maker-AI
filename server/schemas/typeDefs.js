@@ -27,6 +27,7 @@ const typeDefs = gql`
   input StoryInput {
     title: String
     stories: String!
+    image: String
   }
 
   input ImageInput { 
