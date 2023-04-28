@@ -31,13 +31,16 @@ app.get('/proxy-image', async (req, res) => {
   const imageUrl = req.query.url;
 
   try {
-    const response = await fetch(imageUrl, {
+    const fetch = await import('node-fetch');
+    const response = await fetch.default(imageUrl, {
       headers: {
         'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`,
       },
     });
 
-    response.body.pipe(res);
+    const buffer = await response.buffer();
+    const base64 = buffer.toString('base64');
+    res.send(base64);
   } catch (error) {
     console.error('Error proxying the image:', error);
     res.status(500).send('Error proxying the image');
