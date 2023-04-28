@@ -43,7 +43,9 @@ async function getResponse(userInput) {
       presence_penalty: 0,
     });
 
-    return response.data.choices[0].text;
+    const responseText = response.data.choices[0].text;
+    localStorage.setItem("response", responseText); // store response in local storage
+    return responseText;
   } catch (error) {
     console.error(error);
     return "An error occurred while fetching the data. Please try again later.";
@@ -226,12 +228,14 @@ function StoryMaker() {
           </div>
         ))}
       </HTMLFlipBook>
-      <Card style={{
-            paddingTop: "15px",
-            paddingLeft: "20px",
-            fontFamily: "Rancho",
-            fontSize: "35px",
-          }}>
+      <Card
+        style={{
+          paddingTop: "15px",
+          paddingLeft: "20px",
+          fontFamily: "Rancho",
+          fontSize: "35px",
+        }}
+      >
         {response}
         <IconButton onClick={handleSaveStoryAI}>
           <FavoriteBorderIcon />
