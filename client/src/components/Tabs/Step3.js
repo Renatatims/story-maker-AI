@@ -5,6 +5,7 @@ import {
   CardMedia,
   Typography,
   Button,
+  Container,
 } from "@mui/material";
 import HTMLFlipBook from "react-pageflip";
 //import exampleImage from "../../assets/images/imgExample.PNG"; // import the image
@@ -23,13 +24,15 @@ function ResponseFlipBook() {
 
   return (
     <>
-      <Typography
-        variant="h4"
-        style={{ fontFamily: "Rancho", fontSize: "48px" }}
-      >
-        {" "}
-        Step 3: Generate your personalized story{" "}
-      </Typography>
+      <Container>
+        <Typography
+          variant="h4"
+          style={{ fontFamily: "Kreon", fontSize: "40px" }}
+        >
+          {" "}
+          Step 3: Generate your personalized story{" "}
+        </Typography>
+      </Container>
       <div>
         <Card
           sx={{ maxWidth: 600, margin: "auto", boxShadow: 10 }}
@@ -47,14 +50,14 @@ function ResponseFlipBook() {
               gutterBottom
               variant="h5"
               component="div"
-              sx={{ fontFamily: "Rancho", fontSize: "35px" }}
+              sx={{ fontFamily: "Kreon", fontSize: "35px" }}
             >
               Title
             </Typography>
             <Typography
               variant="body2"
               color="text.secondary"
-              sx={{ fontFamily: "Rancho", fontSize: "30px" }}
+              sx={{ fontFamily: "Kreon", fontSize: "28px" }}
             >
               {response}
             </Typography>
@@ -75,7 +78,7 @@ function ResponseFlipBook() {
           width={600}
           height={500}
           paddingLeft={10}
-          style={{ fontFamily: "Rancho", fontSize: "30px" }}
+          style={{ fontFamily: "Kreon", fontSize: "30px" }}
         >
           {Array.from({ length: numPages }).map((_, i) => (
             <div key={i}>

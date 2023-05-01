@@ -68,13 +68,10 @@ export default function VerticalTabs() {
         aria-label="Vertical tabs example"
         sx={{ borderRight: 1, borderColor: "divider"}}
       >
-        <Tab sx={{ fontFamily: 'Rancho, cursive', fontSize: 35, textTransform: 'none' }} label="Intro" {...a11yProps(0)} />
-        <Tab sx={{ fontFamily: 'Rancho, cursive', fontSize: 35, textTransform: 'none' }} label="Step 1" {...a11yProps(1)} />
-        <Tab sx={{ fontFamily: 'Rancho, cursive', fontSize: 35, textTransform: 'none' }} label="Step 2" {...a11yProps(2)} />
-        <Tab sx={{ fontFamily: 'Rancho, cursive', fontSize: 35, textTransform: 'none' }} label="Step 3" {...a11yProps(3)} />
-        <Tab label="" {...a11yProps(4)} />
-        <Tab label="" {...a11yProps(5)} />
-        <Tab label="" {...a11yProps(6)} />
+        <Tab sx={{ fontFamily: 'Rancho, cursive', fontSize: 30, textTransform: 'none' }} label="Intro" {...a11yProps(0)} />
+        <Tab sx={{ fontFamily: 'Rancho, cursive', fontSize: 30, textTransform: 'none' }} label="Step 1" {...a11yProps(1)} />
+        <Tab sx={{ fontFamily: 'Rancho, cursive', fontSize: 30, textTransform: 'none' }} label="Step 2" {...a11yProps(2)} />
+        <Tab sx={{ fontFamily: 'Rancho, cursive', fontSize: 30, textTransform: 'none' }} label="Step 3" {...a11yProps(3)} />
       </Tabs>
       <TabPanel value={value} index={0}>
         <Intro />
@@ -87,15 +84,6 @@ export default function VerticalTabs() {
       </TabPanel>
       <TabPanel value={value} index={3}>
         <Step3 />
-      </TabPanel>
-      <TabPanel value={value} index={4}>
-        Step Five
-      </TabPanel>
-      <TabPanel value={value} index={5}>
-        Step Six
-      </TabPanel>
-      <TabPanel value={value} index={6}>
-        Step Seven
       </TabPanel>
     </Box>
   );

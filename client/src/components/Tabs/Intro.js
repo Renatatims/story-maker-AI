@@ -19,10 +19,10 @@ function IntroPage() {
         variant="h1"
         component="h1"
         sx={{
-          fontSize: 60,
+          fontSize: 50,
           marginBottom: 2,
           textAlign: "center",
-          fontFamily: "Rancho",
+          fontFamily: "Kreon",
         }}
       >
         Hello and Welcome to 
@@ -44,10 +44,10 @@ function IntroPage() {
         variant="h2"
         component="h2"
         sx={{
-          fontSize: 40,
+          fontSize: 30,
           marginBottom: 4,
           textAlign: "center",
-          fontFamily: "Rancho",
+          fontFamily: "Kreon",
         }}
       >
         create personalized stories using OpenAI API in a visual environment

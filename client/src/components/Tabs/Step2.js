@@ -112,7 +112,7 @@ const ImageGenerator = () => {
       <Container>
         <Typography
           variant="h4"
-          style={{ fontFamily: "Rancho", fontSize: "48px" }}
+          style={{ fontFamily: "Kreon", fontSize: "40px" }}
         >
           Step 2: Create a personalized image using AI
         </Typography>
@@ -144,7 +144,7 @@ const ImageGenerator = () => {
         <Typography
           variant="h5"
           style={{
-            fontFamily: "Rancho",
+            fontFamily: "Kreon",
             fontSize: "40px",
             textAlign: "center",
           }}
@@ -153,7 +153,7 @@ const ImageGenerator = () => {
         </Typography>
         <Typography
           variant="h6"
-          style={{ fontFamily: "Rancho", fontSize: "25px" }}
+          style={{ fontFamily: "Kreon", fontSize: "25px" }}
         >
           Christmas Theme{" "}
         </Typography>

@@ -9,6 +9,7 @@ import {
   Grid,
   IconButton,
   Typography,
+  Container
 } from "@mui/material";
 
 import { styled } from "@mui/material/styles";
@@ -62,7 +63,7 @@ const styles = {
     backgroundColor: "#F8F8F8",
   },
   responseStory: {
-    fontFamily: "Rancho",
+    fontFamily: "Saira",
     fontSize: "14px",
     lineHeight: "20px",
     backgroundColor: "#F1F1F1",
@@ -134,68 +135,69 @@ function StoryMaker() {
 
   return (
     <>
-      <Typography
-        variant="h4"
-        style={{ fontFamily: "Rancho", fontSize: "48px" }}
-      >
-        {" "}
-        Step 1: Describe your story{" "}
-      </Typography>
-      <form onSubmit={handleSubmit}>
+      <Container>
         <Typography
-          variant="h5"
-          style={{
-            paddingTop: "15px",
-            paddingLeft: "20px",
-            fontFamily: "Rancho",
-            fontSize: "35px",
-          }}
+          variant="h4"
+          style={{ fontFamily: "Kreon", fontSize: "40px" }}
         >
-          Please input the following info:
+          Step 1: Describe your story
         </Typography>
-        <Card
-          variant="outlined"
-          sx={{
-            m: "20px",
-            p: "10px",
-            borderColor: "dark",
-            borderWidth: "5px",
-          }}
-        >
-          <Stack>
-            <div>
-              <TextField
-                label="Character's name"
-                value={character}
-                onChange={(e) => setCharacter(e.target.value)}
-                sx={{ p: "10px" }}
-              />
-              <TextField
-                label="Description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                sx={{ p: "10px" }}
-              />
-              <TextField
-                label="Theme"
-                value={theme}
-                onChange={(e) => setTheme(e.target.value)}
-                sx={{ p: "10px" }}
-              />
-            </div>
-            <Button
-              type="submit"
-              variant="contained"
-              sx={{
-                backgroundColor: "grey",
-                "&:hover": { backgroundColor: "dark" },
-              }}
-            >
-              Submit
-            </Button>
-          </Stack>
-        </Card>
-      </form>
+        <form onSubmit={handleSubmit}>
+          <Typography
+            variant="h5"
+            style={{
+              paddingTop: "15px",
+              paddingLeft: "20px",
+              fontFamily: "Kreon",
+              fontSize: "30px",
+            }}
+          >
+            please input the following info:
+          </Typography>
+          <Card
+            variant="outlined"
+            sx={{
+              m: "20px",
+              p: "10px",
+              borderColor: "dark",
+              borderWidth: "5px",
+            }}
+          >
+            <Stack>
+              <div>
+                <TextField
+                  label="Character's name"
+                  value={character}
+                  onChange={(e) => setCharacter(e.target.value)}
+                  sx={{ p: "10px" }}
+                />
+                <TextField
+                  label="Description"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  sx={{ p: "10px" }}
+                />
+                <TextField
+                  label="Theme"
+                  value={theme}
+                  onChange={(e) => setTheme(e.target.value)}
+                  sx={{ p: "10px" }}
+                />
+              </div>
+              <Button
+                type="submit"
+                variant="contained"
+                sx={{
+                  backgroundColor: "grey",
+                  "&:hover": { backgroundColor: "dark" },
+                }}
+              >
+                Submit
+              </Button>
+            </Stack>
+          </Card>
+        </form>
+      </Container>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           {images.map((image) => (
@@ -232,7 +234,7 @@ function StoryMaker() {
         style={{
           paddingTop: "15px",
           paddingLeft: "20px",
-          fontFamily: "Rancho",
+          fontFamily: "Saira",
           fontSize: "35px",
         }}
       >
