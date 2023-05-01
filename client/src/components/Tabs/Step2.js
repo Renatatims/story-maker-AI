@@ -72,10 +72,18 @@ const ImageGenerator = () => {
               },
             });
 
+            // Local storage Images
+            const storedUrls = localStorage.getItem("imageUrls");
+            const urlsArray = storedUrls ? JSON.parse(storedUrls) : [];
+
+            // Add new URL to array and store back into local storage
+            urlsArray.push(generatedImageUrl);
+
+            // Store the updated array back into local storage
+            localStorage.setItem("imageUrls", JSON.stringify(urlsArray));
+
             // Update the UI with the generated image URL
             setImageUrl(generatedImageUrl);
-            // Save the image URL to local storage
-            localStorage.setItem("imageUrl", generatedImageUrl);
           } catch (saveError) {
             console.error("Error saving image:", saveError);
           }
