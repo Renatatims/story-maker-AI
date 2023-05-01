@@ -13,6 +13,10 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import HomeIcon from "@mui/icons-material/Home";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
+import ImageIcon from '@mui/icons-material/Image';
+import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 
 import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
@@ -53,6 +57,33 @@ function a11yProps(index) {
     id: `vertical-tab-${index}`,
     "aria-controls": `vertical-tabpanel-${index}`,
   };
+}
+
+function NumberIcon(props) {
+  const { number, icon } = props;
+  return (
+    <div style={{ position: "relative", display: "flex", alignItems: "center" }}>
+      <div
+        style={{
+          width: "24px",
+          height: "24px",
+          borderRadius: "50%",
+          backgroundColor: "lightgray",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: "14px",
+          fontWeight: "bold",
+          position: "absolute",
+          top: "-10px",
+          right: "-20px",
+        }}
+      >
+        {number}
+      </div>
+      {icon}
+    </div>
+  )
 }
 
 export default function VerticalTabs() {
@@ -98,34 +129,34 @@ export default function VerticalTabs() {
             fontSize: 30,
             textTransform: "none",
           }}
-          label="Intro"
+          icon={<HomeIcon />}
           {...a11yProps(0)}
         />
         <Tab
           sx={{
             fontFamily: "Rancho, cursive",
-            fontSize: 30,
+            fontSize: 25,
             textTransform: "none",
           }}
-          label="Step 1"
-          {...a11yProps(1)}
+          label={<NumberIcon number="1" icon={<MenuBookIcon />} />}
+          {...a11yProps(0)}
         />
         <Tab
           sx={{
             fontFamily: "Rancho, cursive",
-            fontSize: 30,
+            fontSize: 25,
             textTransform: "none",
           }}
-          label="Step 2"
+          label={<NumberIcon number="2" icon={<ImageIcon />} />}
           {...a11yProps(2)}
         />
         <Tab
           sx={{
             fontFamily: "Rancho, cursive",
-            fontSize: 30,
+            fontSize: 25,
             textTransform: "none",
           }}
-          label="Step 3"
+          label={<NumberIcon number="3" icon={<AutoFixHighIcon />} />}
           {...a11yProps(3)}
         />
         {Auth.loggedIn() ? (
@@ -134,7 +165,7 @@ export default function VerticalTabs() {
               <IconButton
                 size="large"
                 aria-label="heart"
-                sx={{ ml: 2, color: "grey" }}
+                sx={{ ml: 1.5, color: "grey" }}
               >
                 <Badge badgeContent={0} color="error">
                   <FavoriteIcon />
@@ -144,7 +175,7 @@ export default function VerticalTabs() {
           </div>
         ) : (
           <div>
-            <Button sx={{ ml: 2, color: "grey" }} onClick={handleOpenModal}>
+            <Button sx={{ ml: 1.5, color: "grey" }} onClick={handleOpenModal}>
               <AccountCircleIcon />
             </Button>
           </div>
