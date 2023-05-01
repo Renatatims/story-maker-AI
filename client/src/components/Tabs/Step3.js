@@ -12,11 +12,23 @@ import HTMLFlipBook from "react-pageflip";
 import "../../assets/css/step3.css"; // import the CSS file
 
 function ResponseFlipBook() {
-  const response = localStorage.getItem("response") || "";
+  // Get Story from local storage
+  const storedResponses = localStorage.getItem("responses") || "";
+  const responsesArray = storedResponses ? JSON.parse(storedResponses) : [];
+  // Get last story from array
+  const lastResponse =
+    responsesArray.length > 0 ? responsesArray[responsesArray.length - 1] : "";
   const sentencesPerPage = 1;
-  const sentences = response.split(". "); // split response into an array of sentences
+  const sentences = lastResponse.split(". "); // split response into an array of sentences
   const numPages = Math.ceil(sentences.length / sentencesPerPage); // calculate the number of pages needed
-  const imageUrl = localStorage.getItem("imageUrl");
+
+  //Get image from local storage
+  const imageUrls = localStorage.getItem("imageUrls");
+  const urlsArray = imageUrls ? JSON.parse(imageUrls) : [];
+
+  // Get last URL from array
+  const lastImageUrl =
+    urlsArray.length > 0 ? urlsArray[urlsArray.length - 1] : "";
 
   const handlePrint = () => {
     window.print();
@@ -41,7 +53,7 @@ function ResponseFlipBook() {
           <CardMedia
             component="img"
             height="300"
-            src={imageUrl}
+            src={lastImageUrl}
             alt="imageAI"
             sx={{ objectFit: "contain" }}
           />
@@ -59,7 +71,7 @@ function ResponseFlipBook() {
               color="text.secondary"
               sx={{ fontFamily: "Kreon", fontSize: "28px" }}
             >
-              {response}
+              {lastResponse}
             </Typography>
           </CardContent>
         </Card>
@@ -85,7 +97,7 @@ function ResponseFlipBook() {
               {sentences
                 .slice(i * sentencesPerPage, (i + 1) * sentencesPerPage)
                 .join(". ")}
-              <img src={imageUrl} alt="imageAI" width={300} height={300} />
+              <img src={lastImageUrl} alt="imageAI" width={300} height={300} />
             </div>
           ))}
         </HTMLFlipBook>
