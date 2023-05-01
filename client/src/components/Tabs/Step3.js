@@ -12,10 +12,17 @@ import HTMLFlipBook from "react-pageflip";
 import "../../assets/css/step3.css"; // import the CSS file
 
 function ResponseFlipBook() {
-  const response = localStorage.getItem("response") || "";
+
+  // Get Story from local storage
+  const storedResponses = localStorage.getItem("responses") || "";
+  const responsesArray = storedResponses ? JSON.parse(storedResponses) : [];
+  // Get last story from array
+  const lastResponse = responsesArray.length > 0 ? responsesArray[responsesArray.length - 1] : "";
   const sentencesPerPage = 1;
-  const sentences = response.split(". "); // split response into an array of sentences
+  const sentences = lastResponse.split(". "); // split response into an array of sentences
   const numPages = Math.ceil(sentences.length / sentencesPerPage); // calculate the number of pages needed
+
+  //Get image from local storage
   const imageUrl = localStorage.getItem("imageUrl");
 
   const handlePrint = () => {
@@ -59,7 +66,7 @@ function ResponseFlipBook() {
               color="text.secondary"
               sx={{ fontFamily: "Kreon", fontSize: "28px" }}
             >
-              {response}
+              {lastResponse}
             </Typography>
           </CardContent>
         </Card>

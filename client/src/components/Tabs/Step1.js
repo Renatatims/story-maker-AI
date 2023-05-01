@@ -9,7 +9,7 @@ import {
   Grid,
   IconButton,
   Typography,
-  Container
+  Container,
 } from "@mui/material";
 
 import { styled } from "@mui/material/styles";
@@ -45,7 +45,14 @@ async function getResponse(userInput) {
     });
 
     const responseText = response.data.choices[0].text;
-    localStorage.setItem("response", responseText); // store response in local storage
+    // Retrieve existing responses from local storage
+    const storedResponses = localStorage.getItem("responses");
+    const responsesArray = storedResponses ? JSON.parse(storedResponses) : [];
+
+    // Add new response to array and store back into local storage
+    responsesArray.push(responseText);
+    localStorage.setItem("responses", JSON.stringify(responsesArray)); // store response in local storage Array
+
     return responseText;
   } catch (error) {
     console.error(error);
