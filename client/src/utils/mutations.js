@@ -62,6 +62,16 @@ export const SAVE_STORY_AI = gql`
   }
 `;
 
+// Update Story Title
+export const UPDATE_STORY_TITLE = gql`
+  mutation updateStoryTitle($storyId: ID!, $title: String!) {
+    updateStoryTitle(storyId: $storyId, title: $title) {
+      _id
+      title
+    }
+  }
+`;
+
 // Save Image to User's profile
 export const SAVE_IMAGE = gql`
   mutation saveImage($imageData: ImageInput!) {

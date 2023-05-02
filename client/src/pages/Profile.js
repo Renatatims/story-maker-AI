@@ -16,12 +16,33 @@ import { ExpandMore, ExpandLess } from "@mui/icons-material";
 import { useQuery } from "@apollo/client";
 import { QUERY_STORIES_AI } from "../utils/queries";
 
+//use Mutation to update the title
+import { useMutation } from "@apollo/client";
+import { UPDATE_STORY_TITLE } from "../utils/mutations";
+
 function UserStories() {
   // QUERY_STORIES_AI query to get the list of stories from the database
   const { data } = useQuery(QUERY_STORIES_AI);
   console.log(data);
   const storiesAI = data?.storiesAI || [];
 
+  // TITLE
+  //Define state variables for editing the title
+  const [isEditing, setIsEditing] = useState({});
+  const [editedTitle, setEditedTitle] = useState("");
+
+  // UPDATE_STORY_TITLE mutation - to update a meal plan title
+  const [updateTitle] = useMutation(UPDATE_STORY_TITLE, {
+    refetchQueries: [{ query: QUERY_STORIES_AI }],
+  });
+
+  // handleEditTitle function - to handle the edit title button click event
+  const handleEditTitle = (storyId) => {
+    // Set the editing state of the title with the given storyId to true
+    setIsEditing((prevEditing) => ({ ...prevEditing, [storyId]: true }));
+  };
+
+  //PREVIEW
   // Define a state variable to keep track of whether to show the full or preview text
   const [showFullStory, setShowFullStory] = useState(
     storiesAI.map((story) => false)
