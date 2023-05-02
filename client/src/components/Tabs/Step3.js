@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardContent,
@@ -6,12 +6,36 @@ import {
   Typography,
   Button,
   Container,
+  TextField,
+  IconButton
 } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import DoneIcon from "@mui/icons-material/Done";
 import HTMLFlipBook from "react-pageflip";
 //import exampleImage from "../../assets/images/imgExample.PNG"; // import the image
 import "../../assets/css/step3.css"; // import the CSS file
 
 function ResponseFlipBook() {
+  // Get Title from Local storage
+  const [title, setTitle] = useState(
+    localStorage.getItem("cardTitle") || "Title"
+  );
+
+  const [isEditing, setIsEditing] = useState(false);
+
+  function handleTitleChange(event) {
+    setTitle(event.target.value);
+  }
+
+  function handleEditTitle() {
+    setIsEditing(true);
+  }
+
+  function handleSaveTitle() {
+    setIsEditing(false);
+    localStorage.setItem("cardTitle", title);
+  }
+
   // Get Story from local storage
   const storedResponses = localStorage.getItem("responses") || "";
   const responsesArray = storedResponses ? JSON.parse(storedResponses) : [];
@@ -41,8 +65,7 @@ function ResponseFlipBook() {
           variant="h4"
           style={{ fontFamily: "Kreon", fontSize: "40px" }}
         >
-          {" "}
-          Step 3: Generate your personalized story{" "}
+          Step 3: Generate your personalized story
         </Typography>
       </Container>
       <div>
@@ -64,7 +87,27 @@ function ResponseFlipBook() {
               component="div"
               sx={{ fontFamily: "Kreon", fontSize: "35px" }}
             >
-              Title
+              {isEditing ? (
+                <TextField
+                  label="Title"
+                  variant="filled"
+                  value={title}
+                  onChange={handleTitleChange}
+                  sx={{ fontFamily: "Kreon", fontSize: "35px" }}
+                />
+              ) : (
+                <>
+                  {title}{" "}
+                  <IconButton className="edit-icon" onClick={handleEditTitle}>
+                    <EditIcon />
+                  </IconButton>
+                </>
+              )}
+              {isEditing && (
+                <IconButton onClick={handleSaveTitle}>
+                  <DoneIcon />
+                </IconButton>
+              )}
             </Typography>
             <Typography
               variant="body2"
@@ -94,6 +137,7 @@ function ResponseFlipBook() {
         >
           {Array.from({ length: numPages }).map((_, i) => (
             <div key={i}>
+              <h2>{title}</h2>
               {sentences
                 .slice(i * sentencesPerPage, (i + 1) * sentencesPerPage)
                 .join(". ")}

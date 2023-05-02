@@ -7,8 +7,11 @@ import {
   IconButton,
   Grid,
   useMediaQuery,
+  TextField,
 } from "@mui/material";
 import { Print } from "@mui/icons-material";
+import EditIcon from "@mui/icons-material/Edit";
+import DoneIcon from "@mui/icons-material/Done";
 import exampleImage from "../assets/images/imgExample.PNG";
 import { ExpandMore, ExpandLess } from "@mui/icons-material";
 
@@ -16,12 +19,54 @@ import { ExpandMore, ExpandLess } from "@mui/icons-material";
 import { useQuery } from "@apollo/client";
 import { QUERY_STORIES_AI } from "../utils/queries";
 
+//use Mutation to update the title
+import { useMutation } from "@apollo/client";
+import { UPDATE_STORY_TITLE } from "../utils/mutations";
+
 function UserStories() {
   // QUERY_STORIES_AI query to get the list of stories from the database
   const { data } = useQuery(QUERY_STORIES_AI);
   console.log(data);
   const storiesAI = data?.storiesAI || [];
 
+  // TITLE
+  //Define state variables for editing the title
+  const [isEditing, setIsEditing] = useState({});
+  const [editedTitle, setEditedTitle] = useState("");
+
+  // UPDATE_STORY_TITLE mutation - to update a meal plan title
+  const [updateTitle] = useMutation(UPDATE_STORY_TITLE, {
+    refetchQueries: [{ query: QUERY_STORIES_AI }],
+  });
+
+  // handleEditTitle function - to handle the edit title button click event
+  const handleEditTitle = (storyId) => {
+    // Set the editing state of the title with the given storyId to true
+    setIsEditing((prevEditing) => ({ ...prevEditing, [storyId]: true }));
+  };
+
+  //handleSaveTitle function - save title button click event
+  const handleSaveTitle = async (storyId) => {
+    try {
+      await updateTitle({
+        variables: {
+          storyId,
+          title: editedTitle,
+        },
+      });
+      setIsEditing((prev) => ({ ...prev, [storyId]: false }));
+      setEditedTitle("");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  //handleTitleChange function -  handle the input field's change event
+  const handleTitleChange = (e) => {
+    setEditedTitle(e.target.value);
+  };
+
+  //PREVIEW
   // Define a state variable to keep track of whether to show the full or preview text
   const [showFullStory, setShowFullStory] = useState(
     storiesAI.map((story) => false)
@@ -129,14 +174,35 @@ function UserStories() {
                 />
               </div>
               <CardContent>
-                <Typography
-                  gutterBottom
-                  variant="h5"
-                  component="div"
-                  sx={{ fontFamily: "Rancho", fontSize: "35px" }}
+                <h2
+                  style={{
+                    paddingLeft: "80px",
+                    fontWeight: "bold",
+                    color: "#8C2E5A",
+                  }}
                 >
-                  Title
-                </Typography>
+                  {isEditing[story._id] ? (
+                    <TextField
+                      value={editedTitle}
+                      onChange={handleTitleChange}
+                      label="Story Title"
+                    />
+                  ) : (
+                    <>
+                      {story.title}{" "}
+                      <IconButton
+                        onClick={() => handleEditTitle(story._id)}
+                      >
+                        <EditIcon />
+                      </IconButton>
+                    </>
+                  )}
+                  {isEditing[story._id] && (
+                    <IconButton onClick={() => handleSaveTitle(story._id)}>
+                      <DoneIcon />
+                    </IconButton>
+                  )}
+                </h2>
                 <Typography
                   variant="body2"
                   color="text.secondary"
