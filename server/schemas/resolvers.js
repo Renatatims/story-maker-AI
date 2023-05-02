@@ -95,6 +95,23 @@ const resolvers = {
       return user;
     },
 
+    // Update Story title
+    updateStoryTitle: async (parent, { storyId, title }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError("You need to be logged in!");
+      }
+      const storyAI = await Story.findById(storyId);
+
+      if (!storyAI) {
+        throw new UserInputError("No Story found with that ID");
+      }
+      //Update the title property with the new title input and save new title
+      storyAI.title = title;
+      const updatedStory = await storyAI.save();
+
+      return updatedStory;
+    },
+
     // Save image to user's profile
     saveImage: async (parent, { imageData }, context) => {
       if (!context.user) {
