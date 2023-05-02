@@ -6,7 +6,11 @@ import {
   Typography,
   Button,
   Container,
+  TextField,
+  IconButton
 } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import DoneIcon from "@mui/icons-material/Done";
 import HTMLFlipBook from "react-pageflip";
 //import exampleImage from "../../assets/images/imgExample.PNG"; // import the image
 import "../../assets/css/step3.css"; // import the CSS file
@@ -16,10 +20,20 @@ function ResponseFlipBook() {
   const [title, setTitle] = useState(
     localStorage.getItem("cardTitle") || "Title"
   );
+
+  const [isEditing, setIsEditing] = useState(false);
+
   function handleTitleChange(event) {
-    const newTitle = event.target.innerText;
-    setTitle(newTitle);
-    localStorage.setItem("cardTitle", newTitle);
+    setTitle(event.target.value);
+  }
+
+  function handleEditTitle() {
+    setIsEditing(true);
+  }
+
+  function handleSaveTitle() {
+    setIsEditing(false);
+    localStorage.setItem("cardTitle", title);
   }
 
   // Get Story from local storage
@@ -72,11 +86,28 @@ function ResponseFlipBook() {
               variant="h5"
               component="div"
               sx={{ fontFamily: "Kreon", fontSize: "35px" }}
-              contentEditable={true}
-              onBlur={handleTitleChange}
-              suppressContentEditableWarning={true}
             >
-              {title}
+              {isEditing ? (
+                <TextField
+                  label="Title"
+                  variant="filled"
+                  value={title}
+                  onChange={handleTitleChange}
+                  sx={{ fontFamily: "Kreon", fontSize: "35px" }}
+                />
+              ) : (
+                <>
+                  {title}{" "}
+                  <IconButton className="edit-icon" onClick={handleEditTitle}>
+                    <EditIcon />
+                  </IconButton>
+                </>
+              )}
+              {isEditing && (
+                <IconButton onClick={handleSaveTitle}>
+                  <DoneIcon />
+                </IconButton>
+              )}
             </Typography>
             <Typography
               variant="body2"

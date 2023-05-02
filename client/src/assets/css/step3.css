@@ -11,4 +11,7 @@
       top: 50%;
       transform: translate(-50%, -50%);
     }
+    .printable-content .edit-icon {
+      display: none;
+    }
   }
