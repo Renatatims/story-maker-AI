@@ -10,8 +10,8 @@ function IntroPage() {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        minHeight: "100vh",
-        padding: 4,
+        minHeight: { xs: "auto", sm: "100vh" },
+        padding: { xs: 2, sm: 4 },
         backgroundColor: "#00334A",
       }}
     >
@@ -19,7 +19,7 @@ function IntroPage() {
         variant="h1"
         component="h1"
         sx={{
-          fontSize: 50,
+          fontSize: { xs: 36, sm: 50 },
           marginBottom: 2,
           textAlign: "center",
           fontFamily: "Kreon",
@@ -35,8 +35,7 @@ function IntroPage() {
         <img
           src={require("../../assets/logo/storyMakerAI_intro.png")}
           alt="icon"
-          height="300px"
-          style={{ borderRadius: "10px" }}
+          style = {{ borderRadius: "10px", maxWidth: "100%", height: "auto" }}
         ></img>
       </a>
       </Box>
@@ -44,7 +43,7 @@ function IntroPage() {
         variant="h2"
         component="h2"
         sx={{
-          fontSize: 30,
+          fontSize: { xs: 24, sm: 30 },
           marginBottom: 4,
           textAlign: "center",
           fontFamily: "Kreon",

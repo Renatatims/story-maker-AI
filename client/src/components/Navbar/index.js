@@ -64,17 +64,17 @@ export default function ButtonAppBar() {
             <img
               src={require("../../assets/logo/storyMakerAI_logo.png")}
               alt="icon"
-              height="60px"
+              style={{ height:"60px"}}
             ></img>
           </a>
           </Box>
           {Auth.loggedIn() ? (
-            <div>
+            <div style={{ display: "flex" }}>
               <Link to="/Profile">
                 <IconButton
                   size="large"
                   aria-label="heart"
-                  sx={{ ml: 2, color: "white" }}
+                  sx={{ color: "white" }}
                 >
                   <Badge badgeContent={0} color="error">
                     <FavoriteIcon />
@@ -95,11 +95,11 @@ export default function ButtonAppBar() {
               </IconButton>
             </div>
           ) : (
-            <div>
-              <Button color="inherit" onClick={handleOpenModal}>
+            <div style={{ display: "flex" }}>
+              <Button color="inherit" onClick={handleOpenModal} >
                 <AccountCircleIcon />
               </Button>
-              <Button color="inherit" onClick={handleOpenSignupModal}  sx={{ fontFamily: 'Rancho, cursive', fontSize: 25, textTransform: 'none' }}>
+              <Button color="inherit" onClick={handleOpenSignupModal}  sx={{ fontFamily: 'Rancho, cursive', fontSize: {xs:20, m:25}, textTransform: 'none' }}>
                 signup
               </Button>
             </div>

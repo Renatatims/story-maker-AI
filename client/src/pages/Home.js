@@ -15,8 +15,8 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HomeIcon from "@mui/icons-material/Home";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
-import ImageIcon from '@mui/icons-material/Image';
-import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
+import ImageIcon from "@mui/icons-material/Image";
+import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 
 import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
@@ -32,9 +32,6 @@ function TabPanel(props) {
   return (
     <div
       role="tabpanel"
-      hidden={value !== index}
-      id={`vertical-tabpanel-${index}`}
-      aria-labelledby={`vertical-tab-${index}`}
       {...other}
     >
       {value === index && (
@@ -62,7 +59,9 @@ function a11yProps(index) {
 function NumberIcon(props) {
   const { number, icon } = props;
   return (
-    <div style={{ position: "relative", display: "flex", alignItems: "center" }}>
+    <div
+      style={{ position: "relative", display: "flex", alignItems: "center" }}
+    >
       <div
         style={{
           width: "24px",
@@ -83,7 +82,7 @@ function NumberIcon(props) {
       </div>
       {icon}
     </div>
-  )
+  );
 }
 
 export default function VerticalTabs() {
@@ -107,21 +106,13 @@ export default function VerticalTabs() {
   };
 
   return (
-    <Box
-      sx={{
-        flexGrow: 1,
-        bgcolor: "background.paper",
-        display: "flex",
-        height: "100vh",
-      }}
-    >
+    <Box sx={{ bgcolor: "background.paper" }}>
       <Tabs
-        orientation="vertical"
-        variant="scrollable"
         value={value}
         onChange={handleChange}
-        aria-label="Vertical tabs example"
-        sx={{ borderRight: 1, borderColor: "divider" }}
+        variant="scrollable"
+        scrollButtons={false}
+        aria-label="scrollable prevent tabs example"
       >
         <Tab
           sx={{
