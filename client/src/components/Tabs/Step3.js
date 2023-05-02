@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardContent,
@@ -12,6 +12,16 @@ import HTMLFlipBook from "react-pageflip";
 import "../../assets/css/step3.css"; // import the CSS file
 
 function ResponseFlipBook() {
+  // Get Title from Local storage
+  const [title, setTitle] = useState(
+    localStorage.getItem("cardTitle") || "Title"
+  );
+  function handleTitleChange(event) {
+    const newTitle = event.target.innerText;
+    setTitle(newTitle);
+    localStorage.setItem("cardTitle", newTitle);
+  }
+
   // Get Story from local storage
   const storedResponses = localStorage.getItem("responses") || "";
   const responsesArray = storedResponses ? JSON.parse(storedResponses) : [];
@@ -41,8 +51,7 @@ function ResponseFlipBook() {
           variant="h4"
           style={{ fontFamily: "Kreon", fontSize: "40px" }}
         >
-          {" "}
-          Step 3: Generate your personalized story{" "}
+          Step 3: Generate your personalized story
         </Typography>
       </Container>
       <div>
@@ -63,8 +72,11 @@ function ResponseFlipBook() {
               variant="h5"
               component="div"
               sx={{ fontFamily: "Kreon", fontSize: "35px" }}
+              contentEditable={true}
+              onBlur={handleTitleChange}
+              suppressContentEditableWarning={true}
             >
-              Title
+              {title}
             </Typography>
             <Typography
               variant="body2"
@@ -94,6 +106,7 @@ function ResponseFlipBook() {
         >
           {Array.from({ length: numPages }).map((_, i) => (
             <div key={i}>
+              <h2>{title}</h2>
               {sentences
                 .slice(i * sentencesPerPage, (i + 1) * sentencesPerPage)
                 .join(". ")}
