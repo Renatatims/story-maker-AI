@@ -16,6 +16,7 @@ import { styled } from "@mui/material/styles";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import HTMLFlipBook from "react-pageflip";
 import images from "../../utils/images";
+import bookCoverImage from "../../assets/images/book_template.png";
 import "../../App.css";
 
 import { Configuration, OpenAIApi } from "openai";
@@ -59,26 +60,6 @@ async function getResponse(userInput) {
     return "An error occurred while fetching the data. Please try again later.";
   }
 }
-
-//Styling the Response:
-const styles = {
-  root: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    padding: "24px",
-    backgroundColor: "#F8F8F8",
-  },
-  responseStory: {
-    fontFamily: "Kreon",
-    fontSize: "14px",
-    lineHeight: "20px",
-    backgroundColor: "#F1F1F1",
-    padding: "12px",
-    borderRadius: "4px",
-    borderColor: "grey"
-  },
-};
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -204,7 +185,7 @@ function StoryMaker() {
           </Stack>
         </Card>
       </form>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1, marginBottom: "20px" }}>
         <Grid container spacing={2}>
           {images.map((image) => (
             <Grid key={image.id} item xs={6} sm={4} md={3}>
@@ -229,20 +210,34 @@ function StoryMaker() {
       </Box>
       <Card
         sx={{
-          paddingTop: "30px",
+          padding: "30px",
+          margin: "20px",
           paddingLeft: "20px",
           fontFamily: "Kreon",
           fontSize: "30px",
-          }}
+        }}
       >
         {response}
         <IconButton onClick={handleSaveStoryAI}>
           <FavoriteBorderIcon />
         </IconButton>
       </Card>
-      <HTMLFlipBook width={300} height={500}>
+      <HTMLFlipBook
+        width={400}
+        height={500}
+        style={{
+          fontFamily: "kreon",
+          backgroundImage: `url(${bookCoverImage})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "contain",
+          height: "70vh", // set a relative height
+          maxWidth: "700px", // set a maximum width
+          margin: "10", // center the container horizontally
+          padding: "0",
+        }}
+      >
         {Array.from({ length: numPages }).map((_, i) => (
-          <div key={i} sx={styles.responseStory}>
+          <div key={i}>
             {sentences
               .slice(i * sentencesPerPage, (i + 1) * sentencesPerPage)
               .join(". ")}
