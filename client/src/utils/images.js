@@ -31,8 +31,20 @@ const images = [
   },
   {
     id: 6,
+    url: require("../assets/images/penguin_image.jpg"),
+    title: "Penguin",
+    author: "pch.vector on Freepik",
+  }, 
+  {
+    id: 7,
     url: require("../assets/images/bunny_image.jpg"),
-    title: "bunny",
+    title: "Bunny",
+    author: "pch.vector on Freepik",
+  }, 
+  {
+    id: 8,
+    url: require("../assets/images/pig_image.jpg"),
+    title: "Pig",
     author: "pch.vector on Freepik",
   },
 ];

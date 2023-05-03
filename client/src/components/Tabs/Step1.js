@@ -70,12 +70,13 @@ const styles = {
     backgroundColor: "#F8F8F8",
   },
   responseStory: {
-    fontFamily: "Saira",
+    fontFamily: "Kreon",
     fontSize: "14px",
     lineHeight: "20px",
     backgroundColor: "#F1F1F1",
     padding: "12px",
     borderRadius: "4px",
+    borderColor: "grey"
   },
 };
 
@@ -141,74 +142,72 @@ function StoryMaker() {
   };
 
   return (
-    <>
-      <Container>
+    <Container>
+      <Typography
+        variant="h4"
+        style={{ fontFamily: "Kreon", fontSize: "40px" }}
+      >
+        Step 1: Describe your story
+      </Typography>
+      <form onSubmit={handleSubmit}>
         <Typography
-          variant="h4"
-          style={{ fontFamily: "Kreon", fontSize: "40px" }}
+          variant="h5"
+          style={{
+            paddingTop: "15px",
+            paddingLeft: "20px",
+            fontFamily: "Kreon",
+            fontSize: "30px",
+          }}
         >
-          Step 1: Describe your story
+          please input the following info:
         </Typography>
-        <form onSubmit={handleSubmit}>
-          <Typography
-            variant="h5"
-            style={{
-              paddingTop: "15px",
-              paddingLeft: "20px",
-              fontFamily: "Kreon",
-              fontSize: "30px",
-            }}
-          >
-            please input the following info:
-          </Typography>
-          <Card
-            variant="outlined"
-            sx={{
-              m: "20px",
-              p: "10px",
-              borderColor: "dark",
-              borderWidth: "5px",
-            }}
-          >
-            <Stack>
-              <div>
-                <TextField
-                  label="Character's name"
-                  value={character}
-                  onChange={(e) => setCharacter(e.target.value)}
-                  sx={{ p: "10px" }}
-                />
-                <TextField
-                  label="Description"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  sx={{ p: "10px" }}
-                />
-                <TextField
-                  label="Theme"
-                  value={theme}
-                  onChange={(e) => setTheme(e.target.value)}
-                  sx={{ p: "10px" }}
-                />
-              </div>
-              <Button
-                type="submit"
-                variant="contained"
-                sx={{
-                  backgroundColor: "grey",
-                  "&:hover": { backgroundColor: "dark" },
-                }}
-              >
-                Submit
-              </Button>
-            </Stack>
-          </Card>
-        </form>
-      </Container>
+        <Card
+          variant="outlined"
+          sx={{
+            m: "20px",
+            p: "10px",
+            borderColor: "dark",
+            borderWidth: "5px",
+          }}
+        >
+          <Stack>
+            <div>
+              <TextField
+                label="Character's name"
+                value={character}
+                onChange={(e) => setCharacter(e.target.value)}
+                sx={{ p: "10px" }}
+              />
+              <TextField
+                label="Description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                sx={{ p: "10px" }}
+              />
+              <TextField
+                label="Theme"
+                value={theme}
+                onChange={(e) => setTheme(e.target.value)}
+                sx={{ p: "10px" }}
+              />
+            </div>
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{
+                backgroundColor: "grey",
+                "&:hover": { backgroundColor: "dark" },
+              }}
+            >
+              Submit
+            </Button>
+          </Stack>
+        </Card>
+      </form>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           {images.map((image) => (
-            <Grid key={image.id} item xs={4}>
+            <Grid key={image.id} item xs={6} sm={4} md={3}>
               <Item
                 onClick={() => handleSelect(image)}
                 sx={{ cursor: "pointer" }}
@@ -228,6 +227,19 @@ function StoryMaker() {
           ))}
         </Grid>
       </Box>
+      <Card
+        sx={{
+          paddingTop: "30px",
+          paddingLeft: "20px",
+          fontFamily: "Kreon",
+          fontSize: "30px",
+          }}
+      >
+        {response}
+        <IconButton onClick={handleSaveStoryAI}>
+          <FavoriteBorderIcon />
+        </IconButton>
+      </Card>
       <HTMLFlipBook width={300} height={500}>
         {Array.from({ length: numPages }).map((_, i) => (
           <div key={i} sx={styles.responseStory}>
@@ -237,20 +249,7 @@ function StoryMaker() {
           </div>
         ))}
       </HTMLFlipBook>
-      <Card
-        style={{
-          paddingTop: "15px",
-          paddingLeft: "20px",
-          fontFamily: "Saira",
-          fontSize: "35px",
-        }}
-      >
-        {response}
-        <IconButton onClick={handleSaveStoryAI}>
-          <FavoriteBorderIcon />
-        </IconButton>
-      </Card>
-    </>
+    </Container>
   );
 }
 
