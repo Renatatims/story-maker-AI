@@ -68,8 +68,8 @@ function SignupModal(props) {
           borderRadius: 4,
           p: 2,
           m: 1,
-          minWidth: "450px",
-          minHeight: "450px",
+          minWidth: "300px",
+          minHeight: "350px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -79,7 +79,7 @@ function SignupModal(props) {
           <IconButton
             aria-label="close"
             onClick={props.handleClose}
-            sx={{ position: "absolute", top: 10, right: 10 }}
+            sx={{ position: "absolute", top: 3, right: 10 }}
           >
             <CloseIcon />
           </IconButton>
@@ -99,7 +99,7 @@ function SignupModal(props) {
                 required
                 fullWidth
                 autoFocus
-                sx={{ margin: 2 }}
+                sx={{ margin: 2, marginTop: 4 }}
               />
               <TextField
                 id="firstName"

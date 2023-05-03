@@ -17,7 +17,6 @@ function LoginModal(props) {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login] = useMutation(LOGIN_USER);
 
-
   // update state based on form input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -66,8 +65,8 @@ function LoginModal(props) {
           borderRadius: 4,
           p: 2,
           m: 1,
-          minWidth: "450px",
-          minHeight: "450px",
+          minWidth: "300px",
+          minHeight: "300px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -81,6 +80,11 @@ function LoginModal(props) {
           >
             <CloseIcon />
           </IconButton>
+          <img
+            src={require("../../assets/logo/storyMakerAI_logo.png")}
+            alt="icon"
+            style={{ height: "60px" }}
+          ></img>
           <form
             onSubmit={handleFormSubmit}
             className="space-y-4 md:space-y-6"
@@ -110,21 +114,23 @@ function LoginModal(props) {
                 fullWidth
                 sx={{ margin: 2 }}
               />
-              <Box sx={{
+              <Box
+                sx={{
                   display: "flex",
                   justifyContent: "center",
-                }}>
-              <Button
-                type="submit"
-                variant="contained"
-                sx={{
-                  margin: 1,
-                  backgroundColor: "grey",
-                  "&:hover": { backgroundColor: "darkgrey" },
                 }}
               >
-                Login
-              </Button>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  sx={{
+                    margin: 1,
+                    backgroundColor: "grey",
+                    "&:hover": { backgroundColor: "darkgrey" },
+                  }}
+                >
+                  Login
+                </Button>
               </Box>
             </Stack>
           </form>
