@@ -163,28 +163,62 @@ const ImageGenerator = () => {
           variant="h6"
           style={{ fontFamily: "Kreon", fontSize: "25px" }}
         >
-          Christmas Theme{" "}
+          Christmas Theme
         </Typography>
         <Grid container spacing={2}>
-          {images2.map((image) => (
-            <Grid key={image.id} item xs={4}>
-              <Item
-                onClick={() => handleSelect(image)}
-                sx={{ cursor: "pointer" }}
-              >
-                <img
-                  src={image.url}
-                  alt={image.title}
-                  style={{ maxHeight: "200px" }}
-                />
-                <Grid item>
-                  <Grid container justifyContent="center" spacing={1}>
-                    <Grid item>{image.title}</Grid>
-                  </Grid>
+          {images2.map(
+            (image) =>
+              image.id <= 4 && (
+                <Grid key={image.id} item xs={6} md={3}>
+                  <Item
+                    onClick={() => handleSelect(image)}
+                    sx={{ cursor: "pointer" }}
+                  >
+                    <img
+                      src={image.url}
+                      alt={image.title}
+                      style={{ maxHeight: "200px" }}
+                    />
+                    <Grid item>
+                      <Grid container justifyContent="center" spacing={1}>
+                        <Grid item>{image.title}</Grid>
+                      </Grid>
+                    </Grid>
+                  </Item>
                 </Grid>
-              </Item>
-            </Grid>
-          ))}
+              )
+          )}
+        </Grid>
+
+        <Typography
+          variant="h6"
+          style={{ fontFamily: "Kreon", fontSize: "25px" }}
+        >
+          Princess Theme
+        </Typography>
+        <Grid container spacing={2}>
+          {images2.map(
+            (image) =>
+              image.id >= 5 && (
+                <Grid key={image.id} item xs={6} md={3}>
+                  <Item
+                    onClick={() => handleSelect(image)}
+                    sx={{ cursor: "pointer" }}
+                  >
+                    <img
+                      src={image.url}
+                      alt={image.title}
+                      style={{ maxHeight: "200px" }}
+                    />
+                    <Grid item>
+                      <Grid container justifyContent="center" spacing={1}>
+                        <Grid item>{image.title}</Grid>
+                      </Grid>
+                    </Grid>
+                  </Item>
+                </Grid>
+              )
+          )}
         </Grid>
       </Box>
     </>

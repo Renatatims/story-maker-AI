@@ -7,12 +7,13 @@ import {
   Button,
   Container,
   TextField,
-  IconButton
+  IconButton,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DoneIcon from "@mui/icons-material/Done";
 import HTMLFlipBook from "react-pageflip";
 //import exampleImage from "../../assets/images/imgExample.PNG"; // import the image
+import bookCoverImage from "../../assets/images/book_template.png";
 import "../../assets/css/step3.css"; // import the CSS file
 
 function ResponseFlipBook() {
@@ -128,12 +129,20 @@ function ResponseFlipBook() {
           </Button>
         </div>
       </div>
-      <Card sx={{ padding: 5, margin: 20 }}>
+      <Card>
         <HTMLFlipBook
           width={600}
-          height={500}
-          paddingLeft={10}
-          style={{ fontFamily: "Kreon", fontSize: "30px" }}
+          height={800}
+          style={{
+            fontFamily: "kreon",
+            backgroundImage: `url(${bookCoverImage})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+            height: "70vh", // set a relative height
+            maxWidth: "700px", // set a maximum width
+            margin: "auto", // center the container horizontally
+            padding: "50px",
+          }}
         >
           {Array.from({ length: numPages }).map((_, i) => (
             <div key={i}>
@@ -141,7 +150,7 @@ function ResponseFlipBook() {
               {sentences
                 .slice(i * sentencesPerPage, (i + 1) * sentencesPerPage)
                 .join(". ")}
-              <img src={lastImageUrl} alt="imageAI" width={300} height={300} />
+              <img src={lastImageUrl} alt="imageAI" style={{ maxWidth: '40%', height: 'auto' }} />
             </div>
           ))}
         </HTMLFlipBook>

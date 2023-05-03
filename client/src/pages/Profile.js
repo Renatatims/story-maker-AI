@@ -12,7 +12,7 @@ import {
 import { Print } from "@mui/icons-material";
 import EditIcon from "@mui/icons-material/Edit";
 import DoneIcon from "@mui/icons-material/Done";
-import exampleImage from "../assets/images/imgExample.PNG";
+import exampleImage from "../assets/images/img4.PNG";
 import { ExpandMore, ExpandLess } from "@mui/icons-material";
 
 //use Query Hook
