@@ -14,9 +14,7 @@ import {
 
 import { styled } from "@mui/material/styles";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import HTMLFlipBook from "react-pageflip";
 import images from "../../utils/images";
-import bookCoverImage from "../../assets/images/book_template.png";
 import "../../App.css";
 
 import { Configuration, OpenAIApi } from "openai";
@@ -99,10 +97,6 @@ function StoryMaker() {
     console.log(response);
     setResponse(response);
   };
-
-  const sentencesPerPage = 1;
-  const sentences = response.split(". "); // split response into an array of sentences
-  const numPages = Math.ceil(sentences.length / sentencesPerPage); // calculate the number of pages needed
 
   // Define the handleSaveStoryAI function
   const handleSaveStoryAI = async () => {
@@ -222,28 +216,6 @@ function StoryMaker() {
           <FavoriteBorderIcon />
         </IconButton>
       </Card>
-      <HTMLFlipBook
-        width={400}
-        height={500}
-        style={{
-          fontFamily: "kreon",
-          backgroundImage: `url(${bookCoverImage})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "contain",
-          height: "70vh", // set a relative height
-          maxWidth: "700px", // set a maximum width
-          margin: "10", // center the container horizontally
-          padding: "0",
-        }}
-      >
-        {Array.from({ length: numPages }).map((_, i) => (
-          <div key={i}>
-            {sentences
-              .slice(i * sentencesPerPage, (i + 1) * sentencesPerPage)
-              .join(". ")}
-          </div>
-        ))}
-      </HTMLFlipBook>
     </Container>
   );
 }

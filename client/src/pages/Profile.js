@@ -3,6 +3,7 @@ import {
   Card,
   CardContent,
   CardMedia,
+  Container,
   Typography,
   IconButton,
   Grid,
@@ -12,7 +13,6 @@ import {
 import { Print } from "@mui/icons-material";
 import EditIcon from "@mui/icons-material/Edit";
 import DoneIcon from "@mui/icons-material/Done";
-import exampleImage from "../assets/images/img4.PNG";
 import { ExpandMore, ExpandLess } from "@mui/icons-material";
 
 //use Query Hook
@@ -65,6 +65,15 @@ function UserStories() {
   const handleTitleChange = (e) => {
     setEditedTitle(e.target.value);
   };
+
+  //Get Image from local Storage - Future development: get image from database
+   //Get image from local storage
+   const imageUrls = localStorage.getItem("imageUrls");
+   const urlsArray = imageUrls ? JSON.parse(imageUrls) : [];
+ 
+   // Get last URL from array
+   const lastImageUrl =
+     urlsArray.length > 0 ? urlsArray[urlsArray.length - 1] : "";
 
   //PREVIEW
   // Define a state variable to keep track of whether to show the full or preview text
@@ -145,12 +154,14 @@ function UserStories() {
 
   return (
     <>
+     <Container sx={{ display: "flex", justifyContent: "center" }}>
       <Typography
         variant="h4"
-        style={{ fontFamily: "Rancho", fontSize: "48px" }}
+        style={{ fontFamily: "Kreon", fontSize: "48px" }}
       >
         Saved Stories
       </Typography>
+      </Container>
       <Grid container spacing={isMobile ? 2 : 4}>
         {storiesAI?.map((story, index) => (
           <Grid item xs={12} sm={6} md={4} key={index} id={`card-${index}`}>
@@ -167,7 +178,7 @@ function UserStories() {
                 <CardMedia
                   component="img"
                   height="300"
-                  src={exampleImage}
+                  src={lastImageUrl}
                   alt="imageAI"
                   sx={{ objectFit: "contain" }}
                   className="center"
