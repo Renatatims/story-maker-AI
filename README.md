@@ -4,4 +4,4 @@ This application enables the user to a create story based on their input, throug
 
 # Credits
 - Animals Images by pch.vector on Freepik: "https://www.freepik.com/free-vector/happy-funny-cartoon-animals-set_8609221.htm#query=animals%20ilustration&position=8&from_view=search&track=robertav1_2_sidr"
-- Open Book template, by: DougitDesign at: "https://www.deviantart.com/dougitdesign/art/open-book-template-PSD-198829525"
+- Book Page template, from: https://www.canva.com/templates/EAFdM1RZDII-minimalist-vintage-line-a4-stationery-paper-document/
