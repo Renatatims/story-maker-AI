@@ -57,10 +57,11 @@ function ResponseFlipBook() {
           backgroundSize: "100% 100%",
           backgroundRepeat: "no-repeat",
           borderRadius: "10px",
-          height: "60vh",
+          height: "70vh",
           maxWidth: "50%",
           margin: "auto",
-          padding: "20px",
+          padding: "10px",
+          paddingTop: "0px",
           overflow: "hidden",
           boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.25)",
         }}
@@ -71,12 +72,7 @@ function ResponseFlipBook() {
             variant="h2"
             sx={{
               fontFamily: "Kreon",
-              fontSize: "40px",
-              // Add media query for smaller screens
-              "@media (max-width: 600px)": {
-                fontSize: "30px",
-                margin: "10px",
-              },
+              fontSize: "27px",
             }}
           >
             {title}
