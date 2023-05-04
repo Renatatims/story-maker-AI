@@ -8,6 +8,7 @@ import Intro from "../components/Tabs/Intro";
 import Step1 from "../components/Tabs/Step1";
 import Step2 from "../components/Tabs/Step2";
 import Step3 from "../components/Tabs/Step3";
+import View from "../components/Tabs/View";
 import Badge from "@mui/material/Badge";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
@@ -17,6 +18,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import ImageIcon from "@mui/icons-material/Image";
 import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
 import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
@@ -150,6 +152,15 @@ export default function VerticalTabs() {
           label={<NumberIcon number="3" icon={<AutoFixHighIcon />} />}
           {...a11yProps(3)}
         />
+        <Tab
+          sx={{
+            fontFamily: "Rancho, cursive",
+            fontSize: 25,
+            textTransform: "none",
+          }}
+          icon={<VisibilityIcon />} 
+          {...a11yProps(4)}
+        />
         {Auth.loggedIn() ? (
           <div>
             <Link to="/Profile">
@@ -183,6 +194,9 @@ export default function VerticalTabs() {
       </TabPanel>
       <TabPanel value={value} index={3}>
         <Step3 />
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+        <View />
       </TabPanel>
       <LoginModal open={modalShow} handleClose={handleCloseModal} />
     </Box>
