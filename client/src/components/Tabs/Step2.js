@@ -120,7 +120,14 @@ const ImageGenerator = () => {
       <Container>
         <Typography
           variant="h4"
-          style={{ fontFamily: "Kreon", fontSize: "40px" }}
+          sx={{
+            fontFamily: "Kreon",
+            fontSize: {
+              xs: "30px",
+              sm: "35px",
+              md: "40px",
+            },
+          }}
         >
           Step 2: Create a personalized image using AI
         </Typography>

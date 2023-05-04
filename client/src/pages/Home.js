@@ -18,7 +18,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import ImageIcon from "@mui/icons-material/Image";
 import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
 import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
@@ -32,10 +32,7 @@ function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
   return (
-    <div
-      role="tabpanel"
-      {...other}
-    >
+    <div role="tabpanel" {...other}>
       {value === index && (
         <Box sx={{ p: 3 }}>
           <Typography>{children}</Typography>
@@ -158,7 +155,7 @@ export default function VerticalTabs() {
             fontSize: 25,
             textTransform: "none",
           }}
-          icon={<VisibilityIcon />} 
+          icon={<VisibilityIcon />}
           {...a11yProps(4)}
         />
         {Auth.loggedIn() ? (

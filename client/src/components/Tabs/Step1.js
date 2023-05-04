@@ -120,18 +120,29 @@ function StoryMaker() {
     <Container>
       <Typography
         variant="h4"
-        style={{ fontFamily: "Kreon", fontSize: "40px" }}
+        sx={{
+          fontFamily: "Kreon",
+          fontSize: {
+            xs: "30px",
+            sm: "35px",
+            md: "40px",
+          },
+        }}
       >
         Step 1: Describe your story
       </Typography>
       <form onSubmit={handleSubmit}>
         <Typography
           variant="h5"
-          style={{
+          sx={{
             paddingTop: "15px",
             paddingLeft: "20px",
             fontFamily: "Kreon",
-            fontSize: "30px",
+            fontSize: {
+              xs: "20px",
+              sm: "25px",
+              md: "30px",
+            },
           }}
         >
           please input the following info:

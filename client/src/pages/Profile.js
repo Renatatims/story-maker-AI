@@ -157,7 +157,14 @@ function UserStories() {
      <Container sx={{ display: "flex", justifyContent: "center" }}>
       <Typography
         variant="h4"
-        style={{ fontFamily: "Kreon", fontSize: "48px" }}
+        sx={{
+          fontFamily: "Kreon",
+          fontSize: {
+            xs: "30px",
+            sm: "35px",
+            md: "40px",
+          },
+        }}
       >
         Saved Stories
       </Typography>
