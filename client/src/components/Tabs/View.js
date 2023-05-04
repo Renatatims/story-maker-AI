@@ -32,7 +32,7 @@ function ResponseFlipBook() {
 
   return (
     <>
-      <Container>
+      <Container sx={{ display: "flex", justifyContent: "center" }}>
         <Typography
           variant="h4"
           style={{ fontFamily: "Kreon", fontSize: "40px" }}
@@ -48,7 +48,6 @@ function ResponseFlipBook() {
           border: "4px solid black",
           backgroundImage: `url(${bookCoverImage})`,
           backgroundSize: "100% 100%",
-
           backgroundRepeat: "no-repeat",
           borderRadius: "10px",
           height: "60vh",
@@ -56,6 +55,7 @@ function ResponseFlipBook() {
           margin: "auto",
           padding: "20px",
           overflow: "hidden",
+          boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.25)",
         }}
         showCover={true}
       >

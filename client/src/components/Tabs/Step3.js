@@ -55,7 +55,7 @@ function StoryCard() {
 
   return (
     <>
-      <Container>
+      <Container sx={{ display: "flex", justifyContent: "center" }}>
         <Typography
           variant="h4"
           style={{ fontFamily: "Kreon", fontSize: "40px" }}
