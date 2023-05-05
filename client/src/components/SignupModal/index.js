@@ -7,7 +7,6 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Button from "@mui/material/Button";
 
-
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
@@ -23,7 +22,6 @@ function SignupModal(props) {
   });
   const [addUser] = useMutation(ADD_USER);
 
-  
   // update state based on form input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -34,8 +32,8 @@ function SignupModal(props) {
     });
   };
 
- // submit form
- const handleFormSubmit = async (event) => {
+  // submit form
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log(formState);
 
@@ -83,6 +81,13 @@ function SignupModal(props) {
           >
             <CloseIcon />
           </IconButton>
+          <a href="/">
+            <img
+              src={require("../../assets/logo/blueLogo_storyMakerAI.png")}
+              alt="icon"
+              width="250px"
+            ></img>
+          </a>
           <form
             onSubmit={handleFormSubmit}
             className="space-y-4 md:space-y-6"
@@ -99,7 +104,7 @@ function SignupModal(props) {
                 required
                 fullWidth
                 autoFocus
-                sx={{ margin: 2, marginTop: 4 }}
+                sx={{  m:2, ml:0 }}
               />
               <TextField
                 id="firstName"
@@ -111,7 +116,7 @@ function SignupModal(props) {
                 required
                 fullWidth
                 autoFocus
-                sx={{ margin: 2 }}
+                sx={{  m:2, ml:0 }}
               />
               <TextField
                 id="lastName"
@@ -123,7 +128,7 @@ function SignupModal(props) {
                 required
                 fullWidth
                 autoFocus
-                sx={{ margin: 2 }}
+                sx={{  m:2, ml:0 }}
               />
               <TextField
                 id="password"
@@ -134,23 +139,25 @@ function SignupModal(props) {
                 onChange={handleChange}
                 required
                 fullWidth
-                sx={{ margin: 2 }}
+                sx={{  m:2, ml:0 }}
               />
-              <Box sx={{
+              <Box
+                sx={{
                   display: "flex",
                   justifyContent: "center",
-                }}>
-              <Button
-                type="submit"
-                variant="contained"
-                sx={{
-                  margin: 1,
-                  backgroundColor: "grey",
-                  "&:hover": { backgroundColor: "darkgrey" },
                 }}
               >
-                Signup
-              </Button>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  sx={{
+                    margin: 1,
+                    backgroundColor: "#00334A",
+                    "&:hover": { backgroundColor: "darkgrey" },
+                  }}
+                >
+                  Signup
+                </Button>
               </Box>
             </Stack>
           </form>

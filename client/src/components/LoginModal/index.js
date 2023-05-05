@@ -80,11 +80,13 @@ function LoginModal(props) {
           >
             <CloseIcon />
           </IconButton>
-          <img
-            src={require("../../assets/logo/storyMakerAI_logo.png")}
-            alt="icon"
-            style={{ height: "60px" }}
-          ></img>
+          <a href="/">
+            <img
+              src={require("../../assets/logo/blueLogo_storyMakerAI.png")}
+              alt="icon"
+              width="250px"
+            ></img>
+          </a>
           <form
             onSubmit={handleFormSubmit}
             className="space-y-4 md:space-y-6"
@@ -101,7 +103,7 @@ function LoginModal(props) {
                 required
                 fullWidth
                 autoFocus
-                sx={{ margin: 2 }}
+                sx={{ m:2, ml: 0 }}
               />
               <TextField
                 id="password"
@@ -112,7 +114,7 @@ function LoginModal(props) {
                 onChange={handleChange}
                 required
                 fullWidth
-                sx={{ margin: 2 }}
+                sx={{  m:2, ml:0 }}
               />
               <Box
                 sx={{
@@ -125,7 +127,7 @@ function LoginModal(props) {
                   variant="contained"
                   sx={{
                     margin: 1,
-                    backgroundColor: "grey",
+                    backgroundColor: "#00334A",
                     "&:hover": { backgroundColor: "darkgrey" },
                   }}
                 >
