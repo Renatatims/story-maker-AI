@@ -10,6 +10,7 @@ import {
   Paper,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import Auth from "../../utils/auth";
 
 // Apollo useMutation() Hook
 import { useMutation } from "@apollo/client";
@@ -62,33 +63,35 @@ const ImageGenerator = () => {
         reader.onloadend = async () => {
           const base64Image = reader.result;
 
-          // Save the image to the database
-          try {
-            await saveImage({
-              variables: {
-                imageData: {
-                  image: base64Image,
-                },
-              },
-            });
+          // Local storage Images
+          const storedUrls = localStorage.getItem("imageUrls");
+          const urlsArray = storedUrls ? JSON.parse(storedUrls) : [];
 
-            // Local storage Images
-            const storedUrls = localStorage.getItem("imageUrls");
-            const urlsArray = storedUrls ? JSON.parse(storedUrls) : [];
+          // Add new URL to array and store back into local storage
+          urlsArray.push(generatedImageUrl);
 
-            // Add new URL to array and store back into local storage
-            urlsArray.push(generatedImageUrl);
+          // Store the updated array back into local storage
+          localStorage.setItem("imageUrls", JSON.stringify(urlsArray));
 
-            // Store the updated array back into local storage
-            localStorage.setItem("imageUrls", JSON.stringify(urlsArray));
-
-            // Update the UI with the generated image URL
-            setImageUrl(generatedImageUrl);
-          } catch (saveError) {
-            console.error("Error saving image:", saveError);
-          }
+          // Update the UI with the generated image URL
+          setImageUrl(generatedImageUrl);
 
           setLoading(false);
+
+          // Save the image to the database if user is logged in
+          if (Auth.loggedIn()) {
+            try {
+              await saveImage({
+                variables: {
+                  imageData: {
+                    image: base64Image,
+                  },
+                },
+              });
+            } catch (saveError) {
+              console.error("Error saving image:", saveError);
+            }
+          }
         };
       } catch (fetchError) {
         console.error("Error fetching the image:", fetchError);
@@ -154,7 +157,21 @@ const ImageGenerator = () => {
             <img src={imageUrl} alt="Generated" style={{ maxWidth: "100%" }} />
           </Box>
         )}
+        {!Auth.loggedIn() && (
+          <Typography
+            variant="h6"
+            style={{
+              fontFamily: "Kreon",
+              fontSize: "25px",
+              alignItems: "center",
+              color: "red"
+            }}
+          >
+            Please login or signup to save images to your account
+          </Typography>
+        )}
       </Container>
+
       <Box sx={{ flexGrow: 1 }}>
         <Typography
           variant="h5"
