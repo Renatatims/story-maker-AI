@@ -174,7 +174,7 @@ export default function VerticalTabs() {
           </div>
         ) : (
           <div>
-            <Button sx={{ ml: 1.5, color: "grey" }} onClick={handleOpenModal}>
+            <Button size="large" sx={{ mt:0.5, color: "grey" }} onClick={handleOpenModal}>
               <AccountCircleIcon />
             </Button>
           </div>
