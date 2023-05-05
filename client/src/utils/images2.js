@@ -47,6 +47,30 @@ const images = [
       title: "Princess4",
       author: "Dalle",
     },
+    {
+      id: 9,
+      url: require("../assets/images/img9.PNG"),
+      title: "Space1",
+      author: "Dalle",
+    },
+    {
+      id: 10,
+      url: require("../assets/images/img10.PNG"),
+      title: "Space2",
+      author: "Dalle",
+    },
+    {
+      id: 11,
+      url: require("../assets/images/img11.PNG"),
+      title: "Space3",
+      author: "Dalle",
+    },
+    {
+      id: 12,
+      url: require("../assets/images/img12.PNG"),
+      title: "Space4",
+      author: "Dalle",
+    },
   ];
   
   export default images;
