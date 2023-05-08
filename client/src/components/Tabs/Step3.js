@@ -12,8 +12,16 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 import DoneIcon from "@mui/icons-material/Done";
 import "../../assets/css/step3.css"; // import the CSS file
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { Print } from "@mui/icons-material";
+
+// Apollo useMutation() Hook
+import { useMutation } from "@apollo/client";
+//Import Save Story AI mutation
+import { SAVE_STORY_AI } from "../../utils/mutations";
 
 function StoryCard() {
+  const [saveStoriesAI] = useMutation(SAVE_STORY_AI);
   // Get Title from Local storage
   const [title, setTitle] = useState(
     localStorage.getItem("cardTitle") || "Title"
@@ -40,7 +48,27 @@ function StoryCard() {
   // Get last story from array
   const lastResponse =
     responsesArray.length > 0 ? responsesArray[responsesArray.length - 1] : "";
- 
+
+  // Define the handleSaveStoryAI function
+  const handleSaveStoryAI = async () => {
+    try {
+      // Call the saveNutriPlan mutation with the nutriPlan object
+      await saveStoriesAI({
+        variables: { storyData: { stories: lastResponse } },
+      });
+
+      // Show a success message to the user
+      alert("Story saved successfully!");
+    } catch (error) {
+      console.error(error);
+
+      // Show an error message to the user
+      alert(
+        "An error occurred while saving the story. Please try again later."
+      );
+    }
+  };
+
   //Get image from local storage
   const imageUrls = localStorage.getItem("imageUrls");
   const urlsArray = imageUrls ? JSON.parse(imageUrls) : [];
@@ -118,17 +146,16 @@ function StoryCard() {
             >
               {lastResponse}
             </Typography>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <IconButton onClick={handlePrint}>
+                <Print />
+              </IconButton>
+              <IconButton onClick={handleSaveStoryAI}>
+                <FavoriteBorderIcon />
+              </IconButton>
+            </div>
           </CardContent>
         </Card>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <Button
-            onClick={handlePrint}
-            variant="contained"
-            sx={{ marginTop: "20px" }}
-          >
-            Print
-          </Button>
-        </div>
       </div>
     </>
   );
