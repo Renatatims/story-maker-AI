@@ -9,9 +9,10 @@ import Step1 from "../components/Tabs/Step1";
 import Step2 from "../components/Tabs/Step2";
 import Step3 from "../components/Tabs/Step3";
 import View from "../components/Tabs/View";
-import Badge from "@mui/material/Badge";
+import Profile from "./Profile";
+//import Badge from "@mui/material/Badge";
 import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
+//import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HomeIcon from "@mui/icons-material/Home";
@@ -21,7 +22,7 @@ import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
 import Auth from "../utils/auth";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 import "../App.css";
 
@@ -159,22 +160,22 @@ export default function VerticalTabs() {
           {...a11yProps(4)}
         />
         {Auth.loggedIn() ? (
-          <div>
-            <Link to="/Profile">
-              <IconButton
-                size="large"
-                aria-label="heart"
-                sx={{ ml: 1.5, color: "grey" }}
-              >
-                <Badge badgeContent={0} color="error">
-                  <FavoriteIcon />
-                </Badge>
-              </IconButton>
-            </Link>
-          </div>
+          <Tab
+            sx={{
+              fontFamily: "Rancho, cursive",
+              fontSize: 25,
+              textTransform: "none",
+            }}
+            icon={<FavoriteIcon />}
+            {...a11yProps(5)}
+          />
         ) : (
           <div>
-            <Button size="large" sx={{ mt:0.5, color: "grey" }} onClick={handleOpenModal}>
+            <Button
+              size="large"
+              sx={{ mt: 0.5, color: "grey" }}
+              onClick={handleOpenModal}
+            >
               <AccountCircleIcon />
             </Button>
           </div>
@@ -194,6 +195,9 @@ export default function VerticalTabs() {
       </TabPanel>
       <TabPanel value={value} index={4}>
         <View />
+      </TabPanel>
+      <TabPanel value={value} index={5}>
+        <Profile />
       </TabPanel>
       <LoginModal open={modalShow} handleClose={handleCloseModal} />
     </Box>

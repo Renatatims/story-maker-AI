@@ -8,6 +8,9 @@ The Story Maker AI App is a web application that uses OpenAI's language model to
 
 ![Story Maker AI App Screenshot](/client/src/assets/screenshots/preview1.PNG)
 
+## Link to Application
+Application available at: https://story-maker-ai.herokuapp.com/
+
 ## Table of Contents
 
 - [Installation](#installation)
@@ -42,8 +45,7 @@ To use the app, simply click on the first step and enter the required informatio
 <p>
   <img src="./client/src/assets/screenshots/preview2.PNG" alt="Story Maker AI App Screenshot" width="500" />
 </p>
-
-
+- Create an account and save your stories to your profile.
 
 ## License
 
@@ -58,7 +60,10 @@ Please feel free to send a pull request, the following is my GitHub account: htt
 
 ## Tests
 
-To run the application:
+To run the application: 
+```` 
+npm run develop
+````
 
 ## Questions
 
