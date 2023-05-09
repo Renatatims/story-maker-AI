@@ -4,16 +4,19 @@ import {
   CardContent,
   CardMedia,
   Typography,
-  Button,
   Container,
   TextField,
   IconButton,
+  Box,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DoneIcon from "@mui/icons-material/Done";
 import "../../assets/css/step3.css"; // import the CSS file
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Print } from "@mui/icons-material";
+import ImageIcon from "@mui/icons-material/Image";
+
+import { Link } from "react-router-dom";
 
 // Apollo useMutation() Hook
 import { useMutation } from "@apollo/client";
@@ -109,7 +112,32 @@ function StoryCard() {
             src={lastImageUrl}
             alt="imageAI"
             sx={{ objectFit: "contain" }}
+            onError={(e) => {
+              e.target.style.display = "none";
+              document.getElementById("image-error").style.display = "block";
+            }}
           />
+          <Box
+            id="image-error"
+            sx={{
+              fontFamily: "Kreon",
+              fontSize: {
+                xs: "22px",
+              },
+              display: "none",
+              border: "1px solid #ccc",
+              borderRadius: "5px",
+              padding: "10px",
+              margin: "10px",
+              boxShadow: 5,
+              textAlign: "center",
+              justifyContent: "center",
+              width: "55%",
+              mx: "auto",
+            }}
+          >
+            To view an image go to Step 2 <span><IconButton><ImageIcon/></IconButton></span>
+          </Box>
           <CardContent>
             <Typography
               gutterBottom

@@ -85,7 +85,7 @@ function NumberIcon(props) {
   );
 }
 
-export default function VerticalTabs() {
+export default function HorizontalTabs() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
