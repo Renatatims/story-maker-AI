@@ -16,14 +16,12 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Print } from "@mui/icons-material";
 import ImageIcon from "@mui/icons-material/Image";
 
-import { Link } from "react-router-dom";
-
 // Apollo useMutation() Hook
 import { useMutation } from "@apollo/client";
 //Import Save Story AI mutation
 import { SAVE_STORY_AI } from "../../utils/mutations";
 
-function StoryCard() {
+function StoryCard ({ onGoToStep2 }) {
   const [saveStoriesAI] = useMutation(SAVE_STORY_AI);
   // Get Title from Local storage
   const [title, setTitle] = useState(
@@ -136,7 +134,7 @@ function StoryCard() {
               mx: "auto",
             }}
           >
-            To view an image go to Step 2 <span><IconButton><ImageIcon/></IconButton></span>
+            To view an image go to Step 2 <span><IconButton onClick={onGoToStep2}><ImageIcon/></IconButton></span>
           </Box>
           <CardContent>
             <Typography

@@ -92,6 +92,10 @@ export default function HorizontalTabs() {
     setValue(newValue);
   };
 
+  const handleGoToStep2 = () => {
+    setValue(2);
+  };
+
   //Login Modal
   //Modal - useState
   const [modalShow, setModalShow] = useState(false);
@@ -190,8 +194,8 @@ export default function HorizontalTabs() {
       <TabPanel value={value} index={2}>
         <Step2 />
       </TabPanel>
-      <TabPanel value={value} index={3}>
-        <Step3 />
+      <TabPanel value={value} index={3} onClick={handleGoToStep2}>
+        <Step3  />
       </TabPanel>
       <TabPanel value={value} index={4}>
         <View />
