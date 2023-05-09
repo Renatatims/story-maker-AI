@@ -72,6 +72,30 @@ export const UPDATE_STORY_TITLE = gql`
   }
 `;
 
+// Delete Story from User's profile
+export const DELETE_STORY_AI = gql`
+  mutation deleteStory($storyId: ID!) {
+    deleteStory(storyId: $storyId) {
+      _id
+      storiesAI {
+        _id
+        title
+        stories
+        image {
+          _id
+          image
+        }
+        user {
+          _id
+          firstName
+          lastName
+          email
+        }
+      }
+    }
+  }
+`;
+
 // Save Image to User's profile
 export const SAVE_IMAGE = gql`
   mutation saveImage($imageData: ImageInput!) {

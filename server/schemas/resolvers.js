@@ -112,6 +112,37 @@ const resolvers = {
       return updatedStory;
     },
 
+    // Delete a story from user's profile
+    deleteStory: async (parent, { storyId }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError("You need to be logged in!");
+      }
+
+      const user = await User.findById(context.user._id);
+
+      // Check if the user has the story
+      const storyIndex = user.storiesAI.findIndex(
+        (story) => story._id.toString() === storyId
+      );
+      if (storyIndex === -1) {
+        throw new UserInputError(
+          "You don't have this story in your profile."
+        );
+      }
+
+      if (storyIndex != null) {
+
+      // Remove the story from the user's stories array
+      user.storiesAI.splice(storyIndex, 1);
+      await user.save();
+      }
+
+      // Delete the story from the Story model
+      await Story.findByIdAndDelete(storyId);
+
+      return user;
+    },
+
     // Save image to user's profile
     saveImage: async (parent, { imageData }, context) => {
       if (!context.user) {

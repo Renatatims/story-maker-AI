@@ -13,15 +13,20 @@ import {
 import { Print } from "@mui/icons-material";
 import EditIcon from "@mui/icons-material/Edit";
 import DoneIcon from "@mui/icons-material/Done";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { ExpandMore, ExpandLess } from "@mui/icons-material";
+import Auth from "../utils/auth";
 
 //use Query Hook
 import { useQuery } from "@apollo/client";
-import { QUERY_STORIES_AI } from "../utils/queries";
+import { QUERY_USER, QUERY_STORIES_AI } from "../utils/queries";
 
 //use Mutation to update the title
 import { useMutation } from "@apollo/client";
 import { UPDATE_STORY_TITLE } from "../utils/mutations";
+
+// Mutation to delete a story
+import { DELETE_STORY_AI } from "../utils/mutations";
 
 function UserStories() {
   // QUERY_STORIES_AI query to get the list of stories from the database
@@ -66,14 +71,19 @@ function UserStories() {
     setEditedTitle(e.target.value);
   };
 
+  //Delete Meal Plan mutation
+  const [deleteStory] = useMutation(DELETE_STORY_AI, {
+    refetchQueries: [{ query: QUERY_USER }],
+  });
+
   //Get Image from local Storage - Future development: get image from database
-   //Get image from local storage
-   const imageUrls = localStorage.getItem("imageUrls");
-   const urlsArray = imageUrls ? JSON.parse(imageUrls) : [];
- 
-   // Get last URL from array
-   const lastImageUrl =
-     urlsArray.length > 0 ? urlsArray[urlsArray.length - 1] : "";
+  //Get image from local storage
+  const imageUrls = localStorage.getItem("imageUrls");
+  const urlsArray = imageUrls ? JSON.parse(imageUrls) : [];
+
+  // Get last URL from array
+  const lastImageUrl =
+    urlsArray.length > 0 ? urlsArray[urlsArray.length - 1] : "";
 
   //PREVIEW
   // Define a state variable to keep track of whether to show the full or preview text
@@ -152,22 +162,42 @@ function UserStories() {
     printWindow.focus();
   };
 
+  // Delete Story from Profile
+  const handleDeleteStory = async (storyId) => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    if (!token) {
+      return false;
+    }
+    try {
+      const { data } = await deleteStory({
+        variables: { storyId },
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+
+      console.log(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <>
-     <Container sx={{ display: "flex", justifyContent: "center" }}>
-      <Typography
-        variant="h4"
-        sx={{
-          fontFamily: "Kreon",
-          fontSize: {
-            xs: "30px",
-            sm: "35px",
-            md: "40px",
-          },
-        }}
-      >
-        Saved Stories
-      </Typography>
+      <Container sx={{ display: "flex", justifyContent: "center" }}>
+        <Typography
+          variant="h4"
+          sx={{
+            fontFamily: "Kreon",
+            fontSize: {
+              xs: "30px",
+              sm: "35px",
+              md: "40px",
+            },
+          }}
+        >
+          Saved Stories
+        </Typography>
       </Container>
       <Grid container spacing={isMobile ? 2 : 4}>
         {storiesAI?.map((story, index) => (
@@ -208,9 +238,7 @@ function UserStories() {
                   ) : (
                     <>
                       {story.title}{" "}
-                      <IconButton
-                        onClick={() => handleEditTitle(story._id)}
-                      >
+                      <IconButton onClick={() => handleEditTitle(story._id)}>
                         <EditIcon />
                       </IconButton>
                     </>
@@ -241,6 +269,9 @@ function UserStories() {
               </IconButton>
               <IconButton onClick={() => handlePrint(`card-${index}`)}>
                 <Print />
+              </IconButton>
+              <IconButton onClick={() => handleDeleteStory(story._id)}>
+                <DeleteIcon />
               </IconButton>
             </Card>
           </Grid>

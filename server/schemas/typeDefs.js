@@ -56,6 +56,7 @@ const typeDefs = gql`
     saveStory(storyData: StoryInput!): User
     saveImage(imageData: ImageInput!): User
     updateStoryTitle(storyId: ID!, title: String): Story
+    deleteStory(storyId: ID!): User
   }
 `;
 module.exports = typeDefs;
