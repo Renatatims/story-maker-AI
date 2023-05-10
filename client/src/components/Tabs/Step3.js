@@ -21,7 +21,7 @@ import { useMutation } from "@apollo/client";
 //Import Save Story AI mutation
 import { SAVE_STORY_AI } from "../../utils/mutations";
 
-function StoryCard ({ onGoToStep2 }) {
+function StoryCard({ onGoToStep2 }) {
   const [saveStoriesAI] = useMutation(SAVE_STORY_AI);
   // Get Title from Local storage
   const [title, setTitle] = useState(
@@ -132,9 +132,16 @@ function StoryCard ({ onGoToStep2 }) {
               justifyContent: "center",
               width: "55%",
               mx: "auto",
+              cursor: "pointer"
             }}
+            onClick={onGoToStep2}
           >
-            To view an image go to Step 2 <span><IconButton onClick={onGoToStep2}><ImageIcon/></IconButton></span>
+            To view an image go to Step 2{" "}
+            <span>
+              <IconButton onClick={onGoToStep2}>
+                <ImageIcon sx={{pb:"4px"}}/>
+              </IconButton>
+            </span>
           </Box>
           <CardContent>
             <Typography
