@@ -10,7 +10,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 import Auth from "../../utils/auth";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 //Import Login modal
 import LoginModal from "../LoginModal/index";
@@ -18,7 +18,7 @@ import LoginModal from "../LoginModal/index";
 //Import Signup modal
 import SignupModal from "../SignupModal/index";
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar({handleGoToFavorites}) {
   //Login Modal
   //Modal - useState
   const [modalShow, setModalShow] = useState(false);
@@ -55,32 +55,31 @@ export default function ButtonAppBar() {
         }}
       >
         <Toolbar>
-        <Box
+          <Box
             sx={{
               flexGrow: 1,
             }}
           >
-          <a href="/">
-            <img
-              src={require("../../assets/logo/storyMakerAI_logo.png")}
-              alt="icon"
-              style={{ height:"60px"}}
-            ></img>
-          </a>
+            <a href="/">
+              <img
+                src={require("../../assets/logo/storyMakerAI_logo.png")}
+                alt="icon"
+                style={{ height: "60px" }}
+              ></img>
+            </a>
           </Box>
           {Auth.loggedIn() ? (
             <div style={{ display: "flex" }}>
-              <Link to="/Profile">
-                <IconButton
-                  size="large"
-                  aria-label="heart"
-                  sx={{ color: "white" }}
-                >
-                  <Badge badgeContent={0} color="error">
-                    <FavoriteIcon />
-                  </Badge>
-                </IconButton>
-              </Link>
+              <IconButton
+                size="large"
+                aria-label="heart"
+                sx={{ color: "white" }}
+                onClick={handleGoToFavorites}
+              >
+                <Badge badgeContent={0} color="error">
+                  <FavoriteIcon />
+                </Badge>
+              </IconButton>
               <IconButton
                 size="large"
                 aria-label="logout"
@@ -96,10 +95,18 @@ export default function ButtonAppBar() {
             </div>
           ) : (
             <div style={{ display: "flex" }}>
-              <Button color="inherit" onClick={handleOpenModal} >
+              <Button color="inherit" onClick={handleOpenModal}>
                 <AccountCircleIcon />
               </Button>
-              <Button color="inherit" onClick={handleOpenSignupModal}  sx={{ fontFamily: 'Rancho, cursive', fontSize: {xs:20, m:25}, textTransform: 'none' }}>
+              <Button
+                color="inherit"
+                onClick={handleOpenSignupModal}
+                sx={{
+                  fontFamily: "Rancho, cursive",
+                  fontSize: { xs: 20, m: 25 },
+                  textTransform: "none",
+                }}
+              >
                 signup
               </Button>
             </div>

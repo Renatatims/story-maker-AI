@@ -10,6 +10,7 @@ import Step2 from "../components/Tabs/Step2";
 import Step3 from "../components/Tabs/Step3";
 import View from "../components/Tabs/View";
 import Profile from "./Profile";
+import Navbar from "../components/Navbar/index";
 //import Badge from "@mui/material/Badge";
 import Button from "@mui/material/Button";
 //import IconButton from "@mui/material/IconButton";
@@ -96,6 +97,11 @@ export default function HorizontalTabs() {
     setValue(2);
   };
 
+  const handleGoToFavorites = () => {
+    setValue(5);
+  };
+
+
   //Login Modal
   //Modal - useState
   const [modalShow, setModalShow] = useState(false);
@@ -110,6 +116,8 @@ export default function HorizontalTabs() {
   };
 
   return (
+    <>
+    <Navbar handleGoToFavorites={handleGoToFavorites} />
     <Box component="div" sx={{ bgcolor: "background.paper" }}>
       <Tabs
         value={value}
@@ -203,5 +211,6 @@ export default function HorizontalTabs() {
       </TabPanel>
       <LoginModal open={modalShow} handleClose={handleCloseModal} />
     </Box>
+    </>
   );
 }
