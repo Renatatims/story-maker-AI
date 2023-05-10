@@ -9,11 +9,13 @@ import {
   Grid,
   useMediaQuery,
   TextField,
+  Box,
 } from "@mui/material";
 import { Print } from "@mui/icons-material";
 import EditIcon from "@mui/icons-material/Edit";
 import DoneIcon from "@mui/icons-material/Done";
 import DeleteIcon from "@mui/icons-material/Delete";
+import ImageIcon from "@mui/icons-material/Image";
 import { ExpandMore, ExpandLess } from "@mui/icons-material";
 import Auth from "../utils/auth";
 
@@ -28,7 +30,7 @@ import { UPDATE_STORY_TITLE } from "../utils/mutations";
 // Mutation to delete a story
 import { DELETE_STORY_AI } from "../utils/mutations";
 
-function UserStories() {
+function UserStories({onGoToStep2}) {
   // QUERY_STORIES_AI query to get the list of stories from the database
   const { data } = useQuery(QUERY_STORIES_AI);
   console.log(data);
@@ -187,6 +189,7 @@ function UserStories() {
       <Container sx={{ display: "flex", justifyContent: "center" }}>
         <Typography
           variant="h4"
+          component ="div"
           sx={{
             fontFamily: "Kreon",
             fontSize: {
@@ -219,18 +222,53 @@ function UserStories() {
                   alt="imageAI"
                   sx={{ objectFit: "contain" }}
                   className="center"
+                  onError={(e) => {
+                    e.target.style.display = "none";
+                    document.getElementById("image-error").style.display = "block";
+                  }}
                 />
               </div>
-              <CardContent>
-                <h2
+              <Box
+                id="image-error"
+                sx={{
+                  fontFamily: "Kreon",
+                  fontSize: {
+                    xs: "22px",
+                  },
+                  display: "none",
+                  border: "1px solid #ccc",
+                  borderRadius: "5px",
+                  padding: "10px",
+                  margin: "10px",
+                  boxShadow: 5,
+                  textAlign: "center",
+                  justifyContent: "center",
+                  width: "55%",
+                  mx: "auto",
+                  cursor: "pointer",
+                }}
+                onClick={onGoToStep2}
+              >
+                To view an image go to Step 2{" "}
+                <span>
+                  <IconButton onClick={onGoToStep2}>
+                    <ImageIcon sx={{ pb: "4px" }} />
+                  </IconButton>
+                </span>
+              </Box>
+              <CardContent component ="div">
+                <Typography
+                  component ="div"
                   style={{
-                    paddingLeft: "80px",
+                    fontSize: "25px",
+                    fontFamily: "Kreon",
                     fontWeight: "bold",
                     color: "#8C2E5A",
                   }}
                 >
                   {isEditing[story._id] ? (
                     <TextField
+                      component ="div"
                       value={editedTitle}
                       onChange={handleTitleChange}
                       label="Story Title"
@@ -248,9 +286,10 @@ function UserStories() {
                       <DoneIcon />
                     </IconButton>
                   )}
-                </h2>
+                </Typography>
                 <Typography
                   variant="body2"
+                  component ="div"
                   color="text.secondary"
                   sx={{
                     fontFamily: "Rancho",

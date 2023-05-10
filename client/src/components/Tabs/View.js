@@ -1,11 +1,12 @@
 import React from "react";
-import { Typography, Container, IconButton, Stack } from "@mui/material";
+import { Typography, Container, IconButton, Icon, Stack, Box } from "@mui/material";
 import HTMLFlipBook from "react-pageflip";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import PlayCircleFilledWhiteIcon from "@mui/icons-material/PlayCircleFilledWhite";
 //import exampleImage from "../../assets/images/imgExample.PNG"; // import the image
 import bookCoverImage from "../../assets/images/bookPage_template.png";
+import ImageIcon from "@mui/icons-material/Image";
 
 function ResponseFlipBook() {
   // Get Title from Local storage
@@ -35,6 +36,7 @@ function ResponseFlipBook() {
       <Container sx={{ display: "flex", justifyContent: "center" }}>
         <Typography
           variant="h4"
+          component="div"
           sx={{
             fontFamily: "Kreon",
             fontSize: {
@@ -70,6 +72,7 @@ function ResponseFlipBook() {
         <div>
           <Typography
             variant="h2"
+            component="div"
             sx={{
               fontFamily: "Kreon",
               fontSize: "27px",
@@ -86,7 +89,37 @@ function ResponseFlipBook() {
               maxWidth: "80%",
               height: "auto",
             }}
+            onError={(e) => {
+              e.target.style.display = "none";
+              document.getElementById("image-error").style.display = "block";
+            }}
           />
+          <Box
+            id="image-error"
+            sx={{
+              fontFamily: "Kreon",
+              fontSize: {
+                xs: "22px",
+              },
+              display: "none",
+              border: "1px solid #ccc",
+              borderRadius: "5px",
+              padding: "10px",
+              margin: "10px",
+              boxShadow: 5,
+              textAlign: "center",
+              justifyContent: "center",
+              width: "55%",
+              mx: "auto",
+            }}
+          >
+            To view an image go to Step 2{" "}
+            <span>
+              <Icon >
+                <ImageIcon sx={{paddingTop:"3.5px"}} />
+              </Icon>
+            </span>
+          </Box>
           <IconButton
             sx={{
               fontFamily: "kreon",
@@ -122,6 +155,9 @@ function ResponseFlipBook() {
                     maxWidth: "60%",
                     height: "auto",
                     alignItems: "center",
+                  }}
+                  onError={(e) => {
+                    e.target.style.display = "none";
                   }}
                 />
                 <div

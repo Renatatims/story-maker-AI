@@ -120,6 +120,7 @@ function StoryMaker() {
     <Container>
       <Typography
         variant="h4"
+        component="div"
         sx={{
           fontFamily: "Kreon",
           fontSize: {
@@ -131,9 +132,10 @@ function StoryMaker() {
       >
         Step 1: Describe your story
       </Typography>
-      <form onSubmit={handleSubmit}>
+      <Box component="div" onSubmit={handleSubmit}>
         <Typography
           variant="h5"
+          component="div"
           sx={{
             paddingTop: "15px",
             paddingLeft: "20px",
@@ -148,6 +150,7 @@ function StoryMaker() {
           please input the following info:
         </Typography>
         <Card
+          component="div"
           variant="outlined"
           sx={{
             m: "20px",
@@ -156,27 +159,29 @@ function StoryMaker() {
             borderWidth: "5px",
           }}
         >
-          <Stack>
-            <div>
-              <TextField
-                label="Character's name"
-                value={character}
-                onChange={(e) => setCharacter(e.target.value)}
-                sx={{ p: "10px" }}
-              />
-              <TextField
-                label="Description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                sx={{ p: "10px" }}
-              />
-              <TextField
-                label="Theme"
-                value={theme}
-                onChange={(e) => setTheme(e.target.value)}
-                sx={{ p: "10px" }}
-              />
-            </div>
+          <Stack component="div">
+            <TextField
+              component="div"
+              label="Character's name"
+              value={character}
+              onChange={(e) => setCharacter(e.target.value)}
+              sx={{ p: "10px" }}
+            />
+            <TextField
+              label="Description"
+              component="div"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              sx={{ p: "10px" }}
+            />
+            <TextField
+              label="Theme"
+              component="div"
+              value={theme}
+              onChange={(e) => setTheme(e.target.value)}
+              sx={{ p: "10px" }}
+            />
+
             <Button
               type="submit"
               variant="contained"
@@ -189,8 +194,8 @@ function StoryMaker() {
             </Button>
           </Stack>
         </Card>
-      </form>
-      <Box sx={{ flexGrow: 1, marginBottom: "20px" }}>
+      </Box>
+      <Box component="div" sx={{ flexGrow: 1, marginBottom: "20px" }}>
         <Grid container spacing={2}>
           {images.map((image) => (
             <Grid key={image.id} item xs={6} sm={4} md={3}>
@@ -214,6 +219,7 @@ function StoryMaker() {
         </Grid>
       </Box>
       <Card
+        component="div"
         sx={{
           padding: "30px",
           margin: "20px",

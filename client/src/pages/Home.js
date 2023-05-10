@@ -10,6 +10,7 @@ import Step2 from "../components/Tabs/Step2";
 import Step3 from "../components/Tabs/Step3";
 import View from "../components/Tabs/View";
 import Profile from "./Profile";
+import Navbar from "../components/Navbar/index";
 //import Badge from "@mui/material/Badge";
 import Button from "@mui/material/Button";
 //import IconButton from "@mui/material/IconButton";
@@ -36,7 +37,7 @@ function TabPanel(props) {
     <div role="tabpanel" {...other}>
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <Typography component="div">{children}</Typography>
         </Box>
       )}
     </div>
@@ -96,6 +97,11 @@ export default function HorizontalTabs() {
     setValue(2);
   };
 
+  const handleGoToFavorites = () => {
+    setValue(5);
+  };
+
+
   //Login Modal
   //Modal - useState
   const [modalShow, setModalShow] = useState(false);
@@ -110,7 +116,9 @@ export default function HorizontalTabs() {
   };
 
   return (
-    <Box sx={{ bgcolor: "background.paper" }}>
+    <>
+    <Navbar handleGoToFavorites={handleGoToFavorites} />
+    <Box component="div" sx={{ bgcolor: "background.paper" }}>
       <Tabs
         value={value}
         onChange={handleChange}
@@ -174,7 +182,6 @@ export default function HorizontalTabs() {
             {...a11yProps(5)}
           />
         ) : (
-          <div>
             <Button
               size="large"
               sx={{ mt: 0.5, color: "grey" }}
@@ -182,7 +189,6 @@ export default function HorizontalTabs() {
             >
               <AccountCircleIcon />
             </Button>
-          </div>
         )}
       </Tabs>
       <TabPanel value={value} index={0}>
@@ -194,16 +200,17 @@ export default function HorizontalTabs() {
       <TabPanel value={value} index={2}>
         <Step2 />
       </TabPanel>
-      <TabPanel value={value} index={3} onClick={handleGoToStep2}>
-        <Step3  />
+      <TabPanel value={value} index={3} >
+        <Step3 onGoToStep2={handleGoToStep2} />
       </TabPanel>
       <TabPanel value={value} index={4}>
         <View />
       </TabPanel>
       <TabPanel value={value} index={5}>
-        <Profile />
+        <Profile onGoToStep2={handleGoToStep2} />
       </TabPanel>
       <LoginModal open={modalShow} handleClose={handleCloseModal} />
     </Box>
+    </>
   );
 }
