@@ -36,6 +36,7 @@ function ResponseFlipBook() {
       <Container sx={{ display: "flex", justifyContent: "center" }}>
         <Typography
           variant="h4"
+          component="div"
           sx={{
             fontFamily: "Kreon",
             fontSize: {
@@ -71,6 +72,7 @@ function ResponseFlipBook() {
         <div>
           <Typography
             variant="h2"
+            component="div"
             sx={{
               fontFamily: "Kreon",
               fontSize: "27px",

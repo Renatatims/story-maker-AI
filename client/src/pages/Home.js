@@ -36,7 +36,7 @@ function TabPanel(props) {
     <div role="tabpanel" {...other}>
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <Typography component="div">{children}</Typography>
         </Box>
       )}
     </div>
@@ -110,7 +110,7 @@ export default function HorizontalTabs() {
   };
 
   return (
-    <Box sx={{ bgcolor: "background.paper" }}>
+    <Box component="div" sx={{ bgcolor: "background.paper" }}>
       <Tabs
         value={value}
         onChange={handleChange}
@@ -174,7 +174,6 @@ export default function HorizontalTabs() {
             {...a11yProps(5)}
           />
         ) : (
-          <div>
             <Button
               size="large"
               sx={{ mt: 0.5, color: "grey" }}
@@ -182,7 +181,6 @@ export default function HorizontalTabs() {
             >
               <AccountCircleIcon />
             </Button>
-          </div>
         )}
       </Tabs>
       <TabPanel value={value} index={0}>

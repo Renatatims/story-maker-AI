@@ -189,6 +189,7 @@ function UserStories({onGoToStep2}) {
       <Container sx={{ display: "flex", justifyContent: "center" }}>
         <Typography
           variant="h4"
+          component ="div"
           sx={{
             fontFamily: "Kreon",
             fontSize: {
@@ -255,16 +256,19 @@ function UserStories({onGoToStep2}) {
                   </IconButton>
                 </span>
               </Box>
-              <CardContent>
-                <h2
+              <CardContent component ="div">
+                <Typography
+                  component ="div"
                   style={{
-                    paddingLeft: "80px",
+                    fontSize: "25px",
+                    fontFamily: "Kreon",
                     fontWeight: "bold",
                     color: "#8C2E5A",
                   }}
                 >
                   {isEditing[story._id] ? (
                     <TextField
+                      component ="div"
                       value={editedTitle}
                       onChange={handleTitleChange}
                       label="Story Title"
@@ -282,9 +286,10 @@ function UserStories({onGoToStep2}) {
                       <DoneIcon />
                     </IconButton>
                   )}
-                </h2>
+                </Typography>
                 <Typography
                   variant="body2"
+                  component ="div"
                   color="text.secondary"
                   sx={{
                     fontFamily: "Rancho",

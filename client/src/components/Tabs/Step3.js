@@ -87,6 +87,7 @@ function StoryCard({ onGoToStep2 }) {
       <Container sx={{ display: "flex", justifyContent: "center" }}>
         <Typography
           variant="h4"
+          component="div"
           sx={{
             fontFamily: "Kreon",
             fontSize: {
@@ -174,6 +175,7 @@ function StoryCard({ onGoToStep2 }) {
             </Typography>
             <Typography
               variant="body2"
+              component="div"
               color="text.secondary"
               sx={{ fontFamily: "Kreon", fontSize: "28px" }}
             >

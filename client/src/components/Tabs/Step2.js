@@ -121,6 +121,7 @@ const ImageGenerator = () => {
   return (
     <>
       <Container
+        component="div"
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -130,6 +131,7 @@ const ImageGenerator = () => {
       >
         <Typography
           variant="h4"
+          component="div"
           sx={{
             fontFamily: "Kreon",
             fontSize: {
@@ -144,6 +146,7 @@ const ImageGenerator = () => {
         {!Auth.loggedIn() && (
           <Typography
             variant="h6"
+            component="div"
             style={{
               fontFamily: "Kreon",
               fontSize: "20px",
@@ -155,8 +158,9 @@ const ImageGenerator = () => {
             Have fun!
           </Typography>
         )}
-        <Box component="form" onSubmit={handleSubmit} mt={2}>
+        <Box component="div" onSubmit={handleSubmit} mt={2}>
           <TextField
+            component="div"
             label="Enter a description"
             fullWidth
             value={prompt}
@@ -176,6 +180,7 @@ const ImageGenerator = () => {
         {imageUrl && (
           <Box
             mt={4}
+            component="div"
             style={{
               width: "350px",
               height: "300px",
@@ -193,13 +198,13 @@ const ImageGenerator = () => {
               style={{ margin: "0 auto", maxHeight: "100%", maxWidth: "100%" }}
             />
           </Box>
-        )}
-        
+        )}      
       </Container>
 
-      <Box sx={{ flexGrow: 1 }}>
+      <Box component="div" sx={{ flexGrow: 1 }}>
         <Typography
           variant="h5"
+          component="div"
           style={{
             fontFamily: "Kreon",
             fontSize: "40px",
@@ -211,6 +216,7 @@ const ImageGenerator = () => {
         </Typography>
         <Typography
           variant="h6"
+          component="div"
           style={{ fontFamily: "Kreon", fontSize: "25px" }}
         >
           Christmas Theme
@@ -239,6 +245,7 @@ const ImageGenerator = () => {
 
         <Typography
           variant="h6"
+          component="div"
           style={{ fontFamily: "Kreon", fontSize: "25px" }}
         >
           Princess Theme
@@ -268,6 +275,7 @@ const ImageGenerator = () => {
         
         <Typography
           variant="h6"
+          component="div"
           style={{ fontFamily: "Kreon", fontSize: "25px" }}
         >
           Planets
