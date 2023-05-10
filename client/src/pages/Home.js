@@ -200,14 +200,14 @@ export default function HorizontalTabs() {
       <TabPanel value={value} index={2}>
         <Step2 />
       </TabPanel>
-      <TabPanel value={value} index={3} onClick={handleGoToStep2}>
-        <Step3  />
+      <TabPanel value={value} index={3} >
+        <Step3 onGoToStep2={handleGoToStep2} />
       </TabPanel>
       <TabPanel value={value} index={4}>
         <View />
       </TabPanel>
       <TabPanel value={value} index={5}>
-        <Profile />
+        <Profile onGoToStep2={handleGoToStep2} />
       </TabPanel>
       <LoginModal open={modalShow} handleClose={handleCloseModal} />
     </Box>

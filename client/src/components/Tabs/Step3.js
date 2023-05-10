@@ -135,11 +135,12 @@ function StoryCard({ onGoToStep2 }) {
               mx: "auto",
               cursor: "pointer"
             }}
+            variant="contained"
             onClick={onGoToStep2}
           >
             To view an image go to Step 2{" "}
             <span>
-              <IconButton onClick={onGoToStep2}>
+              <IconButton variant="contained" onClick={onGoToStep2}>
                 <ImageIcon sx={{pb:"4px"}}/>
               </IconButton>
             </span>
