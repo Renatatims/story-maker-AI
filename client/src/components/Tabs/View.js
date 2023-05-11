@@ -1,14 +1,37 @@
-import React from "react";
-import { Typography, Container, IconButton, Icon, Stack, Box } from "@mui/material";
+import React, { useState } from "react";
+import {
+  Typography,
+  Container,
+  IconButton,
+  Icon,
+  Stack,
+  Box,
+} from "@mui/material";
 import HTMLFlipBook from "react-pageflip";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import PlayCircleFilledWhiteIcon from "@mui/icons-material/PlayCircleFilledWhite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 //import exampleImage from "../../assets/images/imgExample.PNG"; // import the image
 import bookCoverImage from "../../assets/images/bookPage_template.png";
 import ImageIcon from "@mui/icons-material/Image";
 
+//Import Login modal
+import LoginModal from "../LoginModal/index";
+
+//Import Signup modal
+import SignupModal from "../SignupModal/index";
+
+import Auth from "../../utils/auth";
+
+// Apollo useMutation() Hook
+import { useMutation } from "@apollo/client";
+//Import Save Story AI mutation
+import { SAVE_STORY_AI } from "../../utils/mutations";
+
 function ResponseFlipBook() {
+  const [saveStoriesAI] = useMutation(SAVE_STORY_AI);
   // Get Title from Local storage
   const title = localStorage.getItem("cardTitle") || "Title";
 
@@ -30,6 +53,53 @@ function ResponseFlipBook() {
   // Get last URL from array
   const lastImageUrl =
     urlsArray.length > 0 ? urlsArray[urlsArray.length - 1] : "";
+
+  // Define the handleSaveStoryAI function
+  const handleSaveStoryAI = async () => {
+    try {
+      // Call the saveNutriPlan mutation with the nutriPlan object
+      await saveStoriesAI({
+        variables: { storyData: { stories: lastResponse } },
+      });
+
+      // Show a success message to the user
+      alert("Story saved successfully!");
+    } catch (error) {
+      console.error(error);
+
+      // Show an error message to the user
+      alert(
+        "An error occurred while saving the story. Please try again later."
+      );
+    }
+  };
+
+  //Login Modal
+  //Modal - useState
+  const [modalShow, setModalShow] = useState(false);
+
+  //Open Modal
+  const handleOpenModal = () => {
+    setModalShow(true);
+  };
+  //Close Modal
+  const handleCloseModal = () => {
+    setModalShow(false);
+  };
+
+  //Signup Modal
+  //Modal - useState
+  const [modalSignupShow, setSignupModalShow] = useState(false);
+
+  //Open Modal
+  const handleOpenSignupModal = () => {
+    setSignupModalShow(true);
+  };
+
+  //Close Modal
+  const handleCloseSignupModal = () => {
+    setSignupModalShow(false);
+  };
 
   return (
     <>
@@ -70,16 +140,22 @@ function ResponseFlipBook() {
         showCover={true}
       >
         <div>
-          <Typography
-            variant="h2"
-            component="div"
-            sx={{
-              fontFamily: "Kreon",
-              fontSize: "27px",
-            }}
-          >
-            {title}
-          </Typography>
+          <Container sx={{ display: "flex", justifyContent: "center" }}>
+            <Typography
+              variant="h2"
+              component="div"
+              sx={{
+                fontFamily: "Kreon",
+                fontSize: "27px",
+                m: "30px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {title}
+            </Typography>
+          </Container>
           <img
             src={lastImageUrl}
             alt="imageAI"
@@ -115,8 +191,8 @@ function ResponseFlipBook() {
           >
             To view an image go to Step 2{" "}
             <span>
-              <Icon >
-                <ImageIcon sx={{paddingTop:"3.5px"}} />
+              <Icon>
+                <ImageIcon sx={{ paddingTop: "3.5px" }} />
               </Icon>
             </span>
           </Box>
@@ -127,6 +203,7 @@ function ResponseFlipBook() {
               position: "absolute",
               bottom: "130px",
               right: "10px",
+              mr: "20px",
             }}
           >
             <PlayCircleFilledWhiteIcon fontSize="large" />
@@ -146,7 +223,7 @@ function ResponseFlipBook() {
               <IconButton sx={{ marginLeft: "-100px", marginTop: "200px" }}>
                 <ArrowBackIosNewIcon />
               </IconButton>
-              <Stack alignItems="center">
+              <Stack alignItems="center" sx={{ ml: "30px" }}>
                 <img
                   src={lastImageUrl}
                   alt="imageAI"
@@ -166,6 +243,7 @@ function ResponseFlipBook() {
                     fontSize: "25px",
                     margin: "0px 30px",
                     padding: "10px",
+                    overflow: "auto",
                   }}
                 >
                   {sentences
@@ -180,6 +258,63 @@ function ResponseFlipBook() {
           </Stack>
         ))}
       </HTMLFlipBook>
+      {Auth.loggedIn() ? (
+        <Container
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            fontFamily: "Kreon",
+            fontWeight: "bold",
+            fontSize: "25px",
+            cursor: "pointer",
+          }}
+          onClick={handleSaveStoryAI}
+        >
+          <p>Save to Profile</p>
+          <IconButton>
+            <FavoriteBorderIcon />
+          </IconButton>
+        </Container>
+      ) : (
+        <Container
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            fontFamily: "Kreon",
+            fontWeight: "bold",
+            fontSize: "25px",
+            color: "#00334A",
+          }}
+        >
+          <p>
+            Please{" "}
+            <span
+              style={{ cursor: "pointer", textDecoration: "underline" }}
+              onClick={handleOpenModal}
+            >
+              login
+            </span>
+            <span>
+              <IconButton onClick={handleOpenModal}>
+                <AccountCircleIcon />
+              </IconButton>
+            </span>
+            or{" "}
+            <span
+              style={{ cursor: "pointer", textDecoration: "underline" }}
+              onClick={handleOpenSignupModal}
+            >
+              create an account
+            </span>{" "}
+            to save your story
+          </p>
+        </Container>
+      )}
+      <LoginModal open={modalShow} handleClose={handleCloseModal} />
+      <SignupModal
+        open={modalSignupShow}
+        handleClose={handleCloseSignupModal}
+      />
     </>
   );
 }

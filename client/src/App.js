@@ -11,7 +11,7 @@ import './App.css';
 
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-import Navbar from "./components/Navbar";
+//import Navbar from "./components/Navbar";
 
 
 const httpLink = createHttpLink({

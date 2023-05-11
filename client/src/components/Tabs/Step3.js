@@ -15,6 +15,12 @@ import "../../assets/css/step3.css"; // import the CSS file
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Print } from "@mui/icons-material";
 import ImageIcon from "@mui/icons-material/Image";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+
+//Import Login modal
+import LoginModal from "../LoginModal/index";
+
+import Auth from "../../utils/auth";
 
 // Apollo useMutation() Hook
 import { useMutation } from "@apollo/client";
@@ -82,6 +88,19 @@ function StoryCard({ onGoToStep2 }) {
     window.print();
   };
 
+  //Login Modal
+  //Modal - useState
+  const [modalShow, setModalShow] = useState(false);
+
+  //Open Modal
+  const handleOpenModal = () => {
+    setModalShow(true);
+  };
+  //Close Modal
+  const handleCloseModal = () => {
+    setModalShow(false);
+  };
+
   return (
     <>
       <Container sx={{ display: "flex", justifyContent: "center" }}>
@@ -133,7 +152,7 @@ function StoryCard({ onGoToStep2 }) {
               justifyContent: "center",
               width: "55%",
               mx: "auto",
-              cursor: "pointer"
+              cursor: "pointer",
             }}
             variant="contained"
             onClick={onGoToStep2}
@@ -141,7 +160,7 @@ function StoryCard({ onGoToStep2 }) {
             To view an image go to Step 2{" "}
             <span>
               <IconButton variant="contained" onClick={onGoToStep2}>
-                <ImageIcon sx={{pb:"4px"}}/>
+                <ImageIcon sx={{ pb: "4px" }} />
               </IconButton>
             </span>
           </Box>
@@ -186,13 +205,20 @@ function StoryCard({ onGoToStep2 }) {
               <IconButton onClick={handlePrint}>
                 <Print />
               </IconButton>
-              <IconButton onClick={handleSaveStoryAI}>
-                <FavoriteBorderIcon />
-              </IconButton>
+              {Auth.loggedIn() ? (
+                <IconButton onClick={handleSaveStoryAI}>
+                  <FavoriteBorderIcon />
+                </IconButton>
+              ) : (
+                <IconButton onClick={handleOpenModal}>
+                  <AccountCircleIcon />
+                </IconButton>
+              )}
             </div>
           </CardContent>
         </Card>
       </div>
+      <LoginModal open={modalShow} handleClose={handleCloseModal} />
     </>
   );
 }
