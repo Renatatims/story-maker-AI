@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Typography,
   Container,
@@ -12,9 +12,16 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import PlayCircleFilledWhiteIcon from "@mui/icons-material/PlayCircleFilledWhite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 //import exampleImage from "../../assets/images/imgExample.PNG"; // import the image
 import bookCoverImage from "../../assets/images/bookPage_template.png";
 import ImageIcon from "@mui/icons-material/Image";
+
+//Import Login modal
+import LoginModal from "../LoginModal/index";
+
+//Import Signup modal
+import SignupModal from "../SignupModal/index";
 
 import Auth from "../../utils/auth";
 
@@ -65,6 +72,33 @@ function ResponseFlipBook() {
         "An error occurred while saving the story. Please try again later."
       );
     }
+  };
+
+  //Login Modal
+  //Modal - useState
+  const [modalShow, setModalShow] = useState(false);
+
+  //Open Modal
+  const handleOpenModal = () => {
+    setModalShow(true);
+  };
+  //Close Modal
+  const handleCloseModal = () => {
+    setModalShow(false);
+  };
+
+  //Signup Modal
+  //Modal - useState
+  const [modalSignupShow, setSignupModalShow] = useState(false);
+
+  //Open Modal
+  const handleOpenSignupModal = () => {
+    setSignupModalShow(true);
+  };
+
+  //Close Modal
+  const handleCloseSignupModal = () => {
+    setSignupModalShow(false);
   };
 
   return (
@@ -224,7 +258,7 @@ function ResponseFlipBook() {
             fontFamily: "Kreon",
             fontWeight: "bold",
             fontSize: "25px",
-            cursor: "pointer"
+            cursor: "pointer",
           }}
           onClick={handleSaveStoryAI}
         >
@@ -241,14 +275,38 @@ function ResponseFlipBook() {
             fontFamily: "Kreon",
             fontWeight: "bold",
             fontSize: "25px",
+            color: "#00334A",
           }}
         >
-          <p>Please login or create an account to save your story</p>
-          <IconButton>
-            <FavoriteBorderIcon />
-          </IconButton>
+          <p>
+            Please{" "}
+            <span
+              style={{ cursor: "pointer", textDecoration: "underline" }}
+              onClick={handleOpenModal}
+            >
+              login
+            </span>
+            <span>
+              <IconButton onClick={handleOpenModal}>
+                <AccountCircleIcon />
+              </IconButton>
+            </span>
+            or{" "}
+            <span
+              style={{ cursor: "pointer", textDecoration: "underline" }}
+              onClick={handleOpenSignupModal}
+            >
+              create an account
+            </span>{" "}
+            to save your story
+          </p>
         </Container>
       )}
+      <LoginModal open={modalShow} handleClose={handleCloseModal} />
+      <SignupModal
+        open={modalSignupShow}
+        handleClose={handleCloseSignupModal}
+      />
     </>
   );
 }
