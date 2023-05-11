@@ -1,12 +1,22 @@
 import React from "react";
-import { Typography, Container, IconButton, Icon, Stack, Box } from "@mui/material";
+import {
+  Typography,
+  Container,
+  IconButton,
+  Icon,
+  Stack,
+  Box,
+} from "@mui/material";
 import HTMLFlipBook from "react-pageflip";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import PlayCircleFilledWhiteIcon from "@mui/icons-material/PlayCircleFilledWhite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 //import exampleImage from "../../assets/images/imgExample.PNG"; // import the image
 import bookCoverImage from "../../assets/images/bookPage_template.png";
 import ImageIcon from "@mui/icons-material/Image";
+
+import Auth from "../../utils/auth";
 
 function ResponseFlipBook() {
   // Get Title from Local storage
@@ -115,8 +125,8 @@ function ResponseFlipBook() {
           >
             To view an image go to Step 2{" "}
             <span>
-              <Icon >
-                <ImageIcon sx={{paddingTop:"3.5px"}} />
+              <Icon>
+                <ImageIcon sx={{ paddingTop: "3.5px" }} />
               </Icon>
             </span>
           </Box>
@@ -180,6 +190,37 @@ function ResponseFlipBook() {
           </Stack>
         ))}
       </HTMLFlipBook>
+      {Auth.loggedIn() ? (
+        <Container
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            fontFamily: "Kreon",
+            fontWeight: "bold",
+            fontSize: "25px",
+          }}
+        >
+          <p>Save to Profile</p>
+          <IconButton>
+            <FavoriteBorderIcon />
+          </IconButton>
+        </Container>
+      ) : (
+        <Container
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            fontFamily: "Kreon",
+            fontWeight: "bold",
+            fontSize: "25px",
+          }}
+        >
+          <p>Please login or create an account to save your story</p>
+          <IconButton>
+            <FavoriteBorderIcon />
+          </IconButton>
+        </Container>
+      )}
     </>
   );
 }
