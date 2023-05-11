@@ -140,16 +140,22 @@ function ResponseFlipBook() {
         showCover={true}
       >
         <div>
-          <Typography
-            variant="h2"
-            component="div"
-            sx={{
-              fontFamily: "Kreon",
-              fontSize: "27px",
-            }}
-          >
-            {title}
-          </Typography>
+          <Container sx={{ display: "flex", justifyContent: "center" }}>
+            <Typography
+              variant="h2"
+              component="div"
+              sx={{
+                fontFamily: "Kreon",
+                fontSize: "27px",
+                m: "30px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {title}
+            </Typography>
+          </Container>
           <img
             src={lastImageUrl}
             alt="imageAI"
@@ -197,6 +203,7 @@ function ResponseFlipBook() {
               position: "absolute",
               bottom: "130px",
               right: "10px",
+              mr: "20px",
             }}
           >
             <PlayCircleFilledWhiteIcon fontSize="large" />
@@ -216,7 +223,7 @@ function ResponseFlipBook() {
               <IconButton sx={{ marginLeft: "-100px", marginTop: "200px" }}>
                 <ArrowBackIosNewIcon />
               </IconButton>
-              <Stack alignItems="center">
+              <Stack alignItems="center" sx={{ ml: "30px" }}>
                 <img
                   src={lastImageUrl}
                   alt="imageAI"
@@ -236,6 +243,7 @@ function ResponseFlipBook() {
                     fontSize: "25px",
                     margin: "0px 30px",
                     padding: "10px",
+                    overflow: "auto",
                   }}
                 >
                   {sentences
