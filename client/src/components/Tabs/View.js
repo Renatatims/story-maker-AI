@@ -18,7 +18,13 @@ import ImageIcon from "@mui/icons-material/Image";
 
 import Auth from "../../utils/auth";
 
+// Apollo useMutation() Hook
+import { useMutation } from "@apollo/client";
+//Import Save Story AI mutation
+import { SAVE_STORY_AI } from "../../utils/mutations";
+
 function ResponseFlipBook() {
+  const [saveStoriesAI] = useMutation(SAVE_STORY_AI);
   // Get Title from Local storage
   const title = localStorage.getItem("cardTitle") || "Title";
 
@@ -40,6 +46,26 @@ function ResponseFlipBook() {
   // Get last URL from array
   const lastImageUrl =
     urlsArray.length > 0 ? urlsArray[urlsArray.length - 1] : "";
+
+  // Define the handleSaveStoryAI function
+  const handleSaveStoryAI = async () => {
+    try {
+      // Call the saveNutriPlan mutation with the nutriPlan object
+      await saveStoriesAI({
+        variables: { storyData: { stories: lastResponse } },
+      });
+
+      // Show a success message to the user
+      alert("Story saved successfully!");
+    } catch (error) {
+      console.error(error);
+
+      // Show an error message to the user
+      alert(
+        "An error occurred while saving the story. Please try again later."
+      );
+    }
+  };
 
   return (
     <>
@@ -198,7 +224,9 @@ function ResponseFlipBook() {
             fontFamily: "Kreon",
             fontWeight: "bold",
             fontSize: "25px",
+            cursor: "pointer"
           }}
+          onClick={handleSaveStoryAI}
         >
           <p>Save to Profile</p>
           <IconButton>
