@@ -3,7 +3,6 @@ import {
   TextField,
   Button,
   Card,
-  Stack,
   Box,
   Paper,
   Grid,
@@ -163,61 +162,61 @@ function StoryMaker() {
             borderWidth: "5px",
           }}
         >
-          <Stack component="div">
-            <form>
-              <TextField
-                component="div"
-                label="Character's name"
-                value={character}
-                onChange={(e) => setCharacter(e.target.value)}
-                sx={{ p: "10px" }}
-              />
-              <TextField
-                label="Description"
-                component="div"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                sx={{ p: "10px" }}
-              />
-              <TextField
-                label="Theme"
-                component="div"
-                value={theme}
-                onChange={(e) => setTheme(e.target.value)}
-                sx={{ p: "10px" }}
-              />
-
-              <Button
-                type="submit"
-                variant="contained"
-                sx={{
-                  backgroundColor: "grey",
-                  "&:hover": { backgroundColor: "dark" },
-                }}
-              >
-                Submit
-              </Button>
-            </form>
-          </Stack>
+          <form>
+            <TextField
+              component="div"
+              label="Character's name"
+              value={character}
+              onChange={(e) => setCharacter(e.target.value)}
+              sx={{ p: "10px", fontFamily: "Kreon"}}
+            />
+            <TextField
+              label="Description"
+              component="div"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              sx={{ p: "10px" }}
+            />
+            <TextField
+              label="Theme"
+              component="div"
+              value={theme}
+              onChange={(e) => setTheme(e.target.value)}
+              sx={{ p: "10px" }}
+            />
+            <Button
+              type="submit"
+              disabled={!character || loading}
+              variant="contained"
+              sx={{
+                m: "20px",
+                fontFamily: "Kreon",
+                backgroundColor: "grey",
+                "&:hover": { backgroundColor: "#00334A" },
+              }}
+            >
+              Submit
+            </Button>
+          </form>
         </Card>
       </Box>
       {loading && <CircularProgress />}
       {response && (
-      <Card
-        component="div"
-        sx={{
-          padding: "30px",
-          margin: "20px",
-          paddingLeft: "20px",
-          fontFamily: "Kreon",
-          fontSize: "30px",
-        }}
-      >
-        {response}
-        <IconButton onClick={handleSaveStoryAI}>
-          <FavoriteBorderIcon />
-        </IconButton>
-      </Card>
+        <Card
+          component="div"
+          sx={{
+            padding: "30px",
+            margin: "20px",
+            paddingLeft: "20px",
+            fontFamily: "Kreon",
+            fontSize: "30px",
+          }}
+        >
+          {response}
+          <IconButton onClick={handleSaveStoryAI}>
+            <FavoriteBorderIcon />
+          </IconButton>
+        </Card>
       )}
       <Box component="div" sx={{ flexGrow: 1, marginBottom: "20px" }}>
         <Grid container spacing={2}>

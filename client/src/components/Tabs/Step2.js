@@ -169,10 +169,10 @@ const ImageGenerator = () => {
             />
             <Button
               type="submit"
-              color="primary"
               variant="contained"
               disabled={!prompt || loading}
-              style={{ marginTop: "1rem" }}
+              sx={{ marginTop: "1rem", fontFamily: "Kreon", backgroundColor: "grey",
+              "&:hover": { backgroundColor: "#00334A" }, }}
             >
               Generate Image
             </Button>
