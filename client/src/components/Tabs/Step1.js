@@ -168,7 +168,7 @@ function StoryMaker() {
               label="Character's name"
               value={character}
               onChange={(e) => setCharacter(e.target.value)}
-              sx={{ p: "10px", fontFamily: "Kreon"}}
+              sx={{ p: "10px", fontFamily: "Kreon" }}
             />
             <TextField
               label="Description"
@@ -219,12 +219,48 @@ function StoryMaker() {
         </Card>
       )}
       <Box component="div" sx={{ flexGrow: 1, marginBottom: "20px" }}>
+        <Typography
+          variant="h5"
+          component="div"
+          sx={{
+            paddingTop: "15px",
+            paddingLeft: "20px",
+            fontFamily: "Kreon",
+            fontSize: {
+              xs: "20px",
+              sm: "25px",
+              md: "30px",
+            },
+          }}
+        >
+          If you wish, click over the images and add the items to your story:
+        </Typography>
+        <Typography
+          variant="h5"
+          component="div"
+          sx={{
+            paddingTop: "15px",
+            paddingLeft: "20px",
+            fontFamily: "Kreon",
+            fontSize: {
+              xs: "15px",
+              sm: "20px",
+              md: "25px",
+            },
+          }}
+        >
+          Choose a character:
+        </Typography>
         <Grid container spacing={2}>
           {images.map((image) => (
             <Grid key={image.id} item xs={6} sm={4} md={3}>
               <Item
                 onClick={() => handleSelect(image)}
-                sx={{ cursor: "pointer" }}
+                sx={{
+                  cursor: "pointer",
+                  fontFamily: "Kreon",
+                  fontSize: "20px",
+                }}
               >
                 <img
                   src={image.url}
