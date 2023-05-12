@@ -10,6 +10,7 @@ import {
   IconButton,
   Typography,
   Container,
+  CircularProgress,
 } from "@mui/material";
 
 import { styled } from "@mui/material/styles";
@@ -37,7 +38,7 @@ async function getResponse(userInput) {
       model: "text-davinci-003",
       prompt: prompt,
       temperature: 0.7,
-      max_tokens: 256,
+      max_tokens: 100,
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0,
@@ -72,6 +73,7 @@ function StoryMaker() {
   const [description, setDescription] = useState("");
   const [theme, setTheme] = useState("");
   const [response, setResponse] = useState("");
+  const [loading, setLoading] = useState(false);
 
   //Render Images - so user can select and include in their story
   const [selectedImage, setSelectedImage] = useState(null);
@@ -84,8 +86,9 @@ function StoryMaker() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
 
-    const prompt = `Please generate a story that includes a main character with the name: ${character}, and description: ${description} and has the following theme: ${theme}. ${
+    const prompt = `Please generate a story that includes a main character with the name: ${character}, and description: ${description} and has the following theme: ${theme}. Story's max words: 150 words. ${
       selectedImage
         ? "The story should also include a(n) " +
           selectedImage.title.toLowerCase() +
@@ -96,6 +99,7 @@ function StoryMaker() {
     console.log(prompt);
     console.log(response);
     setResponse(response);
+    setLoading(false);
   };
 
   // Define the handleSaveStoryAI function
@@ -197,6 +201,24 @@ function StoryMaker() {
           </Stack>
         </Card>
       </Box>
+      {loading && <CircularProgress />}
+      {response && (
+      <Card
+        component="div"
+        sx={{
+          padding: "30px",
+          margin: "20px",
+          paddingLeft: "20px",
+          fontFamily: "Kreon",
+          fontSize: "30px",
+        }}
+      >
+        {response}
+        <IconButton onClick={handleSaveStoryAI}>
+          <FavoriteBorderIcon />
+        </IconButton>
+      </Card>
+      )}
       <Box component="div" sx={{ flexGrow: 1, marginBottom: "20px" }}>
         <Grid container spacing={2}>
           {images.map((image) => (
@@ -220,21 +242,6 @@ function StoryMaker() {
           ))}
         </Grid>
       </Box>
-      <Card
-        component="div"
-        sx={{
-          padding: "30px",
-          margin: "20px",
-          paddingLeft: "20px",
-          fontFamily: "Kreon",
-          fontSize: "30px",
-        }}
-      >
-        {response}
-        <IconButton onClick={handleSaveStoryAI}>
-          <FavoriteBorderIcon />
-        </IconButton>
-      </Card>
     </Container>
   );
 }
