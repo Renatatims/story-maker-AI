@@ -57,9 +57,30 @@ const images = [
   },
   {
     id: 9,
-    url: require("../assets/images/character1_image.jpg"),
+    url: require("../assets/images/character1_img.jpg"),
     title: "Character 1",
     description: "Little girl curly hair, wear glasses",
+    author: "pch.vector on Freepik",
+  },
+  {
+    id: 10,
+    url: require("../assets/images/character2_img.jpg"),
+    title: "Character 2",
+    description: "Little girl curly hair, wear glasses",
+    author: "pch.vector on Freepik",
+  },
+  {
+    id: 11,
+    url: require("../assets/images/character3_img.jpg"),
+    title: "Character 3",
+    description: "Little girl has a puppy",
+    author: "pch.vector on Freepik",
+  },
+  {
+    id: 12,
+    url: require("../assets/images/character4_img.jpg"),
+    title: "Character 4",
+    description: "Little girl blond hair",
     author: "pch.vector on Freepik",
   },
 ];
