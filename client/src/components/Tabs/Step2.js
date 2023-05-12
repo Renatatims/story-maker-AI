@@ -151,30 +151,32 @@ const ImageGenerator = () => {
               fontFamily: "Kreon",
               fontSize: "20px",
               alignItems: "center",
-              margin: "20px"
+              margin: "20px",
             }}
           >
-            Generate an AI image by typing a description below. To save the image in your account, you must login or signup, but you can still view the generated AI image on the next steps.
-            Have fun!
+            Generate an AI image by typing a description below. To save the
+            image in your account, you must login or signup, but you can still
+            view the generated AI image on the next steps. Have fun!
           </Typography>
         )}
-        <Box component="div" onSubmit={handleSubmit} mt={2}>
-          <TextField
-            component="div"
-            label="Enter a description"
-            fullWidth
-            value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
-          />
-          <Button
-            type="submit"
-            color="primary"
-            variant="contained"
-            disabled={!prompt || loading}
-            style={{ marginTop: "1rem" }}
-          >
-            Generate Image
-          </Button>
+        <Box component="div" mt={2}>
+          <form onSubmit={handleSubmit}>
+            <TextField
+              label="Enter a description"
+              fullWidth
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+            />
+            <Button
+              type="submit"
+              color="primary"
+              variant="contained"
+              disabled={!prompt || loading}
+              style={{ marginTop: "1rem" }}
+            >
+              Generate Image
+            </Button>
+          </form>
         </Box>
         {loading && <CircularProgress />}
         {imageUrl && (
@@ -189,7 +191,7 @@ const ImageGenerator = () => {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              margin: "20px"
+              margin: "20px",
             }}
           >
             <img
@@ -198,7 +200,7 @@ const ImageGenerator = () => {
               style={{ margin: "0 auto", maxHeight: "100%", maxWidth: "100%" }}
             />
           </Box>
-        )}      
+        )}
       </Container>
 
       <Box component="div" sx={{ flexGrow: 1 }}>
@@ -209,7 +211,7 @@ const ImageGenerator = () => {
             fontFamily: "Kreon",
             fontSize: "40px",
             textAlign: "center",
-            margin: "40px"
+            margin: "40px",
           }}
         >
           AI images generated - browse by categories
@@ -253,7 +255,8 @@ const ImageGenerator = () => {
         <Grid container spacing={2}>
           {images2.map(
             (image) =>
-              image.id >= 5 && image.id <= 8 && (
+              image.id >= 5 &&
+              image.id <= 8 && (
                 <Grid key={image.id} item xs={6} md={3}>
                   <Item>
                     <img
@@ -272,7 +275,6 @@ const ImageGenerator = () => {
           )}
         </Grid>
 
-        
         <Typography
           variant="h6"
           component="div"

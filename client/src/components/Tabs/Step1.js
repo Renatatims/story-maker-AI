@@ -160,38 +160,40 @@ function StoryMaker() {
           }}
         >
           <Stack component="div">
-            <TextField
-              component="div"
-              label="Character's name"
-              value={character}
-              onChange={(e) => setCharacter(e.target.value)}
-              sx={{ p: "10px" }}
-            />
-            <TextField
-              label="Description"
-              component="div"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              sx={{ p: "10px" }}
-            />
-            <TextField
-              label="Theme"
-              component="div"
-              value={theme}
-              onChange={(e) => setTheme(e.target.value)}
-              sx={{ p: "10px" }}
-            />
+            <form>
+              <TextField
+                component="div"
+                label="Character's name"
+                value={character}
+                onChange={(e) => setCharacter(e.target.value)}
+                sx={{ p: "10px" }}
+              />
+              <TextField
+                label="Description"
+                component="div"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                sx={{ p: "10px" }}
+              />
+              <TextField
+                label="Theme"
+                component="div"
+                value={theme}
+                onChange={(e) => setTheme(e.target.value)}
+                sx={{ p: "10px" }}
+              />
 
-            <Button
-              type="submit"
-              variant="contained"
-              sx={{
-                backgroundColor: "grey",
-                "&:hover": { backgroundColor: "dark" },
-              }}
-            >
-              Submit
-            </Button>
+              <Button
+                type="submit"
+                variant="contained"
+                sx={{
+                  backgroundColor: "grey",
+                  "&:hover": { backgroundColor: "dark" },
+                }}
+              >
+                Submit
+              </Button>
+            </form>
           </Stack>
         </Card>
       </Box>
