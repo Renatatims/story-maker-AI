@@ -76,5 +76,6 @@ If you have any questions please contact me at:
 
 - Animals Images by pch.vector on Freepik: "https://www.freepik.com/free-vector/happy-funny-cartoon-animals-set_8609221.htm#query=animals%20ilustration&position=8&from_view=search&track=robertav1_2_sidr"
 - Book Page template, from: https://www.canva.com/templates/EAFdM1RZDII-minimalist-vintage-line-a4-stationery-paper-document/
+- <a href="https://www.freepik.com/free-vector/happy-girl-with-butterfly_8171966.htm#&position=2&from_view=author">Image by lunnadesign </a> on Freepik
 - [OpenAI API](https://openai.com/)
 - [DALLE ](https://openai.com/dall-e/)

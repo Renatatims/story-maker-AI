@@ -81,6 +81,7 @@ function StoryMaker() {
 
   const handleSelect = (image) => {
     setSelectedImage(image);
+    console.log(image.description)
   };
 
   const handleSubmit = async (event) => {
@@ -90,7 +91,7 @@ function StoryMaker() {
     const prompt = `Please generate a story that includes a main character with the name: ${character}, and description: ${description} and has the following theme: ${theme}. Story's max words: 150 words. ${
       selectedImage
         ? "The story should also include a(n) " +
-          selectedImage.title.toLowerCase() +
+          selectedImage.description.toLowerCase() +
           "."
         : ""
     }`;
@@ -249,10 +250,10 @@ function StoryMaker() {
             },
           }}
         >
-          Choose a character:
+          Choose an Animal:
         </Typography>
         <Grid container spacing={2}>
-          {images.map((image) => (
+          {images.map((image) => image.id <= 8 && (
             <Grid key={image.id} item xs={6} sm={4} md={3}>
               <Item
                 onClick={() => handleSelect(image)}
@@ -275,6 +276,50 @@ function StoryMaker() {
               </Item>
             </Grid>
           ))}
+        </Grid>
+        <Typography
+          variant="h5"
+          component="div"
+          sx={{
+            paddingTop: "15px",
+            paddingLeft: "20px",
+            fontFamily: "Kreon",
+            fontSize: {
+              xs: "15px",
+              sm: "20px",
+              md: "25px",
+            },
+          }}
+        >
+          Choose a character:
+        </Typography>
+        <Grid container spacing={2}>
+          {images.map(
+            (image) =>
+              image.id >= 9 && (
+                <Grid key={image.id} item xs={6} sm={4} md={3}>
+                  <Item
+                    onClick={() => handleSelect(image)}
+                    sx={{
+                      cursor: "pointer",
+                      fontFamily: "Kreon",
+                      fontSize: "20px",
+                    }}
+                  >
+                    <img
+                      src={image.url}
+                      alt={image.title}
+                      style={{ maxHeight: "200px" }}
+                    />
+                    <Grid item>
+                      <Grid container justifyContent="center" spacing={1}>
+                        <Grid item>{image.title}</Grid>
+                      </Grid>
+                    </Grid>
+                  </Item>
+                </Grid>
+              )
+          )}
         </Grid>
       </Box>
     </Container>
