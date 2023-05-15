@@ -10,6 +10,7 @@ import {
   Typography,
   Container,
   CircularProgress,
+  MenuItem
 } from "@mui/material";
 
 import { styled } from "@mui/material/styles";
@@ -71,6 +72,9 @@ function StoryMaker() {
   const [character, setCharacter] = useState("");
   const [description, setDescription] = useState("");
   const [theme, setTheme] = useState("");
+  const [age, setAge] = useState("");
+  const [words, setWords] = useState("");
+  const [style, setStyle] = useState("story");
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -88,7 +92,7 @@ function StoryMaker() {
     event.preventDefault();
     setLoading(true);
 
-    const prompt = `Please generate a story that includes a main character with the name: ${character}, and description: ${description} and has the following theme: ${theme}. Story's max words: 150 words. ${
+    const prompt = `Please generate a ${style} that includes a main character with the name: ${character}, and description: ${description} and has the following theme: ${theme}. Story's age target: ${age}, max words: ${words} words. ${
       selectedImage
         ? "The story should also include the following " +
           selectedImage.description.toLowerCase() +
@@ -118,6 +122,10 @@ function StoryMaker() {
         "An error occurred while saving the story. Please try again later."
       );
     }
+  };
+
+  const handleOptionChange = (event) => {
+    setStyle(event.target.value);
   };
 
   return (
@@ -185,6 +193,35 @@ function StoryMaker() {
               onChange={(e) => setTheme(e.target.value)}
               sx={{ p: "10px" }}
             />
+            <TextField
+              label="Age"
+              type="number"
+              component="div"
+              value={age}
+              onChange={(e) => setAge(e.target.value)}
+              sx={{ p: "10px" }}
+            />
+            <TextField
+              label="Max Words"
+              type="number"
+              component="div"
+              value={words}
+              onChange={(e) => setWords(e.target.value)}
+              sx={{ p: "10px" }}
+            />
+            <TextField
+              select
+              label="Style"
+              value={style}
+              onChange={handleOptionChange}
+              required
+              sx={{ p: "10px" }}
+            >
+              <MenuItem value="story">Story</MenuItem>
+              <MenuItem value="poem">Poem</MenuItem>
+              <MenuItem value="song">Song</MenuItem>
+              <MenuItem value="nursery rhyme">Nursery Rhyme</MenuItem>
+            </TextField>
             <Button
               type="submit"
               disabled={!character || loading}
