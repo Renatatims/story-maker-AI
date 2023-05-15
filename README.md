@@ -9,6 +9,7 @@ The Story Maker AI App is a web application that uses OpenAI's language model to
 ![Story Maker AI App Screenshot](/client/src/assets/screenshots/preview1.PNG)
 
 ## Link to Application
+
 Application available at: https://story-maker-ai.herokuapp.com/
 
 ## Table of Contents
@@ -60,10 +61,11 @@ Please feel free to send a pull request, the following is my GitHub account: htt
 
 ## Tests
 
-To run the application: 
-```` 
+To run the application:
+
+```
 npm run develop
-````
+```
 
 ## Questions
 
@@ -74,12 +76,38 @@ If you have any questions please contact me at:
 
 ## Credits
 
+### Images
+
 - Animals Images by pch.vector on Freepik: "https://www.freepik.com/free-vector/happy-funny-cartoon-animals-set_8609221.htm#query=animals%20ilustration&position=8&from_view=search&track=robertav1_2_sidr"
 - Book Page template, from: https://www.canva.com/templates/EAFdM1RZDII-minimalist-vintage-line-a4-stationery-paper-document/
-- Step 1 images from Freepik:
-- <a href="https://www.freepik.com/free-vector/happy-girl-with-butterfly_8171966.htm#&position=2&from_view=author">Image by lunnadesign </a> on Freepik
-- <a href="https://www.freepik.com/free-vector/girl-anddog_17430905.htm#query=mother&position=22&from_view=author">Image by lunnadesign</a> on Freepik
+
+- Characters:
+
+<a href="https://www.freepik.com/free-vector/happy-girl-with-butterfly_8171966.htm#&position=2&from_view=author">Image by lunnadesign </a> on Freepik
+
+<a href="https://www.freepik.com/free-vector/girl-anddog_17430905.htm#query=mother&position=22&from_view=author">Image by lunnadesign</a> on Freepik
+
 <a href="https://www.freepik.com/free-vector/menina-flor_15575363.htm#query=little%20girl&position=15&from_view=author">Image by lunnadesign</a> on Freepik
+
 <a href="https://www.freepik.com/free-vector/girl-holding-flower_16866334.htm#query=little%20girl&position=10&from_view=author">Image by lunnadesign</a> on Freepik
+- Seasonal Images:
+Easter: Image by <a href="https://www.freepik.com/free-vector/flat-easter-element-collection_12673212.htm#query=cute%20easter&position=11&from_view=search&track=ais">Freepik</a>
+
+Mother's Day:  <a href="https://www.freepik.com/free-vector/happy-mothera-s-day-beautiful-mother-daughter-character-hand-drawn-cartoon-art-illustration_14478867.htm#query=cute%20mothers%20day&position=13&from_view=search&track=ais">Image by mamewmy</a> on Freepik
+
+Father's Day: Image by <a href="https://www.freepik.com/free-vector/father-s-day-background-with-cute-bears_2192729.htm#query=cute%20fathers%20day&position=15&from_view=search&track=ais">Freepik</a>
+
+Birthday: Image by <a href="https://www.freepik.com/free-vector/happy-birthday-illustration-concept_7040382.htm#query=cute%20happy%20birthday&position=14&from_view=search&track=ais">Freepik</a>
+
+4th of July: Image by <a href="https://www.freepik.com/free-vector/fourth-july_4478497.htm#query=cute%204th%20of%20july&position=5&from_view=search&track=ais">Freepik</a>
+
+Halloween: Image by <a href="https://www.freepik.com/free-vector/flat-halloween-element-collection-white-background_5396179.htm#query=cute%20halloween&position=0&from_view=search&track=ais">Freepik</a>
+
+Thanksgiving: <a href="https://www.freepik.com/free-vector/happy-thanksgiving-lettering-design_6046987.htm#query=thanksgiving&position=2&from_view=search&track=sph">Image by pikisuperstar</a> on Freepik
+
+Christmas: Image by
+ <a href="https://www.freepik.com/free-vector/hand-drawn-christmas-element-collection_10755945.htm#query=cute%20holiday&position=7&from_view=search&track=ais">Freepik</a>
+
+
 - [OpenAI API](https://openai.com/)
 - [DALLE ](https://openai.com/dall-e/)
