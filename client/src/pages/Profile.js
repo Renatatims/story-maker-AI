@@ -33,8 +33,13 @@ import { DELETE_STORY_AI } from "../utils/mutations";
 function UserStories({onGoToStep2}) {
   // QUERY_STORIES_AI query to get the list of stories from the database
   const { data } = useQuery(QUERY_STORIES_AI);
-  console.log(data);
+  //console.log(data);
   const storiesAI = data?.storiesAI || [];
+
+  // QUERY_USER
+  const { data: dataUser } = useQuery(QUERY_USER);
+  //console.log(dataUser);
+  const userData = dataUser?.user || {};
 
   // TITLE
   //Define state variables for editing the title
@@ -199,7 +204,7 @@ function UserStories({onGoToStep2}) {
             },
           }}
         >
-          Saved Stories
+         {userData.firstName}'s Stories
         </Typography>
       </Container>
       <Grid container spacing={isMobile ? 2 : 4}>

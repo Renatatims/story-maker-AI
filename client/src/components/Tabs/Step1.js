@@ -90,7 +90,7 @@ function StoryMaker() {
 
     const prompt = `Please generate a story that includes a main character with the name: ${character}, and description: ${description} and has the following theme: ${theme}. Story's max words: 150 words. ${
       selectedImage
-        ? "The story should also include a(n) " +
+        ? "The story should also include the following " +
           selectedImage.description.toLowerCase() +
           "."
         : ""

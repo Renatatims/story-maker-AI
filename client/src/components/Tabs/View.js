@@ -136,8 +136,7 @@ function ResponseFlipBook() {
           paddingTop: "0px",
           overflow: "hidden",
           boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.25)",
-        }}
-        showCover={true}
+        }}    
       >
         <div>
           <Container sx={{ display: "flex", justifyContent: "center" }}>
