@@ -99,14 +99,14 @@ const images = [
   },
   {
     id: 15,
-    url: require("../assets/images/celebrations/mother's_day_img.jpg"),
+    url: require("../assets/images/celebrations/mothers_day_img.jpg"),
     title: "Mother's Day",
     description: "Mother's Day",
     author: "Freepik",
   },
   {
     id: 16,
-    url: require("../assets/images/celebrations/fathers_day.jpg"),
+    url: require("../assets/images/celebrations/fathers_day_img.jpg"),
     title: "Father's day",
     description: "Father's day",
     author: "Freepik",
