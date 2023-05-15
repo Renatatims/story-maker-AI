@@ -14,7 +14,7 @@ import PlayCircleFilledWhiteIcon from "@mui/icons-material/PlayCircleFilledWhite
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 //import exampleImage from "../../assets/images/imgExample.PNG"; // import the image
-import bookCoverImage from "../../assets/images/bookPage_template.png";
+import bookCoverImage from "../../assets/images/template/bookPage_template.png";
 import ImageIcon from "@mui/icons-material/Image";
 
 //Import Login modal
