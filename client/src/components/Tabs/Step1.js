@@ -71,6 +71,8 @@ function StoryMaker() {
   const [character, setCharacter] = useState("");
   const [description, setDescription] = useState("");
   const [theme, setTheme] = useState("");
+  const [age, setAge] = useState("");
+  const [words, setWords] = useState("");
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -88,7 +90,7 @@ function StoryMaker() {
     event.preventDefault();
     setLoading(true);
 
-    const prompt = `Please generate a story that includes a main character with the name: ${character}, and description: ${description} and has the following theme: ${theme}. Story's max words: 150 words. ${
+    const prompt = `Please generate a story that includes a main character with the name: ${character}, and description: ${description} and has the following theme: ${theme}. Story's age target: ${age}, max words: ${words} words. ${
       selectedImage
         ? "The story should also include the following " +
           selectedImage.description.toLowerCase() +
@@ -183,6 +185,22 @@ function StoryMaker() {
               component="div"
               value={theme}
               onChange={(e) => setTheme(e.target.value)}
+              sx={{ p: "10px" }}
+            />
+            <TextField
+              label="Age"
+              type="number"
+              component="div"
+              value={age}
+              onChange={(e) => setAge(e.target.value)}
+              sx={{ p: "10px" }}
+            />
+            <TextField
+              label="Max Words"
+              type="number"
+              component="div"
+              value={words}
+              onChange={(e) => setWords(e.target.value)}
               sx={{ p: "10px" }}
             />
             <Button
