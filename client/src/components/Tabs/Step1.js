@@ -236,6 +236,8 @@ function StoryMaker() {
         >
           If you wish, click over the images and add the items to your story:
         </Typography>
+
+        {/*Animals*/}
         <Typography
           variant="h5"
           component="div"
@@ -280,6 +282,8 @@ function StoryMaker() {
               )
           )}
         </Grid>
+
+        {/*Characters*/}
         <Typography
           variant="h5"
           component="div"
@@ -301,30 +305,45 @@ function StoryMaker() {
             (image) =>
               image.id >= 9 &&
               image.id <= 12 && (
-                <Grid key={image.id} item xs={6} sm={4} md={3}>
+                <Grid
+                  key={image.id}
+                  item
+                  xs={6}
+                  sm={4}
+                  md={3}
+                  sx={{ paddingBottom: "15px" }}
+                >
                   <Item
                     onClick={() => handleSelect(image)}
                     sx={{
                       cursor: "pointer",
                       fontFamily: "Kreon",
                       fontSize: "20px",
+                      height: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
                     }}
                   >
-                    <img
-                      src={image.url}
-                      alt={image.title}
-                      style={{ maxHeight: "200px" }}
-                    />
-                    <Grid item>
-                      <Grid container justifyContent="center" spacing={1}>
-                        <Grid item>{image.title}</Grid>
-                      </Grid>
-                    </Grid>
+                    <div style={{ flex: 1 }}>
+                      <img
+                        src={image.url}
+                        alt={image.title}
+                        style={{
+                          maxHeight: "100%",
+                          width: "100%",
+                          objectFit: "cover",
+                        }}
+                      />
+                    </div>
+                    <div style={{ textAlign: "center" }}>{image.title}</div>
                   </Item>
                 </Grid>
               )
           )}
         </Grid>
+
+        {/*Celebrations*/}
         <Typography
           variant="h5"
           component="div"
@@ -345,17 +364,24 @@ function StoryMaker() {
           {images.map(
             (image) =>
               image.id >= 13 && (
-                <Grid key={image.id} item xs={6} sm={4} md={3}>
+                <Grid
+                  key={image.id}
+                  item
+                  xs={6}
+                  sm={4}
+                  md={3}
+                  sx={{ paddingBottom: "15px" }}
+                >
                   <Item
                     onClick={() => handleSelect(image)}
                     sx={{
                       cursor: "pointer",
                       fontFamily: "Kreon",
                       fontSize: "20px",
-                      height: "100%", 
-                      display: "flex", 
-                      flexDirection: "column", 
-                      justifyContent: "space-between", 
+                      height: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
                     }}
                   >
                     <div style={{ flex: 1 }}>
