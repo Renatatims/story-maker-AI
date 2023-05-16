@@ -149,11 +149,10 @@ function StoryMaker() {
     setCategoriesModalShow(false);
   };
 
-  
   //Select a Category
   const categories = [
     {
-      title: "Animals",
+      title: "animals",
       images: images.animals, // Use the corresponding image data
     },
     {
@@ -161,7 +160,7 @@ function StoryMaker() {
       images: images.characters, // Use the corresponding image data
     },
     {
-      title: "Celebrations",
+      title: "celebrations",
       images: images.celebrations, // Use the corresponding image data
     },
   ];
@@ -312,27 +311,28 @@ function StoryMaker() {
           If you wish, click over the images and add the items to your story:
         </Typography>
 
-
-        {/* Render buttons or elements for each category */}
-
+        {/* Render buttons for each category */}
         {categories.map((category, index) => (
-          <Button key={index} onClick={() => handleOpenCategoriesModal(category)}>
+          <Button
+            key={index}
+            onClick={() => handleOpenCategoriesModal(category)}
+          >
             {category.title}
           </Button>
         ))}
-        
 
         {/* Render the modal */}
-        
         {selectedCategory && (
           <CategoriesModal
             open={modalCategoriesShow}
             handleClose={handleCloseCategoriesModal}
-            category={selectedCategory}
+            handleSelect={handleSelect}
+            category={selectedCategory ? selectedCategory.images : []}
           />
         )}
-        
+
         {/*Animals*/}
+      
         <Typography
           variant="h5"
           component="div"
@@ -349,7 +349,6 @@ function StoryMaker() {
         >
           Choose an Animal:
         </Typography>
-        <Button onClick={handleOpenCategoriesModal}>Animals</Button>
         <Grid container spacing={2}>
           {images.animals.map((image) => (
             <Grid key={image.id} item xs={6} sm={4} md={3}>
@@ -377,6 +376,7 @@ function StoryMaker() {
         </Grid>
 
         {/*Characters*/}
+      
         <Typography
           variant="h5"
           component="div"
@@ -432,8 +432,9 @@ function StoryMaker() {
             )
           )}
         </Grid>
-
+                    
         {/*Celebrations*/}
+        
         <Typography
           variant="h5"
           component="div"
@@ -488,13 +489,8 @@ function StoryMaker() {
               </Grid>
             )
           )}
-        </Grid>
+        </Grid>            
       </Box>
-      <CategoriesModal
-        open={modalCategoriesShow}
-        handleClose={handleCloseCategoriesModal}
-        handleSelect={handleSelect}
-      />
     </Container>
   );
 }

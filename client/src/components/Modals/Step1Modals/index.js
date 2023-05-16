@@ -10,11 +10,12 @@ import {
   Button,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import images from "../../../utils/images";
+//import images from "../../../utils/images";
 import { styled } from "@mui/material/styles";
 
 const ImageModal = (props) => {
-  const { open, handleClose, handleSelect } = props;
+  const { open, handleClose, handleSelect, category } = props;
+  const categoryArray = category || [];
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
     ...theme.typography,
@@ -68,46 +69,49 @@ const ImageModal = (props) => {
               },
             }}
           >
-            Choose one or more Animals by clicking over the images:
+            Choose one or more items by clicking over the images:
           </Typography>
-          <Grid container spacing={2}>
-           {images.animals.map((image) => (
-                  <Grid key={image.id} item xs={6} sm={4} md={3}>
-                    <Item
-                      onClick={() => handleSelect(image)}
-                      sx={{
-                        cursor: "pointer",
-                        fontFamily: "Kreon",
-                        fontSize: "20px",
-                      }}
-                    >
-                      <img
-                        src={image.path}
-                        alt={image.title}
-                        style={{ maxHeight: "200px" }}
-                      />
-                      <Grid item>
-                        <Grid container justifyContent="center" spacing={1}>
-                          <Grid item>{image.title}</Grid>
-                        </Grid>
+          {categoryArray && categoryArray.length > 0 ? (
+            <Grid container spacing={2}>
+              {categoryArray.map((item) => (
+                <Grid key={item.id} item xs={6} sm={4} md={3}>
+                  <Item
+                    onClick={() => handleSelect(item)}
+                    sx={{
+                      cursor: "pointer",
+                      fontFamily: "Kreon",
+                      fontSize: "20px",
+                    }}
+                  >
+                    <img
+                      src={item.path}
+                      alt={item.title}
+                      style={{ maxHeight: "200px" }}
+                    />
+                    <Grid item>
+                      <Grid container justifyContent="center" spacing={1}>
+                        <Grid item>{item.title}</Grid>
                       </Grid>
-                    </Item>
-                  </Grid>
-                )
-            )}
-          </Grid>
+                    </Grid>
+                  </Item>
+                </Grid>
+              ))}
+            </Grid>
+          ) : (
+            <Typography>No items found in this category.</Typography>
+          )}
           <div style={{ display: "flex", justifyContent: "center" }}>
-          <Button
-            onClick={props.handleClose}
-            variant="contained"
-            sx={{
-              fontFamily: "Kreon",
-              backgroundColor: "grey",
-              "&:hover": { backgroundColor: "#00334A" },
-            }}
-          >
-            Continue
-          </Button>
+            <Button
+              onClick={props.handleClose}
+              variant="contained"
+              sx={{
+                fontFamily: "Kreon",
+                backgroundColor: "grey",
+                "&:hover": { backgroundColor: "#00334A" },
+              }}
+            >
+              Continue
+            </Button>
           </div>
         </Stack>
       </Box>
