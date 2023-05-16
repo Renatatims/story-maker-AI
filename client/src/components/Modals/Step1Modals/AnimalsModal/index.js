@@ -71,9 +71,7 @@ const ImageModal = (props) => {
             Choose one or more Animals by clicking over the images:
           </Typography>
           <Grid container spacing={2}>
-            {images.map(
-              (image) =>
-                image.id <= 8 && (
+           {images.animals.map((image) => (
                   <Grid key={image.id} item xs={6} sm={4} md={3}>
                     <Item
                       onClick={() => handleSelect(image)}
@@ -84,7 +82,7 @@ const ImageModal = (props) => {
                       }}
                     >
                       <img
-                        src={image.url}
+                        src={image.path}
                         alt={image.title}
                         style={{ maxHeight: "200px" }}
                       />

@@ -85,6 +85,9 @@ function StoryMaker() {
   //Render Images - so user can select and include in their story
   const [selectedImage, setSelectedImage] = useState(null);
 
+  //Select a Category
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
   const [saveStoriesAI] = useMutation(SAVE_STORY_AI);
 
   const handleSelect = (image) => {
@@ -137,13 +140,31 @@ function StoryMaker() {
   const [modalAnimalsShow, setAnimalsModalShow] = useState(false);
 
   //Open Modal
-  const handleOpenAnimalsModal = () => {
+  const handleOpenAnimalsModal = (category) => {
+    setSelectedCategory(category);
     setAnimalsModalShow(true);
   };
   //Close Modal
   const handleCloseAnimalsModal = () => {
     setAnimalsModalShow(false);
   };
+
+  
+  //Select a Category
+  const categories = [
+    {
+      title: "Animals",
+      images: images.animals, // Use the corresponding image data
+    },
+    {
+      title: "characters",
+      images: images.characters, // Use the corresponding image data
+    },
+    {
+      title: "Celebrations",
+      images: images.celebrations, // Use the corresponding image data
+    },
+  ];
 
   return (
     <Container>
@@ -291,6 +312,27 @@ function StoryMaker() {
           If you wish, click over the images and add the items to your story:
         </Typography>
 
+
+        {/* Render buttons or elements for each category */}
+
+        {categories.map((category, index) => (
+          <Button key={index} onClick={() => handleOpenAnimalsModal(category)}>
+            {category.title}
+          </Button>
+        ))}
+        
+
+        {/* Render the modal */}
+        
+        {selectedCategory && (
+          <AnimalsModal
+            open={modalAnimalsShow}
+            handleClose={handleCloseAnimalsModal}
+            category={selectedCategory}
+          />
+        )}
+        
+
         {/*Animals*/}
         <Typography
           variant="h5"
@@ -308,36 +350,31 @@ function StoryMaker() {
         >
           Choose an Animal:
         </Typography>
-        <Button onClick={handleOpenAnimalsModal}>
-          Animals
-        </Button>
+        <Button onClick={handleOpenAnimalsModal}>Animals</Button>
         <Grid container spacing={2}>
-          {images.map(
-            (image) =>
-              image.id <= 8 && (
-                <Grid key={image.id} item xs={6} sm={4} md={3}>
-                  <Item
-                    onClick={() => handleSelect(image)}
-                    sx={{
-                      cursor: "pointer",
-                      fontFamily: "Kreon",
-                      fontSize: "20px",
-                    }}
-                  >
-                    <img
-                      src={image.url}
-                      alt={image.title}
-                      style={{ maxHeight: "200px" }}
-                    />
-                    <Grid item>
-                      <Grid container justifyContent="center" spacing={1}>
-                        <Grid item>{image.title}</Grid>
-                      </Grid>
-                    </Grid>
-                  </Item>
+          {images.animals.map((image) => (
+            <Grid key={image.id} item xs={6} sm={4} md={3}>
+              <Item
+                onClick={() => handleSelect(image)}
+                sx={{
+                  cursor: "pointer",
+                  fontFamily: "Kreon",
+                  fontSize: "20px",
+                }}
+              >
+                <img
+                  src={image.path}
+                  alt={image.title}
+                  style={{ maxHeight: "200px" }}
+                />
+                <Grid item>
+                  <Grid container justifyContent="center" spacing={1}>
+                    <Grid item>{image.title}</Grid>
+                  </Grid>
                 </Grid>
-              )
-          )}
+              </Item>
+            </Grid>
+          ))}
         </Grid>
 
         {/*Characters*/}
@@ -358,45 +395,42 @@ function StoryMaker() {
           Choose a character:
         </Typography>
         <Grid container spacing={2}>
-          {images.map(
-            (image) =>
-              image.id >= 9 &&
-              image.id <= 12 && (
-                <Grid
-                  key={image.id}
-                  item
-                  xs={6}
-                  sm={4}
-                  md={3}
-                  sx={{ paddingBottom: "15px" }}
+          {images.characters.map((image) => (
+              <Grid
+                key={image.id}
+                item
+                xs={6}
+                sm={4}
+                md={3}
+                sx={{ paddingBottom: "15px" }}
+              >
+                <Item
+                  onClick={() => handleSelect(image)}
+                  sx={{
+                    cursor: "pointer",
+                    fontFamily: "Kreon",
+                    fontSize: "20px",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                  }}
                 >
-                  <Item
-                    onClick={() => handleSelect(image)}
-                    sx={{
-                      cursor: "pointer",
-                      fontFamily: "Kreon",
-                      fontSize: "20px",
-                      height: "100%",
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <div style={{ flex: 1 }}>
-                      <img
-                        src={image.url}
-                        alt={image.title}
-                        style={{
-                          maxHeight: "100%",
-                          width: "100%",
-                          objectFit: "cover",
-                        }}
-                      />
-                    </div>
-                    <div style={{ textAlign: "center" }}>{image.title}</div>
-                  </Item>
-                </Grid>
-              )
+                  <div style={{ flex: 1 }}>
+                    <img
+                      src={image.path}
+                      alt={image.title}
+                      style={{
+                        maxHeight: "100%",
+                        width: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+                  </div>
+                  <div style={{ textAlign: "center" }}>{image.title}</div>
+                </Item>
+              </Grid>
+            )
           )}
         </Grid>
 
@@ -418,48 +452,50 @@ function StoryMaker() {
           Choose a special occasion or celebration:
         </Typography>
         <Grid container spacing={2}>
-          {images.map(
-            (image) =>
-              image.id >= 13 && (
-                <Grid
-                  key={image.id}
-                  item
-                  xs={6}
-                  sm={4}
-                  md={3}
-                  sx={{ paddingBottom: "15px" }}
+          {images.celebrations.map((image) =>(
+              <Grid
+                key={image.id}
+                item
+                xs={6}
+                sm={4}
+                md={3}
+                sx={{ paddingBottom: "15px" }}
+              >
+                <Item
+                  onClick={() => handleSelect(image)}
+                  sx={{
+                    cursor: "pointer",
+                    fontFamily: "Kreon",
+                    fontSize: "20px",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                  }}
                 >
-                  <Item
-                    onClick={() => handleSelect(image)}
-                    sx={{
-                      cursor: "pointer",
-                      fontFamily: "Kreon",
-                      fontSize: "20px",
-                      height: "100%",
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <div style={{ flex: 1 }}>
-                      <img
-                        src={image.url}
-                        alt={image.title}
-                        style={{
-                          maxHeight: "100%",
-                          width: "100%",
-                          objectFit: "cover",
-                        }}
-                      />
-                    </div>
-                    <div style={{ textAlign: "center" }}>{image.title}</div>
-                  </Item>
-                </Grid>
-              )
+                  <div style={{ flex: 1 }}>
+                    <img
+                      src={image.path}
+                      alt={image.title}
+                      style={{
+                        maxHeight: "100%",
+                        width: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+                  </div>
+                  <div style={{ textAlign: "center" }}>{image.title}</div>
+                </Item>
+              </Grid>
+            )
           )}
         </Grid>
       </Box>
-      <AnimalsModal open={modalAnimalsShow} handleClose={handleCloseAnimalsModal} handleSelect={handleSelect} />
+      <AnimalsModal
+        open={modalAnimalsShow}
+        handleClose={handleCloseAnimalsModal}
+        handleSelect={handleSelect}
+      />
     </Container>
   );
 }
