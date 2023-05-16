@@ -13,10 +13,10 @@ import Auth from "../../utils/auth";
 //import { Link } from "react-router-dom";
 
 //Import Login modal
-import LoginModal from "../LoginModal/index";
+import LoginModal from "../Modals/LoginModal/index";
 
 //Import Signup modal
-import SignupModal from "../SignupModal/index";
+import SignupModal from "../Modals/SignupModal/index";
 
 export default function ButtonAppBar({handleGoToFavorites}) {
   //Login Modal

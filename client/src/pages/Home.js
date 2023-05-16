@@ -28,7 +28,7 @@ import Auth from "../utils/auth";
 import "../App.css";
 
 //Import Login modal
-import LoginModal from "../components/LoginModal/index";
+import LoginModal from "../components/Modals/LoginModal/index";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;

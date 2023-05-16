@@ -18,7 +18,7 @@ import ImageIcon from "@mui/icons-material/Image";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 //Import Login modal
-import LoginModal from "../LoginModal/index";
+import LoginModal from "../Modals/LoginModal/index";
 
 import Auth from "../../utils/auth";
 

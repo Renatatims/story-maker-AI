@@ -10,11 +10,15 @@ import {
   Typography,
   Container,
   CircularProgress,
-  MenuItem
+  MenuItem,
 } from "@mui/material";
 
 import { styled } from "@mui/material/styles";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+
+//Import Animal Modal
+import AnimalsModal from "../Modals/Step1Modals/AnimalsModal";
+
 import images from "../../utils/images";
 import "../../App.css";
 
@@ -126,6 +130,19 @@ function StoryMaker() {
 
   const handleOptionChange = (event) => {
     setStyle(event.target.value);
+  };
+
+  //Animals Modal
+  //Modal - useState
+  const [modalAnimalsShow, setAnimalsModalShow] = useState(false);
+
+  //Open Modal
+  const handleOpenAnimalsModal = () => {
+    setAnimalsModalShow(true);
+  };
+  //Close Modal
+  const handleCloseAnimalsModal = () => {
+    setAnimalsModalShow(false);
   };
 
   return (
@@ -291,6 +308,9 @@ function StoryMaker() {
         >
           Choose an Animal:
         </Typography>
+        <Button onClick={handleOpenAnimalsModal}>
+          Animals
+        </Button>
         <Grid container spacing={2}>
           {images.map(
             (image) =>
@@ -439,6 +459,7 @@ function StoryMaker() {
           )}
         </Grid>
       </Box>
+      <AnimalsModal open={modalAnimalsShow} handleClose={handleCloseAnimalsModal} />
     </Container>
   );
 }
