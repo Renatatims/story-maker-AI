@@ -45,6 +45,7 @@ const ImageModal = (props) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          overflow: "auto",
         }}
       >
         <Stack spacing={2} sx={{ m: "10px" }}>
