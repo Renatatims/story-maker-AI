@@ -8,19 +8,14 @@ import CloseIcon from "@mui/icons-material/Close";
 import Button from "@mui/material/Button";
 
 import { useMutation } from "@apollo/client";
-import { ADD_USER } from "../../utils/mutations";
-import Auth from "../../utils/auth";
+import { LOGIN_USER } from "../../../utils/mutations";
+import Auth from "../../../utils/auth";
 
-function SignupModal(props) {
+function LoginModal(props) {
   const { open, handleClose } = props;
 
-  const [formState, setFormState] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-  });
-  const [addUser] = useMutation(ADD_USER);
+  const [formState, setFormState] = useState({ email: "", password: "" });
+  const [login] = useMutation(LOGIN_USER);
 
   // update state based on form input changes
   const handleChange = (event) => {
@@ -35,17 +30,21 @@ function SignupModal(props) {
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
-
     try {
-      const { data } = await addUser({
+      const { data } = await login({
         variables: { ...formState },
       });
-      console.log(data);
-      Auth.login(data.addUser.token);
+
+      Auth.login(data.login.token);
     } catch (e) {
       console.error(e);
     }
+
+    // clear form values
+    setFormState({
+      email: "",
+      password: "",
+    });
   };
 
   return (
@@ -67,7 +66,7 @@ function SignupModal(props) {
           p: 2,
           m: 1,
           minWidth: "300px",
-          minHeight: "350px",
+          minHeight: "300px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -77,13 +76,13 @@ function SignupModal(props) {
           <IconButton
             aria-label="close"
             onClick={props.handleClose}
-            sx={{ position: "absolute", top: 3, right: 10 }}
+            sx={{ position: "absolute", top: 10, right: 10 }}
           >
             <CloseIcon />
           </IconButton>
           <a href="/">
             <img
-              src={require("../../assets/logo/blueLogo_storyMakerAI.png")}
+              src={require("../../../assets/logo/blueLogo_storyMakerAI.png")}
               alt="icon"
               width="250px"
             ></img>
@@ -104,31 +103,7 @@ function SignupModal(props) {
                 required
                 fullWidth
                 autoFocus
-                sx={{  m:2, ml:0 }}
-              />
-              <TextField
-                id="firstName"
-                label="First Name"
-                type="firstName"
-                name="firstName"
-                value={formState.firstName}
-                onChange={handleChange}
-                required
-                fullWidth
-                autoFocus
-                sx={{  m:2, ml:0 }}
-              />
-              <TextField
-                id="lastName"
-                label="Last Name"
-                type="lastName"
-                name="lastName"
-                value={formState.lastName}
-                onChange={handleChange}
-                required
-                fullWidth
-                autoFocus
-                sx={{  m:2, ml:0 }}
+                sx={{ m:2, ml: 0 }}
               />
               <TextField
                 id="password"
@@ -156,7 +131,7 @@ function SignupModal(props) {
                     "&:hover": { backgroundColor: "darkgrey" },
                   }}
                 >
-                  Signup
+                  Login
                 </Button>
               </Box>
             </Stack>
@@ -167,4 +142,4 @@ function SignupModal(props) {
   );
 }
 
-export default SignupModal;
+export default LoginModal;

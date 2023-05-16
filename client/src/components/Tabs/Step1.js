@@ -10,11 +10,15 @@ import {
   Typography,
   Container,
   CircularProgress,
-  MenuItem
+  MenuItem,
 } from "@mui/material";
 
 import { styled } from "@mui/material/styles";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+
+//Import Categories Modal
+import CategoriesModal from "../Modals/Step1Modals/";
+
 import images from "../../utils/images";
 import "../../App.css";
 
@@ -81,6 +85,9 @@ function StoryMaker() {
   //Render Images - so user can select and include in their story
   const [selectedImage, setSelectedImage] = useState(null);
 
+  //Select a Category
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
   const [saveStoriesAI] = useMutation(SAVE_STORY_AI);
 
   const handleSelect = (image) => {
@@ -127,6 +134,36 @@ function StoryMaker() {
   const handleOptionChange = (event) => {
     setStyle(event.target.value);
   };
+
+  //Categories Modal
+  //Modal - useState
+  const [modalCategoriesShow, setCategoriesModalShow] = useState(false);
+
+  //Open Modal
+  const handleOpenCategoriesModal = (category) => {
+    setSelectedCategory(category);
+    setCategoriesModalShow(true);
+  };
+  //Close Modal
+  const handleCloseCategoriesModal = () => {
+    setCategoriesModalShow(false);
+  };
+
+  //Select a Category
+  const categories = [
+    {
+      title: "animals",
+      images: images.animals, // Use the corresponding image data
+    },
+    {
+      title: "characters",
+      images: images.characters, // Use the corresponding image data
+    },
+    {
+      title: "celebrations",
+      images: images.celebrations, // Use the corresponding image data
+    },
+  ];
 
   return (
     <Container>
@@ -274,7 +311,28 @@ function StoryMaker() {
           If you wish, click over the images and add the items to your story:
         </Typography>
 
+        {/* Render buttons for each category */}
+        {categories.map((category, index) => (
+          <Button
+            key={index}
+            onClick={() => handleOpenCategoriesModal(category)}
+          >
+            {category.title}
+          </Button>
+        ))}
+
+        {/* Render the modal */}
+        {selectedCategory && (
+          <CategoriesModal
+            open={modalCategoriesShow}
+            handleClose={handleCloseCategoriesModal}
+            handleSelect={handleSelect}
+            category={selectedCategory ? selectedCategory.images : []}
+          />
+        )}
+
         {/*Animals*/}
+      
         <Typography
           variant="h5"
           component="div"
@@ -292,35 +350,33 @@ function StoryMaker() {
           Choose an Animal:
         </Typography>
         <Grid container spacing={2}>
-          {images.map(
-            (image) =>
-              image.id <= 8 && (
-                <Grid key={image.id} item xs={6} sm={4} md={3}>
-                  <Item
-                    onClick={() => handleSelect(image)}
-                    sx={{
-                      cursor: "pointer",
-                      fontFamily: "Kreon",
-                      fontSize: "20px",
-                    }}
-                  >
-                    <img
-                      src={image.url}
-                      alt={image.title}
-                      style={{ maxHeight: "200px" }}
-                    />
-                    <Grid item>
-                      <Grid container justifyContent="center" spacing={1}>
-                        <Grid item>{image.title}</Grid>
-                      </Grid>
-                    </Grid>
-                  </Item>
+          {images.animals.map((image) => (
+            <Grid key={image.id} item xs={6} sm={4} md={3}>
+              <Item
+                onClick={() => handleSelect(image)}
+                sx={{
+                  cursor: "pointer",
+                  fontFamily: "Kreon",
+                  fontSize: "20px",
+                }}
+              >
+                <img
+                  src={image.path}
+                  alt={image.title}
+                  style={{ maxHeight: "200px" }}
+                />
+                <Grid item>
+                  <Grid container justifyContent="center" spacing={1}>
+                    <Grid item>{image.title}</Grid>
+                  </Grid>
                 </Grid>
-              )
-          )}
+              </Item>
+            </Grid>
+          ))}
         </Grid>
 
         {/*Characters*/}
+      
         <Typography
           variant="h5"
           component="div"
@@ -338,49 +394,47 @@ function StoryMaker() {
           Choose a character:
         </Typography>
         <Grid container spacing={2}>
-          {images.map(
-            (image) =>
-              image.id >= 9 &&
-              image.id <= 12 && (
-                <Grid
-                  key={image.id}
-                  item
-                  xs={6}
-                  sm={4}
-                  md={3}
-                  sx={{ paddingBottom: "15px" }}
+          {images.characters.map((image) => (
+              <Grid
+                key={image.id}
+                item
+                xs={6}
+                sm={4}
+                md={3}
+                sx={{ paddingBottom: "15px" }}
+              >
+                <Item
+                  onClick={() => handleSelect(image)}
+                  sx={{
+                    cursor: "pointer",
+                    fontFamily: "Kreon",
+                    fontSize: "20px",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                  }}
                 >
-                  <Item
-                    onClick={() => handleSelect(image)}
-                    sx={{
-                      cursor: "pointer",
-                      fontFamily: "Kreon",
-                      fontSize: "20px",
-                      height: "100%",
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <div style={{ flex: 1 }}>
-                      <img
-                        src={image.url}
-                        alt={image.title}
-                        style={{
-                          maxHeight: "100%",
-                          width: "100%",
-                          objectFit: "cover",
-                        }}
-                      />
-                    </div>
-                    <div style={{ textAlign: "center" }}>{image.title}</div>
-                  </Item>
-                </Grid>
-              )
+                  <div style={{ flex: 1 }}>
+                    <img
+                      src={image.path}
+                      alt={image.title}
+                      style={{
+                        maxHeight: "100%",
+                        width: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+                  </div>
+                  <div style={{ textAlign: "center" }}>{image.title}</div>
+                </Item>
+              </Grid>
+            )
           )}
         </Grid>
-
+                    
         {/*Celebrations*/}
+        
         <Typography
           variant="h5"
           component="div"
@@ -398,46 +452,44 @@ function StoryMaker() {
           Choose a special occasion or celebration:
         </Typography>
         <Grid container spacing={2}>
-          {images.map(
-            (image) =>
-              image.id >= 13 && (
-                <Grid
-                  key={image.id}
-                  item
-                  xs={6}
-                  sm={4}
-                  md={3}
-                  sx={{ paddingBottom: "15px" }}
+          {images.celebrations.map((image) =>(
+              <Grid
+                key={image.id}
+                item
+                xs={6}
+                sm={4}
+                md={3}
+                sx={{ paddingBottom: "15px" }}
+              >
+                <Item
+                  onClick={() => handleSelect(image)}
+                  sx={{
+                    cursor: "pointer",
+                    fontFamily: "Kreon",
+                    fontSize: "20px",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                  }}
                 >
-                  <Item
-                    onClick={() => handleSelect(image)}
-                    sx={{
-                      cursor: "pointer",
-                      fontFamily: "Kreon",
-                      fontSize: "20px",
-                      height: "100%",
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <div style={{ flex: 1 }}>
-                      <img
-                        src={image.url}
-                        alt={image.title}
-                        style={{
-                          maxHeight: "100%",
-                          width: "100%",
-                          objectFit: "cover",
-                        }}
-                      />
-                    </div>
-                    <div style={{ textAlign: "center" }}>{image.title}</div>
-                  </Item>
-                </Grid>
-              )
+                  <div style={{ flex: 1 }}>
+                    <img
+                      src={image.path}
+                      alt={image.title}
+                      style={{
+                        maxHeight: "100%",
+                        width: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+                  </div>
+                  <div style={{ textAlign: "center" }}>{image.title}</div>
+                </Item>
+              </Grid>
+            )
           )}
-        </Grid>
+        </Grid>            
       </Box>
     </Container>
   );

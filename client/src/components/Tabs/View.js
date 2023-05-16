@@ -18,10 +18,10 @@ import bookCoverImage from "../../assets/images/template/bookPage_template.png";
 import ImageIcon from "@mui/icons-material/Image";
 
 //Import Login modal
-import LoginModal from "../LoginModal/index";
+import LoginModal from "../Modals/LoginModal/index";
 
 //Import Signup modal
-import SignupModal from "../SignupModal/index";
+import SignupModal from "../Modals/SignupModal/index";
 
 import Auth from "../../utils/auth";
 
