@@ -459,7 +459,7 @@ function StoryMaker() {
           )}
         </Grid>
       </Box>
-      <AnimalsModal open={modalAnimalsShow} handleClose={handleCloseAnimalsModal} />
+      <AnimalsModal open={modalAnimalsShow} handleClose={handleCloseAnimalsModal} handleSelect={handleSelect} />
     </Container>
   );
 }

@@ -1,11 +1,20 @@
 import React from "react";
-import { Modal, Grid, Typography, Box, Stack, Paper, IconButton } from "@mui/material";
+import {
+  Modal,
+  Grid,
+  Typography,
+  Box,
+  Stack,
+  Paper,
+  IconButton,
+  Button,
+} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import images from "../../../../utils/images";
 import { styled } from "@mui/material/styles";
 
 const ImageModal = (props) => {
-  const { open, handleClose } = props;
+  const { open, handleClose, handleSelect } = props;
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
     ...theme.typography,
@@ -32,14 +41,12 @@ const ImageModal = (props) => {
           borderRadius: 4,
           p: 2,
           m: 1,
-          minWidth: "300px",
-          minHeight: "300px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
         }}
       >
-        <Stack>
+        <Stack spacing={2} sx={{ m: "10px" }}>
           <IconButton
             aria-label="close"
             onClick={props.handleClose}
@@ -61,7 +68,7 @@ const ImageModal = (props) => {
               },
             }}
           >
-            Choose an Animal:
+            Choose one or more Animals by clicking over the images:
           </Typography>
           <Grid container spacing={2}>
             {images.map(
@@ -69,6 +76,7 @@ const ImageModal = (props) => {
                 image.id <= 8 && (
                   <Grid key={image.id} item xs={6} sm={4} md={3}>
                     <Item
+                      onClick={() => handleSelect(image)}
                       sx={{
                         cursor: "pointer",
                         fontFamily: "Kreon",
@@ -90,6 +98,19 @@ const ImageModal = (props) => {
                 )
             )}
           </Grid>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+          <Button
+            onClick={props.handleClose}
+            variant="contained"
+            sx={{
+              fontFamily: "Kreon",
+              backgroundColor: "grey",
+              "&:hover": { backgroundColor: "#00334A" },
+            }}
+          >
+            Continue
+          </Button>
+          </div>
         </Stack>
       </Box>
     </Modal>
