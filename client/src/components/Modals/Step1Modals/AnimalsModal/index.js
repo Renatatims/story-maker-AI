@@ -1,8 +1,19 @@
 import React from "react";
-import { Modal, Card, Grid, Typography, Box, Stack } from "@mui/material";
+import { Modal, Grid, Typography, Box, Stack, Paper, IconButton } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 import images from "../../../../utils/images";
+import { styled } from "@mui/material/styles";
 
-const ImageModal = ({ open, handleClose }) => {
+const ImageModal = (props) => {
+  const { open, handleClose } = props;
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+    ...theme.typography,
+    padding: theme.spacing(1),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  }));
+
   return (
     <Modal
       open={open}
@@ -29,6 +40,13 @@ const ImageModal = ({ open, handleClose }) => {
         }}
       >
         <Stack>
+          <IconButton
+            aria-label="close"
+            onClick={props.handleClose}
+            sx={{ position: "absolute", top: 10, right: 10 }}
+          >
+            <CloseIcon />
+          </IconButton>
           <Typography
             variant="h5"
             component="div"
@@ -50,7 +68,7 @@ const ImageModal = ({ open, handleClose }) => {
               (image) =>
                 image.id <= 8 && (
                   <Grid key={image.id} item xs={6} sm={4} md={3}>
-                    <Card
+                    <Item
                       sx={{
                         cursor: "pointer",
                         fontFamily: "Kreon",
@@ -67,7 +85,7 @@ const ImageModal = ({ open, handleClose }) => {
                           <Grid item>{image.title}</Grid>
                         </Grid>
                       </Grid>
-                    </Card>
+                    </Item>
                   </Grid>
                 )
             )}
