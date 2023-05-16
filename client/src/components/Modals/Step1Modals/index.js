@@ -10,7 +10,7 @@ import {
   Button,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import images from "../../../../utils/images";
+import images from "../../../utils/images";
 import { styled } from "@mui/material/styles";
 
 const ImageModal = (props) => {

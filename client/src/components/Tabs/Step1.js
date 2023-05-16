@@ -16,8 +16,8 @@ import {
 import { styled } from "@mui/material/styles";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
-//Import Animal Modal
-import AnimalsModal from "../Modals/Step1Modals/AnimalsModal";
+//Import Categories Modal
+import CategoriesModal from "../Modals/Step1Modals/";
 
 import images from "../../utils/images";
 import "../../App.css";
@@ -135,18 +135,18 @@ function StoryMaker() {
     setStyle(event.target.value);
   };
 
-  //Animals Modal
+  //Categories Modal
   //Modal - useState
-  const [modalAnimalsShow, setAnimalsModalShow] = useState(false);
+  const [modalCategoriesShow, setCategoriesModalShow] = useState(false);
 
   //Open Modal
-  const handleOpenAnimalsModal = (category) => {
+  const handleOpenCategoriesModal = (category) => {
     setSelectedCategory(category);
-    setAnimalsModalShow(true);
+    setCategoriesModalShow(true);
   };
   //Close Modal
-  const handleCloseAnimalsModal = () => {
-    setAnimalsModalShow(false);
+  const handleCloseCategoriesModal = () => {
+    setCategoriesModalShow(false);
   };
 
   
@@ -316,7 +316,7 @@ function StoryMaker() {
         {/* Render buttons or elements for each category */}
 
         {categories.map((category, index) => (
-          <Button key={index} onClick={() => handleOpenAnimalsModal(category)}>
+          <Button key={index} onClick={() => handleOpenCategoriesModal(category)}>
             {category.title}
           </Button>
         ))}
@@ -325,14 +325,13 @@ function StoryMaker() {
         {/* Render the modal */}
         
         {selectedCategory && (
-          <AnimalsModal
-            open={modalAnimalsShow}
-            handleClose={handleCloseAnimalsModal}
+          <CategoriesModal
+            open={modalCategoriesShow}
+            handleClose={handleCloseCategoriesModal}
             category={selectedCategory}
           />
         )}
         
-
         {/*Animals*/}
         <Typography
           variant="h5"
@@ -350,7 +349,7 @@ function StoryMaker() {
         >
           Choose an Animal:
         </Typography>
-        <Button onClick={handleOpenAnimalsModal}>Animals</Button>
+        <Button onClick={handleOpenCategoriesModal}>Animals</Button>
         <Grid container spacing={2}>
           {images.animals.map((image) => (
             <Grid key={image.id} item xs={6} sm={4} md={3}>
@@ -491,9 +490,9 @@ function StoryMaker() {
           )}
         </Grid>
       </Box>
-      <AnimalsModal
-        open={modalAnimalsShow}
-        handleClose={handleCloseAnimalsModal}
+      <CategoriesModal
+        open={modalCategoriesShow}
+        handleClose={handleCloseCategoriesModal}
         handleSelect={handleSelect}
       />
     </Container>
