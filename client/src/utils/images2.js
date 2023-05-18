@@ -1,4 +1,5 @@
-const images = [
+const images = {
+  christmas: [
     {
       id: 1,
       url: require("../assets/images/AI_images/img1.PNG"),
@@ -23,6 +24,8 @@ const images = [
       title: "Chirstmas3",
       author: "Dalle",
     },
+  ],
+  princess: [
     {
       id: 5,
       url: require("../assets/images/AI_images/img5.PNG"),
@@ -47,6 +50,8 @@ const images = [
       title: "Princess4",
       author: "Dalle",
     },
+  ],
+  space: [
     {
       id: 9,
       url: require("../assets/images/AI_images/img9.PNG"),
@@ -71,7 +76,7 @@ const images = [
       title: "Space4",
       author: "Dalle",
     },
-  ];
-  
-  export default images;
-  
+  ],
+};
+
+export default images;

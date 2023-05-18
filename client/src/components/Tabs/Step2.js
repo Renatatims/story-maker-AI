@@ -118,6 +118,22 @@ const ImageGenerator = () => {
     color: theme.palette.text.secondary,
   }));
 
+  //Select a Category
+  const categoriesAI = [
+    {
+      title: "christmas",
+      images: images2.christmas, // Use the corresponding image data
+    },
+    {
+      title: "princess",
+      images: images2.princess, // Use the corresponding image data
+    },
+    {
+      title: "space",
+      images: images2.space, // Use the corresponding image data
+    },
+  ];
+
   return (
     <>
       <Container
