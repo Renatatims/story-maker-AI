@@ -84,7 +84,7 @@ const ImageModal = (props) => {
             Choose one or more items by clicking over the images:
           </Typography>
           {categoryArray && categoryArray.length > 0 ? (
-            <Grid container spacing={2.5}>
+            <Grid container spacing={2}>
               {categoryArray.map((item) => (
                 <Grid key={item.id} item xs={6} sm={4} md={3}>
                   <Item
