@@ -259,6 +259,26 @@ const ImageGenerator = () => {
           AI images generated - browse by categories
         </Typography>
 
+        {/* Render buttons for each category */}
+        {categories.map((category, index) => (
+          <Button
+            key={index}
+            onClick={() => handleOpenCategoriesModal(category)}
+          >
+            {category.title}
+          </Button>
+        ))}
+
+        {/* Render the modal */}
+        {selectedCategory && (
+          <CategoriesModal
+            open={modalCategoriesShow}
+            handleClose={handleCloseCategoriesModal}
+            category={selectedCategory ? selectedCategory.images : []}
+          />
+        )}
+
+         {/* Categories */}
         <Typography
           variant="h6"
           component="div"
