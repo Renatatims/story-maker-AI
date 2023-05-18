@@ -82,14 +82,8 @@ If you have any questions please contact me at:
 - Book Page template, from: https://www.canva.com/templates/EAFdM1RZDII-minimalist-vintage-line-a4-stationery-paper-document/
 
 - Characters:
+<a href="https://www.freepik.com/free-vector/ten-little-kids-characters-group_24631772.htm#query=kids%20cartoon%20different%20races&position=45&from_view=search&track=ais">Image by gstudioimagen1</a> on Freepik
 
-<a href="https://www.freepik.com/free-vector/happy-girl-with-butterfly_8171966.htm#&position=2&from_view=author">Image by lunnadesign </a> on Freepik
-
-<a href="https://www.freepik.com/free-vector/girl-anddog_17430905.htm#query=mother&position=22&from_view=author">Image by lunnadesign</a> on Freepik
-
-<a href="https://www.freepik.com/free-vector/menina-flor_15575363.htm#query=little%20girl&position=15&from_view=author">Image by lunnadesign</a> on Freepik
-
-<a href="https://www.freepik.com/free-vector/girl-holding-flower_16866334.htm#query=little%20girl&position=10&from_view=author">Image by lunnadesign</a> on Freepik
 - Seasonal Images:
 Easter: Image by <a href="https://www.freepik.com/free-vector/flat-easter-element-collection_12673212.htm#query=cute%20easter&position=11&from_view=search&track=ais">Freepik</a>
 
