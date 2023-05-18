@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import {
   Button,
+  CardContent,
+  CardMedia,
   Container,
   TextField,
   Typography,
@@ -144,20 +146,23 @@ const ImageGenerator = () => {
   const categories = [
     {
       title: "christmas",
-      images: images2.christmas, // Use the corresponding image data
+      images: images2.christmas,
+      cover: images2.christmas[0].path,
     },
     {
       title: "princess",
-      images: images2.princess, // Use the corresponding image data
+      images: images2.princess,
+      cover: images2.princess[2].path,
     },
     {
       title: "space",
-      images: images2.space, // Use the corresponding image data
+      images: images2.space,
+      cover: images2.space[0].path,
     },
   ];
 
   return (
-    <>
+    <Container>
       <Container
         component="div"
         sx={{
@@ -245,7 +250,7 @@ const ImageGenerator = () => {
         )}
       </Container>
 
-      <Box component="div" sx={{ flexGrow: 1 }}>
+      <Box component="div" sx={{ flexGrow: 1, marginBottom: "20px" }}>
         <Typography
           variant="h5"
           component="div"
@@ -259,15 +264,45 @@ const ImageGenerator = () => {
           AI images generated - browse by categories
         </Typography>
 
-        {/* Render buttons for each category */}
-        {categories.map((category, index) => (
-          <Button
-            key={index}
-            onClick={() => handleOpenCategoriesModal(category)}
-          >
-            {category.title}
-          </Button>
-        ))}
+        {/* Render Cards for each category */}
+        <Grid container spacing={2}>
+          {categories.map((category, index) => (
+            <Grid key={index} item xs={6} sm={4} md={3}>
+              <Item
+                onClick={() => handleOpenCategoriesModal(category)}
+                sx={{
+                  cursor: "pointer",
+                  fontFamily: "Kreon",
+                  fontSize: "20px",
+                }}
+              >
+                 <CardMedia
+                  component="img"
+                  height="100%"
+                  width="100%"
+                  objectFit="cover"
+                  image={category.cover}
+                  alt="Card Image"
+                />
+                <CardContent>
+                  <Typography
+                    variant="h5"
+                    component="div"
+                    sx={{
+                      fontFamily: "Kreon",
+                      fontSize: {
+                        sm: "20px",
+                        md: "25px",
+                      },
+                    }}
+                  >
+                    {category.title}
+                  </Typography>
+                </CardContent>
+              </Item>
+            </Grid>
+          ))}
+        </Grid>
 
         {/* Render the modal */}
         {selectedCategory && (
@@ -278,7 +313,7 @@ const ImageGenerator = () => {
           />
         )}
 
-         {/* Categories */}
+        {/* Categories */}
         <Typography
           variant="h6"
           component="div"
@@ -357,7 +392,7 @@ const ImageGenerator = () => {
           ))}
         </Grid>
       </Box>
-    </>
+    </Container>
   );
 };
 

@@ -341,10 +341,8 @@ function StoryMaker() {
                     variant="h5"
                     component="div"
                     sx={{
-                      paddingTop: "15px",
                       fontFamily: "Kreon",
                       fontSize: {
-                        xs: "15px",
                         sm: "20px",
                         md: "25px",
                       },
