@@ -170,7 +170,7 @@ function StoryMaker() {
     },
   ];
 
-  // View All
+  // View All - toggle categories
   const [showGrid, setShowGrid] = useState(false);
 
   const handleViewAll = () => {

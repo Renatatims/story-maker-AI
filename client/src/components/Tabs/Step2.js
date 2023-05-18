@@ -152,7 +152,7 @@ const ImageGenerator = () => {
     {
       title: "princess",
       images: images2.princess,
-      cover: images2.princess[2].path,
+      cover: images2.princess[1].path,
     },
     {
       title: "space",
@@ -161,6 +161,13 @@ const ImageGenerator = () => {
     },
   ];
 
+  // View All - toggle categories
+  const [showGrid, setShowGrid] = useState(false);
+
+  const handleViewAll = () => {
+    setShowGrid(!showGrid);
+  };
+
   return (
     <Container>
       <Container
@@ -168,7 +175,6 @@ const ImageGenerator = () => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
           justifyContent: "center",
         }}
       >
@@ -256,9 +262,8 @@ const ImageGenerator = () => {
           component="div"
           style={{
             fontFamily: "Kreon",
-            fontSize: "40px",
-            textAlign: "center",
-            margin: "40px",
+            fontSize: { xs: "20px", sm: "25px", md: "35px" },
+            margin: "20px",
           }}
         >
           AI images generated - browse by categories
@@ -276,7 +281,7 @@ const ImageGenerator = () => {
                   fontSize: "20px",
                 }}
               >
-                 <CardMedia
+                <CardMedia
                   component="img"
                   height="100%"
                   width="100%"
@@ -313,84 +318,104 @@ const ImageGenerator = () => {
           />
         )}
 
-        {/* Categories */}
-        <Typography
-          variant="h6"
-          component="div"
-          style={{ fontFamily: "Kreon", fontSize: "25px" }}
-        >
-          Christmas Theme
-        </Typography>
-        <Grid container spacing={2}>
-          {images2.christmas.map((image) => (
-            <Grid key={image.id} item xs={6} md={3}>
-              <Item>
-                <img
-                  src={image.path}
-                  alt={image.title}
-                  style={{ maxHeight: "200px" }}
-                />
-                <Grid item>
-                  <Grid container justifyContent="center" spacing={1}>
-                    <Grid item>{image.title}</Grid>
-                  </Grid>
-                </Grid>
-              </Item>
-            </Grid>
-          ))}
-        </Grid>
+        {/*View All and Show Less Button - conditional view all categories AI images*/}
+        <div>
+          <Button
+            onClick={handleViewAll}
+            variant="contained"
+            sx={{
+              fontFamily: "Kreon",
+              backgroundColor: "grey",
+              "&:hover": { backgroundColor: "#00334A" },
+              mt: "5px",
+            }}
+          >
+            {showGrid ? "Show Less" : "View All"}
+          </Button>
 
-        <Typography
-          variant="h6"
-          component="div"
-          style={{ fontFamily: "Kreon", fontSize: "25px" }}
-        >
-          Princess Theme
-        </Typography>
-        <Grid container spacing={2}>
-          {images2.princess.map((image) => (
-            <Grid key={image.id} item xs={6} md={3}>
-              <Item>
-                <img
-                  src={image.path}
-                  alt={image.title}
-                  style={{ maxHeight: "200px" }}
-                />
-                <Grid item>
-                  <Grid container justifyContent="center" spacing={1}>
-                    <Grid item>{image.title}</Grid>
+          {showGrid && (
+            <div>
+              {/* Categories */}
+              <Typography
+                variant="h6"
+                component="div"
+                style={{ fontFamily: "Kreon", fontSize: "25px" }}
+              >
+                Christmas Theme
+              </Typography>
+              <Grid container spacing={2}>
+                {images2.christmas.map((image) => (
+                  <Grid key={image.id} item xs={6} md={3}>
+                    <Item>
+                      <img
+                        src={image.path}
+                        alt={image.title}
+                        style={{ maxHeight: "200px" }}
+                      />
+                      <Grid item>
+                        <Grid container justifyContent="center" spacing={1}>
+                          <Grid item>{image.title}</Grid>
+                        </Grid>
+                      </Grid>
+                    </Item>
                   </Grid>
-                </Grid>
-              </Item>
-            </Grid>
-          ))}
-        </Grid>
+                ))}
+              </Grid>
 
-        <Typography
-          variant="h6"
-          component="div"
-          style={{ fontFamily: "Kreon", fontSize: "25px" }}
-        >
-          Space
-        </Typography>
-        <Grid container spacing={2}>
-          {images2.space.map((image) => (
-            <Grid key={image.id} item xs={6} md={3}>
-              <Item>
-                <img
-                  src={image.path}
-                  alt={image.title}
-                  style={{ height: "200px" }}
-                />
-                <Grid item>
-                  <Grid container justifyContent="center" spacing={1}>
-                    <Grid item>{image.title}</Grid>
+              <Typography
+                variant="h6"
+                component="div"
+                style={{ fontFamily: "Kreon", fontSize: "25px" }}
+              >
+                Princess Theme
+              </Typography>
+              <Grid container spacing={2}>
+                {images2.princess.map((image) => (
+                  <Grid key={image.id} item xs={6} md={3}>
+                    <Item>
+                      <img
+                        src={image.path}
+                        alt={image.title}
+                        style={{ maxHeight: "200px" }}
+                      />
+                      <Grid item>
+                        <Grid container justifyContent="center" spacing={1}>
+                          <Grid item>{image.title}</Grid>
+                        </Grid>
+                      </Grid>
+                    </Item>
                   </Grid>
-                </Grid>
-              </Item>
-            </Grid>
-          ))}
-        </Grid>
+                ))}
+              </Grid>
+
+              <Typography
+                variant="h6"
+                component="div"
+                style={{ fontFamily: "Kreon", fontSize: "25px" }}
+              >
+                Space
+              </Typography>
+              <Grid container spacing={2}>
+                {images2.space.map((image) => (
+                  <Grid key={image.id} item xs={6} md={3}>
+                    <Item>
+                      <img
+                        src={image.path}
+                        alt={image.title}
+                        style={{ height: "200px" }}
+                      />
+                      <Grid item>
+                        <Grid container justifyContent="center" spacing={1}>
+                          <Grid item>{image.title}</Grid>
+                        </Grid>
+                      </Grid>
+                    </Item>
+                  </Grid>
+                ))}
+              </Grid>
+            </div>
+          )}
+        </div>
       </Box>
     </Container>
   );
