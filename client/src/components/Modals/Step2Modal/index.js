@@ -41,20 +41,18 @@ const Image2Modal = (props) => {
           borderRadius: 4,
           p: 2,
           m: 1,
+          mr:2,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           maxHeight: "80vh",
+          width:{xs:"40vh", sm:"80vh"},
           overflow: "auto",
         }}
       >
         <Stack
           sx={{
-            mt: {
-              xs: "300px",
-              sm: "20px",
-              md: "10px",
-            },
+            mt: "10px"
           }}
         >
           <IconButton
