@@ -17,7 +17,7 @@ import { styled } from "@mui/material/styles";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 //Import Categories Modal
-import CategoriesModal from "../Modals/Step1Modals/";
+import CategoriesModal from "../Modals/Step1Modal/";
 
 import images from "../../utils/images";
 import "../../App.css";

@@ -9,8 +9,12 @@ import {
   CircularProgress,
   Paper,
 } from "@mui/material";
+
 import { styled } from "@mui/material/styles";
 import Auth from "../../utils/auth";
+
+//Import Categories Modal
+import CategoriesModal from "../Modals/Step2Modal/";
 
 // Apollo useMutation() Hook
 import { useMutation } from "@apollo/client";
@@ -46,6 +50,10 @@ const ImageGenerator = () => {
   const [loading, setLoading] = useState(false);
   const [saveImage] = useMutation(SAVE_IMAGE);
 
+  //Select a Category
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  //Submit user prompt
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
@@ -118,6 +126,36 @@ const ImageGenerator = () => {
     color: theme.palette.text.secondary,
   }));
 
+  //Categories Step 2 Modal
+  //Modal - useState
+  const [modalCategoriesShow, setCategoriesModalShow] = useState(false);
+
+  //Open Modal
+  const handleOpenCategoriesModal = (category) => {
+    setSelectedCategory(category);
+    setCategoriesModalShow(true);
+  };
+  //Close Modal
+  const handleCloseCategoriesModal = () => {
+    setCategoriesModalShow(false);
+  };
+
+  //Select a Category
+  const categories = [
+    {
+      title: "christmas",
+      images: images2.christmas, // Use the corresponding image data
+    },
+    {
+      title: "princess",
+      images: images2.princess, // Use the corresponding image data
+    },
+    {
+      title: "space",
+      images: images2.space, // Use the corresponding image data
+    },
+  ];
+
   return (
     <>
       <Container
@@ -171,8 +209,12 @@ const ImageGenerator = () => {
               type="submit"
               variant="contained"
               disabled={!prompt || loading}
-              sx={{ marginTop: "1rem", fontFamily: "Kreon", backgroundColor: "grey",
-              "&:hover": { backgroundColor: "#00334A" }, }}
+              sx={{
+                marginTop: "1rem",
+                fontFamily: "Kreon",
+                backgroundColor: "grey",
+                "&:hover": { backgroundColor: "#00334A" },
+              }}
             >
               Generate Image
             </Button>
@@ -216,6 +258,27 @@ const ImageGenerator = () => {
         >
           AI images generated - browse by categories
         </Typography>
+
+        {/* Render buttons for each category */}
+        {categories.map((category, index) => (
+          <Button
+            key={index}
+            onClick={() => handleOpenCategoriesModal(category)}
+          >
+            {category.title}
+          </Button>
+        ))}
+
+        {/* Render the modal */}
+        {selectedCategory && (
+          <CategoriesModal
+            open={modalCategoriesShow}
+            handleClose={handleCloseCategoriesModal}
+            category={selectedCategory ? selectedCategory.images : []}
+          />
+        )}
+
+         {/* Categories */}
         <Typography
           variant="h6"
           component="div"
@@ -224,25 +287,22 @@ const ImageGenerator = () => {
           Christmas Theme
         </Typography>
         <Grid container spacing={2}>
-          {images2.map(
-            (image) =>
-              image.id <= 4 && (
-                <Grid key={image.id} item xs={6} md={3}>
-                  <Item>
-                    <img
-                      src={image.url}
-                      alt={image.title}
-                      style={{ maxHeight: "200px" }}
-                    />
-                    <Grid item>
-                      <Grid container justifyContent="center" spacing={1}>
-                        <Grid item>{image.title}</Grid>
-                      </Grid>
-                    </Grid>
-                  </Item>
+          {images2.christmas.map((image) => (
+            <Grid key={image.id} item xs={6} md={3}>
+              <Item>
+                <img
+                  src={image.path}
+                  alt={image.title}
+                  style={{ maxHeight: "200px" }}
+                />
+                <Grid item>
+                  <Grid container justifyContent="center" spacing={1}>
+                    <Grid item>{image.title}</Grid>
+                  </Grid>
                 </Grid>
-              )
-          )}
+              </Item>
+            </Grid>
+          ))}
         </Grid>
 
         <Typography
@@ -253,26 +313,22 @@ const ImageGenerator = () => {
           Princess Theme
         </Typography>
         <Grid container spacing={2}>
-          {images2.map(
-            (image) =>
-              image.id >= 5 &&
-              image.id <= 8 && (
-                <Grid key={image.id} item xs={6} md={3}>
-                  <Item>
-                    <img
-                      src={image.url}
-                      alt={image.title}
-                      style={{ maxHeight: "200px" }}
-                    />
-                    <Grid item>
-                      <Grid container justifyContent="center" spacing={1}>
-                        <Grid item>{image.title}</Grid>
-                      </Grid>
-                    </Grid>
-                  </Item>
+          {images2.princess.map((image) => (
+            <Grid key={image.id} item xs={6} md={3}>
+              <Item>
+                <img
+                  src={image.path}
+                  alt={image.title}
+                  style={{ maxHeight: "200px" }}
+                />
+                <Grid item>
+                  <Grid container justifyContent="center" spacing={1}>
+                    <Grid item>{image.title}</Grid>
+                  </Grid>
                 </Grid>
-              )
-          )}
+              </Item>
+            </Grid>
+          ))}
         </Grid>
 
         <Typography
@@ -280,28 +336,25 @@ const ImageGenerator = () => {
           component="div"
           style={{ fontFamily: "Kreon", fontSize: "25px" }}
         >
-          Planets
+          Space
         </Typography>
         <Grid container spacing={2}>
-          {images2.map(
-            (image) =>
-              image.id >= 9 && (
-                <Grid key={image.id} item xs={6} md={3}>
-                  <Item>
-                    <img
-                      src={image.url}
-                      alt={image.title}
-                      style={{ height: "200px" }}
-                    />
-                    <Grid item>
-                      <Grid container justifyContent="center" spacing={1}>
-                        <Grid item>{image.title}</Grid>
-                      </Grid>
-                    </Grid>
-                  </Item>
+          {images2.space.map((image) => (
+            <Grid key={image.id} item xs={6} md={3}>
+              <Item>
+                <img
+                  src={image.path}
+                  alt={image.title}
+                  style={{ height: "200px" }}
+                />
+                <Grid item>
+                  <Grid container justifyContent="center" spacing={1}>
+                    <Grid item>{image.title}</Grid>
+                  </Grid>
                 </Grid>
-              )
-          )}
+              </Item>
+            </Grid>
+          ))}
         </Grid>
       </Box>
     </>
