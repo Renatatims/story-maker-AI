@@ -10,11 +10,10 @@ import {
   Button,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-//import images from "../../../utils/images";
 import { styled } from "@mui/material/styles";
 
 const Image2Modal = (props) => {
-  const { open, handleClose, handleSelect, category } = props;
+  const { open, handleClose, category } = props;
   const categoryArray = category || [];
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -88,7 +87,6 @@ const Image2Modal = (props) => {
               {categoryArray.map((item) => (
                 <Grid key={item.id} item xs={6} sm={4} md={3}>
                   <Item
-                    onClick={() => handleSelect(item)}
                     sx={{
                       cursor: "pointer",
                       fontFamily: "Kreon",
