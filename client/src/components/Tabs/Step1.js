@@ -363,7 +363,11 @@ function StoryMaker() {
                 <img
                   src={image.path}
                   alt={image.title}
-                  style={{ maxHeight: "200px" }}
+                  style={{
+                    maxHeight: "100%",
+                    width: "100%",
+                    objectFit: "cover",
+                  }}
                 />
                 <Grid item>
                   <Grid container justifyContent="center" spacing={1}>

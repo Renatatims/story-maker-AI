@@ -45,14 +45,14 @@ const ImageModal = (props) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          maxHeight: "90vh",
+          maxHeight: "80vh",
           overflow: "auto",
         }}
       >
         <Stack
           sx={{
             mt: {
-              xs: "200px",
+              xs: "300px",
               sm: "20px",
               md: "10px",
             },
@@ -61,7 +61,7 @@ const ImageModal = (props) => {
           <IconButton
             aria-label="close"
             onClick={props.handleClose}
-            sx={{ position: "absolute", top: 2, right: 2, mb:"5px"}}
+            sx={{ position: "absolute", top: 2, right: 2, mb: "5px" }}
           >
             <CloseIcon />
           </IconButton>
@@ -69,8 +69,8 @@ const ImageModal = (props) => {
             variant="h5"
             component="div"
             sx={{
-              mt:"5px",
-              mb:"5px",
+              mt: "5px",
+              mb: "5px",
               paddingTop: "15px",
               paddingLeft: "20px",
               fontFamily: "Kreon",
@@ -84,9 +84,9 @@ const ImageModal = (props) => {
             Choose one or more items by clicking over the images:
           </Typography>
           {categoryArray && categoryArray.length > 0 ? (
-            <Grid container spacing={3}>
+            <Grid container spacing={2.5}>
               {categoryArray.map((item) => (
-                <Grid key={item.id} item xs={6} sm={4} md={3} >
+                <Grid key={item.id} item xs={6} sm={4} md={3}>
                   <Item
                     onClick={() => handleSelect(item)}
                     sx={{
@@ -100,15 +100,11 @@ const ImageModal = (props) => {
                     }}
                   >
                     <div style={{ flex: 1 }}>
-                    <img
-                      src={item.path}
-                      alt={item.title}
-                      style={{
-                        height: "100%",
-                        width: "100%",
-                        objectFit: "cover",
-                      }}
-                    />
+                      <img
+                        src={item.path}
+                        alt={item.title}
+                        style={{ maxHeight: "150px", maxWidth: "150px" }}
+                      />
                     </div>
                     <Grid item>
                       <Grid container justifyContent="center" spacing={1}>
@@ -130,7 +126,7 @@ const ImageModal = (props) => {
                 fontFamily: "Kreon",
                 backgroundColor: "grey",
                 "&:hover": { backgroundColor: "#00334A" },
-                margin:"30px"
+                mt: "20px",
               }}
             >
               Continue
