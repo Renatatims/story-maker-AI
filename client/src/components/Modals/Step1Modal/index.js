@@ -102,6 +102,7 @@ const ImageModal = (props) => {
                       position: "relative"
                     }}
                   >
+                    {/*Check marks included once user makes an image selection - the user can include and remove images from the array*/}
                     {selectedImageIds.includes(item.id) && (
                       <CheckCircleIcon sx={{ color: "green", position: "absolute", top: 2, right: 2, mb: "5px" }} />
                     )}

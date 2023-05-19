@@ -390,7 +390,7 @@ function StoryMaker() {
             handleClose={handleCloseCategoriesModal}
             handleSelect={handleSelect}
             category={selectedCategory ? selectedCategory.images : []}
-            selectedImageIds={selectedImageIds} 
+            selectedImageIds={selectedImageIds}
           />
         )}
 
@@ -440,8 +440,17 @@ function StoryMaker() {
                         position: "relative",
                       }}
                     >
+                      {/*Check marks included once user makes an image selection - the user can include and remove images from the array*/}
                       {selectedImageIds.includes(image.id) && (
-                        <CheckCircleIcon sx={{ color: "green", position: "absolute", top: 2, right: 2, mb: "5px" }}/>
+                        <CheckCircleIcon
+                          sx={{
+                            color: "green",
+                            position: "absolute",
+                            top: 2,
+                            right: 2,
+                            mb: "5px",
+                          }}
+                        />
                       )}
                       <img
                         src={image.path}
@@ -500,9 +509,22 @@ function StoryMaker() {
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "space-between",
+                        position: "relative",
                       }}
                     >
                       <div style={{ flex: 1 }}>
+                        {/*Check marks included once user makes an image selection - the user can include and remove images from the array*/}
+                        {selectedImageIds.includes(image.id) && (
+                          <CheckCircleIcon
+                            sx={{
+                              color: "green",
+                              position: "absolute",
+                              top: 2,
+                              right: 2,
+                              mb: "5px",
+                            }}
+                          />
+                        )}
                         <img
                           src={image.path}
                           alt={image.title}
@@ -557,9 +579,22 @@ function StoryMaker() {
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "space-between",
+                        position: "relative",
                       }}
                     >
                       <div style={{ flex: 1 }}>
+                        {/*Check marks included once user makes an image selection - the user can include and remove images from the array*/}
+                        {selectedImageIds.includes(image.id) && (
+                          <CheckCircleIcon
+                            sx={{
+                              color: "green",
+                              position: "absolute",
+                              top: 2,
+                              right: 2,
+                              mb: "5px",
+                            }}
+                          />
+                        )}
                         <img
                           src={image.path}
                           alt={image.title}
@@ -614,9 +649,22 @@ function StoryMaker() {
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "space-between",
+                        position: "relative"
                       }}
                     >
                       <div style={{ flex: 1 }}>
+                        {/*Check marks included once user makes an image selection - the user can include and remove images from the array*/}
+                        {selectedImageIds.includes(image.id) && (
+                          <CheckCircleIcon
+                            sx={{
+                              color: "green",
+                              position: "absolute",
+                              top: 2,
+                              right: 2,
+                              mb: "5px",
+                            }}
+                          />
+                        )}
                         <img
                           src={image.path}
                           alt={image.title}
