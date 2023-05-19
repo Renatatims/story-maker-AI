@@ -82,12 +82,12 @@ If you have any questions please contact me at:
 - Book Page template, from: https://www.canva.com/templates/EAFdM1RZDII-minimalist-vintage-line-a4-stationery-paper-document/
 
 - Characters:
-<a href="https://www.freepik.com/free-vector/ten-little-kids-characters-group_24631772.htm#query=kids%20cartoon%20different%20races&position=45&from_view=search&track=ais">Image by gstudioimagen1</a> on Freepik
+  <a href="https://www.freepik.com/free-vector/ten-little-kids-characters-group_24631772.htm#query=kids%20cartoon%20different%20races&position=45&from_view=search&track=ais">Image by gstudioimagen1</a> on Freepik
 
 - Seasonal Images:
-Easter: Image by <a href="https://www.freepik.com/free-vector/flat-easter-element-collection_12673212.htm#query=cute%20easter&position=11&from_view=search&track=ais">Freepik</a>
+  Easter: Image by <a href="https://www.freepik.com/free-vector/flat-easter-element-collection_12673212.htm#query=cute%20easter&position=11&from_view=search&track=ais">Freepik</a>
 
-Mother's Day:  <a href="https://www.freepik.com/free-vector/happy-mothera-s-day-beautiful-mother-daughter-character-hand-drawn-cartoon-art-illustration_14478867.htm#query=cute%20mothers%20day&position=13&from_view=search&track=ais">Image by mamewmy</a> on Freepik
+Mother's Day: <a href="https://www.freepik.com/free-vector/happy-mothera-s-day-beautiful-mother-daughter-character-hand-drawn-cartoon-art-illustration_14478867.htm#query=cute%20mothers%20day&position=13&from_view=search&track=ais">Image by mamewmy</a> on Freepik
 
 Father's Day: Image by <a href="https://www.freepik.com/free-vector/father-s-day-background-with-cute-bears_2192729.htm#query=cute%20fathers%20day&position=15&from_view=search&track=ais">Freepik</a>
 
@@ -97,11 +97,13 @@ Birthday: Image by <a href="https://www.freepik.com/free-vector/happy-birthday-i
 
 Halloween: Image by <a href="https://www.freepik.com/free-vector/flat-halloween-element-collection-white-background_5396179.htm#query=cute%20halloween&position=0&from_view=search&track=ais">Freepik</a>
 
-Thanksgiving: <a href="https://www.freepik.com/free-vector/happy-thanksgiving-lettering-design_6046987.htm#query=thanksgiving&position=2&from_view=search&track=sph">Image by pikisuperstar</a> on Freepik
+Thanksgiving: Image by <a href="https://www.freepik.com/free-vector/watercolor-autumn-ornaments-collection_18778634.htm#query=thanksgiving%20pumpkin%20cute&position=41&from_view=search&track=ais">Freepik</a>
 
 Christmas: Image by
- <a href="https://www.freepik.com/free-vector/hand-drawn-christmas-element-collection_10755945.htm#query=cute%20holiday&position=7&from_view=search&track=ais">Freepik</a>
+<a href="https://www.freepik.com/free-vector/hand-drawn-christmas-element-collection_10755945.htm#query=cute%20holiday&position=7&from_view=search&track=ais">Freepik</a>
 
-
+- Weather
+  <a href="https://www.freepik.com/free-vector/clouds-weather-sticker-with-smiling-face-cute-doodle-set-kids_16328331.htm#query=weather%20cute%20icons&position=0&from_view=search&track=ais">Image by rawpixel.com on Freepik
+  </a>
 - [OpenAI API](https://openai.com/)
 - [DALLE ](https://openai.com/dall-e/)

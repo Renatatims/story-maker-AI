@@ -183,7 +183,13 @@ function StoryMaker() {
       images: images.celebrations,
       cover: images.celebrations[7].path,
     },
+    {
+      title: "Weather",
+      images: images.weather,
+      cover: images.weather[0].path,
+    },
   ];
+
 
   // View All - toggle categories
   const [showGrid, setShowGrid] = useState(false);
