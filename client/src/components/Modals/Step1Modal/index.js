@@ -10,11 +10,12 @@ import {
   Button,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 //import images from "../../../utils/images";
 import { styled } from "@mui/material/styles";
 
 const ImageModal = (props) => {
-  const { open, handleClose, handleSelect, category } = props;
+  const { open, handleClose, handleSelect, category, selectedImageIds } = props;
   const categoryArray = category || [];
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -46,7 +47,7 @@ const ImageModal = (props) => {
           alignItems: "center",
           justifyContent: "center",
           maxHeight: "90vh",
-          width:{xs:"45vh", sm:"80vh"},
+          width: { xs: "45vh", sm: "80vh" },
           overflow: "auto",
         }}
       >
@@ -98,8 +99,12 @@ const ImageModal = (props) => {
                       display: "flex",
                       flexDirection: "column",
                       justifyContent: "space-between",
+                      position: "relative"
                     }}
                   >
+                    {selectedImageIds.includes(item.id) && (
+                      <CheckCircleIcon sx={{ color: "green", position: "absolute", top: 2, right: 2, mb: "5px" }} />
+                    )}
                     <div style={{ flex: 1 }}>
                       <img
                         src={item.path}

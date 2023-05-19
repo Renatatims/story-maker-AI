@@ -17,6 +17,7 @@ import {
 
 import { styled } from "@mui/material/styles";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 //Import Categories Modal
 import CategoriesModal from "../Modals/Step1Modal/";
@@ -85,25 +86,24 @@ function StoryMaker() {
   const [loading, setLoading] = useState(false);
 
   //Render Images - so user can select and include in their story - selectedImage state: array - to include more than one selection
-  const [selectedImages, setSelectedImages] = useState([]);
+  const [selectedImageIds, setSelectedImageIds] = useState([]);
 
   //Select a Category
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   const [saveStoriesAI] = useMutation(SAVE_STORY_AI);
 
-  // Selected Images Array - 
+  // Selected Images Array -
   const handleSelect = (image) => {
-    if (selectedImages.includes(image)) {
-      setSelectedImages((prevSelectedImages) =>
-        prevSelectedImages.filter((selectedImage) => selectedImage !== image)
+    if (selectedImageIds.includes(image.id)) {
+      setSelectedImageIds((prevSelectedImageIds) =>
+        prevSelectedImageIds.filter((id) => id !== image.id)
       );
     } else {
-      setSelectedImages((prevSelectedImages) => {
-        const newSelectedImages = [...prevSelectedImages, image];
-        console.log("Selected Images:", newSelectedImages); 
-        return newSelectedImages;
-      });
+      setSelectedImageIds((prevSelectedImageIds) => [
+        ...prevSelectedImageIds,
+        image.id,
+      ]);
     }
   };
 
@@ -112,12 +112,12 @@ function StoryMaker() {
     setLoading(true);
 
     //Array of images Descriptions
-    const selectedImageDescriptions = selectedImages.map(
-      (image) => image.description.toLowerCase()
+    const selectedImageDescriptions = selectedImageIds.map((image) =>
+      image.description.toLowerCase()
     );
 
     const prompt = `Please generate a ${style} that includes a main character with the name: ${character}, and description: ${description} and has the following theme: ${theme}. Story's age target: ${age}, max words: ${words} words. ${
-      selectedImages.length > 0
+      selectedImageIds.length > 0
         ? "The story should also include the following " +
           selectedImageDescriptions.join(", ") +
           "."
@@ -189,7 +189,6 @@ function StoryMaker() {
       cover: images.weather[0].path,
     },
   ];
-
 
   // View All - toggle categories
   const [showGrid, setShowGrid] = useState(false);
@@ -391,11 +390,12 @@ function StoryMaker() {
             handleClose={handleCloseCategoriesModal}
             handleSelect={handleSelect}
             category={selectedCategory ? selectedCategory.images : []}
+            selectedImageIds={selectedImageIds} 
           />
         )}
 
         {/*View All and Show Less Button - conditional view all categories images*/}
-        <Box sx={{mt:"10px", mb:"60px"}}>
+        <Box sx={{ mt: "10px", mb: "60px" }}>
           <Button
             onClick={handleViewAll}
             variant="contained"
@@ -437,8 +437,12 @@ function StoryMaker() {
                         cursor: "pointer",
                         fontFamily: "Kreon",
                         fontSize: "20px",
+                        position: "relative",
                       }}
                     >
+                      {selectedImageIds.includes(image.id) && (
+                        <CheckCircleIcon sx={{ color: "green", position: "absolute", top: 2, right: 2, mb: "5px" }}/>
+                      )}
                       <img
                         src={image.path}
                         alt={image.title}
@@ -572,9 +576,9 @@ function StoryMaker() {
                 ))}
               </Grid>
 
-               {/*Weather*/}
+              {/*Weather*/}
 
-               <Typography
+              <Typography
                 variant="h5"
                 component="div"
                 sx={{
@@ -628,7 +632,6 @@ function StoryMaker() {
                   </Grid>
                 ))}
               </Grid>
-            
             </div>
           )}
           <Button
