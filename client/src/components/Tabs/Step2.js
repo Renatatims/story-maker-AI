@@ -319,7 +319,7 @@ const ImageGenerator = () => {
         )}
 
         {/*View All and Show Less Button - conditional view all categories AI images*/}
-        <div>
+        <Box sx={{mt:"10px", mb:"60px"}}>
           <Button
             onClick={handleViewAll}
             variant="contained"
@@ -415,7 +415,20 @@ const ImageGenerator = () => {
               </Grid>
             </div>
           )}
-        </div>
+          <Button
+            onClick={handleViewAll}
+            variant="contained"
+            sx={{
+              fontFamily: "Kreon",
+              backgroundColor: "grey",
+              "&:hover": { backgroundColor: "#00334A" },
+              mt: "10px",
+              display: showGrid ? "block" : "none",
+            }}
+          >
+            {"Close"}
+          </Button>
+        </Box>
       </Box>
     </Container>
   );

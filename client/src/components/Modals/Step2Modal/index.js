@@ -46,7 +46,7 @@ const Image2Modal = (props) => {
           alignItems: "center",
           justifyContent: "center",
           maxHeight: "80vh",
-          width:{xs:"40vh", sm:"80vh"},
+          width:{xs:"45vh", sm:"80vh"},
           overflow: "auto",
         }}
       >
