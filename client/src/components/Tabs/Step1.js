@@ -84,27 +84,42 @@ function StoryMaker() {
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
 
-  //Render Images - so user can select and include in their story
-  const [selectedImage, setSelectedImage] = useState(null);
+  //Render Images - so user can select and include in their story - selectedImage state: array - to include more than one selection
+  const [selectedImages, setSelectedImages] = useState([]);
 
   //Select a Category
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   const [saveStoriesAI] = useMutation(SAVE_STORY_AI);
 
+  // Selected Images Array - 
   const handleSelect = (image) => {
-    setSelectedImage(image);
-    console.log(image.description);
+    if (selectedImages.includes(image)) {
+      setSelectedImages((prevSelectedImages) =>
+        prevSelectedImages.filter((selectedImage) => selectedImage !== image)
+      );
+    } else {
+      setSelectedImages((prevSelectedImages) => {
+        const newSelectedImages = [...prevSelectedImages, image];
+        console.log("Selected Images:", newSelectedImages); 
+        return newSelectedImages;
+      });
+    }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
 
+    //Array of images Descriptions
+    const selectedImageDescriptions = selectedImages.map(
+      (image) => image.description.toLowerCase()
+    );
+
     const prompt = `Please generate a ${style} that includes a main character with the name: ${character}, and description: ${description} and has the following theme: ${theme}. Story's age target: ${age}, max words: ${words} words. ${
-      selectedImage
+      selectedImages.length > 0
         ? "The story should also include the following " +
-          selectedImage.description.toLowerCase() +
+          selectedImageDescriptions.join(", ") +
           "."
         : ""
     }`;
@@ -339,7 +354,7 @@ function StoryMaker() {
                   component="img"
                   height="100%"
                   width="100%"
-                  objectFit="cover"
+                  objectfit="cover"
                   image={category.cover}
                   alt="Card Image"
                 />
@@ -424,7 +439,7 @@ function StoryMaker() {
                         style={{
                           maxHeight: "100%",
                           width: "100%",
-                          objectFit: "cover",
+                          objectfit: "cover",
                         }}
                       />
                       <Grid item>
@@ -484,7 +499,7 @@ function StoryMaker() {
                           style={{
                             maxHeight: "100%",
                             width: "100%",
-                            objectFit: "cover",
+                            objectfit: "cover",
                           }}
                         />
                       </div>
@@ -541,7 +556,7 @@ function StoryMaker() {
                           style={{
                             maxHeight: "100%",
                             width: "100%",
-                            objectFit: "cover",
+                            objectfit: "cover",
                           }}
                         />
                       </div>
