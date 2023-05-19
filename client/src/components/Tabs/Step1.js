@@ -571,6 +571,64 @@ function StoryMaker() {
                   </Grid>
                 ))}
               </Grid>
+
+               {/*Weather*/}
+
+               <Typography
+                variant="h5"
+                component="div"
+                sx={{
+                  paddingTop: "15px",
+                  paddingLeft: "20px",
+                  fontFamily: "Kreon",
+                  fontSize: {
+                    xs: "15px",
+                    sm: "20px",
+                    md: "25px",
+                  },
+                }}
+              >
+                Choose a weather:
+              </Typography>
+              <Grid container spacing={2}>
+                {images.weather.map((image) => (
+                  <Grid
+                    key={image.id}
+                    item
+                    xs={6}
+                    sm={4}
+                    md={3}
+                    sx={{ paddingBottom: "15px" }}
+                  >
+                    <Item
+                      onClick={() => handleSelect(image)}
+                      sx={{
+                        cursor: "pointer",
+                        fontFamily: "Kreon",
+                        fontSize: "20px",
+                        height: "100%",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div style={{ flex: 1 }}>
+                        <img
+                          src={image.path}
+                          alt={image.title}
+                          style={{
+                            maxHeight: "100%",
+                            width: "100%",
+                            objectfit: "cover",
+                          }}
+                        />
+                      </div>
+                      <div style={{ textAlign: "center" }}>{image.title}</div>
+                    </Item>
+                  </Grid>
+                ))}
+              </Grid>
+            
             </div>
           )}
           <Button
