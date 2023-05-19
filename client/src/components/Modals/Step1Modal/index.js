@@ -45,7 +45,7 @@ const ImageModal = (props) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          maxHeight: "80vh",
+          maxHeight: "90vh",
           width:{xs:"45vh", sm:"80vh"},
           overflow: "auto",
         }}
@@ -53,7 +53,7 @@ const ImageModal = (props) => {
         <Stack
           sx={{
             mt: {
-              xs: "300px",
+              xs: `${categoryArray.length === 12 ? "750px" : "300px"}`,
               sm: "20px",
               md: "10px",
             },
@@ -127,7 +127,7 @@ const ImageModal = (props) => {
                 fontFamily: "Kreon",
                 backgroundColor: "grey",
                 "&:hover": { backgroundColor: "#00334A" },
-                mt: "20px",
+                mt: "40px",
               }}
             >
               Continue

@@ -176,7 +176,7 @@ function StoryMaker() {
     {
       title: "Characters",
       images: images.characters,
-      cover: require("../../assets/images/characters/characterCover_img.png"),
+      cover: images.characters[0].path,
     },
     {
       title: "Celebrations",
