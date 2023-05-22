@@ -122,7 +122,7 @@ const Image2Modal = (props) => {
                 fontFamily: "Kreon",
                 backgroundColor: "grey",
                 "&:hover": { backgroundColor: "#00334A" },
-                mt: "20px",
+                mt: "40px",
               }}
             >
               Continue

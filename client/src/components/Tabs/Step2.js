@@ -271,7 +271,7 @@ const ImageGenerator = () => {
             margin: "20px",
           }}
         >
-          AI images generated - browse by categories
+          AI images generated examples - browse by categories
         </Typography>
 
         {/* Render Cards for each category */}
@@ -341,6 +341,7 @@ const ImageGenerator = () => {
           {showGrid && (
             <div>
               {/* Categories */}
+              {/*Christmas */}
               <Typography
                 variant="h6"
                 component="div"
@@ -384,6 +385,7 @@ const ImageGenerator = () => {
                 ))}
               </Grid>
 
+              {/*Princess */}
               <Typography
                 variant="h6"
                 component="div"
@@ -427,6 +429,7 @@ const ImageGenerator = () => {
                 ))}
               </Grid>
 
+              {/*Space */}
               <Typography
                 variant="h6"
                 component="div"
@@ -436,6 +439,50 @@ const ImageGenerator = () => {
               </Typography>
               <Grid container spacing={2}>
                 {images2.space.map((image) => (
+                  <Grid key={image.id} item xs={6} sm={4} md={3}>
+                    <Item
+                      sx={{
+                        fontFamily: "Kreon",
+                        fontSize: "20px",
+                      }}
+                    >
+                      <img
+                        src={image.path}
+                        alt={image.title}
+                        style={{
+                          maxHeight: "100%",
+                          width: "100%",
+                          objectfit: "cover",
+                        }}
+                      />
+                      <Grid item>
+                        <Grid container justifyContent="center" spacing={1}>
+                          <Grid item>{image.title}</Grid>
+                        </Grid>
+                      </Grid>
+                    </Item>
+                  </Grid>
+                ))}
+              </Grid>
+
+              {/*Shark */}
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{
+                  paddingTop: "15px",
+                  paddingLeft: "20px",
+                  fontFamily: "Kreon",
+                  fontSize: {
+                    xs: "20px",
+                    md: "25px",
+                  },
+                }}
+              >
+                Shark Theme
+              </Typography>
+              <Grid container spacing={2}>
+                {images2.sharks.map((image) => (
                   <Grid key={image.id} item xs={6} sm={4} md={3}>
                     <Item
                       sx={{
