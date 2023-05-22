@@ -159,6 +159,11 @@ const ImageGenerator = () => {
       images: images2.space,
       cover: images2.space[0].path,
     },
+    {
+      title: "Sharks",
+      images: images2.sharks,
+      cover: images2.sharks[1].path,
+    },
   ];
 
   // View All - toggle categories
