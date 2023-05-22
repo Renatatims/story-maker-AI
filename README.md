@@ -37,12 +37,12 @@ The Story Maker AI App is divided into 3 steps, each of which prompts the user f
 
 ## Features
 
-To use the app, simply click on the first step and enter the required information. Once you've completed all the steps, you can view and print you final story.
+To use the app, simply click on the first step and enter the required information. You can also browse through image categories and include items to your story, by selecting an image. Once you've completed all the steps, you can view and print you final story.
 
-- Step 1 - Story description - input character, theme, elements, scenary.
+- Step 1 - Story description - input character, theme, elements, scenery, maxWords, style and age target. You can also make a selection by browsing images and adding the items to your story.
 - Step 2 - Generate a personalized image by providing a description in the form.
-- Step 3 - View your final story and image and the ability to print this card.
-- Step 4 - View as an e-book - turn the pages and interact online
+- Step 3 - View your final story and image and the ability to print the card. You can also add an unique title to your story.
+- Step 4 - View as an e-book - turn the pages and interact online.
 <p>
   <img src="./client/src/assets/screenshots/preview2.PNG" alt="Story Maker AI App Screenshot" width="500" />
 </p>
