@@ -111,10 +111,22 @@ function StoryMaker() {
     event.preventDefault();
     setLoading(true);
 
-    //Array of images Descriptions
-    const selectedImageDescriptions = selectedImageIds.map((image) =>
-      image.description.toLowerCase()
+    // Retrieve the selected image objects using the IDs
+    const selectedImages = [];
+    for (const category in images) {
+      selectedImages.push(
+        ...images[category].filter((image) =>
+          selectedImageIds.includes(image.id)
+        )
+      );
+    }
+
+    // Extract the image descriptions from the selected image objects
+    const selectedImageDescriptions = selectedImages.map(
+      (image) => image.description
     );
+
+    console.log("Selected Image descriptions:", selectedImageDescriptions);
 
     const prompt = `Please generate a ${style} that includes a main character with the name: ${character}, and description: ${description} and has the following theme: ${theme}. Story's age target: ${age}, max words: ${words} words. ${
       selectedImageIds.length > 0
@@ -649,7 +661,7 @@ function StoryMaker() {
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "space-between",
-                        position: "relative"
+                        position: "relative",
                       }}
                     >
                       <div style={{ flex: 1 }}>
